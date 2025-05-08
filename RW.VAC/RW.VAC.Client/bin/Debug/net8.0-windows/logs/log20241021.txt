@@ -1,0 +1,73 @@
+15:43:38.503 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [ERR] 存在相同的参数编码
+RW.Framework.Exceptions.BusinessException: 存在相同的参数编码
+   at RW.VAC.Domain.Parameters.ParameterManager.CheckCode(String code, Parameter parameter) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Domain\Parameters\ParameterManager.cs:line 28
+   at RW.VAC.Domain.Parameters.ParameterManager.UpdateAsync(Guid id, String code, String value, String description) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Domain\Parameters\ParameterManager.cs:line 19
+   at RW.VAC.Application.Services.Parameters.ParameterService.SetParameterAsync(String code, String value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Application\Services\Parameters\ParameterService.cs:line 23
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.LoadParameter() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 83
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 37
+15:46:35.559 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:48611
+15:46:47.292 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567891
+15:46:57.624 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567891
+15:48:25.590 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:48638
+15:48:26.803 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567895
+15:54:38.442 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:48765
+15:54:40.234 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567895
+15:58:05.951 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:48813
+15:58:07.235 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567896
+15:58:08.990 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567896
+15:58:20.775 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567896
+15:58:27.535 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567896
+15:58:35.104 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567896
+15:58:37.189 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567896
+15:58:46.133 (RW.VAC.Infrastructure.Tcp.TcpServer) [WRN] 客户端断开：Id：1 IPAddress:127.0.0.1:48813 Message:远程终端主动关闭
+15:58:46.415 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：2 IPAddress:127.0.0.1:48815
+15:58:47.486 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1234567896
+15:58:51.301 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567896
+15:58:52.893 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567896
+15:59:16.674 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:48840
+15:59:19.098 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567896
+16:02:20.443 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:48893
+16:02:21.187 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567896
+16:03:18.233 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:48903
+16:03:25.138 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567896
+16:30:28.650 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:49303
+16:30:32.800 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567823
+16:30:55.155 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:49322
+16:30:57.314 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567821
+16:31:14.797 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567821
+16:31:42.478 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:49367
+16:31:44.932 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567822
+16:32:01.573 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567822
+16:32:01.791 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+16:32:01.796 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+16:32:08.197 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Received HTTP response headers after 6398.7478ms - 404
+16:32:08.198 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] End processing HTTP request after 6412.4295ms - 404
+16:34:03.209 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:49943
+16:34:06.714 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567827
+16:34:21.348 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567827
+16:34:28.012 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567827
+16:34:32.085 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567827
+16:34:32.659 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567827
+16:54:58.506 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:50568
+16:55:04.499 (RW.VAC.Infrastructure.Tcp.TcpServer) [WRN] 客户端断开：Id：1 IPAddress:127.0.0.1:50568 Message:远程终端主动关闭
+16:55:04.659 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：2 IPAddress:127.0.0.1:50576
+16:55:10.382 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+16:55:19.042 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+16:55:26.820 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+16:55:33.076 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+16:55:37.924 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+16:56:01.474 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+16:56:09.971 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+16:56:44.350 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:50611
+16:56:45.128 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+16:57:07.298 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1232567889
+17:08:20.898 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:50852
+17:08:21.667 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM1233216546
+17:08:31.036 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM12332165464
+17:08:38.538 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM12332165464
+17:10:12.260 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:50888
+17:10:20.098 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM123321654641
+17:10:26.898 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM123321654641
+17:13:50.843 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:51037
+17:13:57.943 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM12336533412
+17:14:05.954 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM12336533412

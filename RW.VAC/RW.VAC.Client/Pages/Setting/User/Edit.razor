@@ -1,0 +1,57 @@
+﻿@using RW.VAC.Application.Contracts.Users
+@using System.ComponentModel.DataAnnotations
+
+@inject IUserService UserService;
+
+@inherits FeedbackComponent<FormOption<UserCreateUpdateDto>>
+
+<Form @ref="_form" 
+      Model="@_model" 
+      LabelColSpan="4" 
+      ValidateOnChange="true"
+      ValidateMode="FormValidateMode.Complex">
+	<FormItem Label="用户名">
+		<Input @bind-Value="@context.UserName" MaxLength="20" />
+	</FormItem>
+	<FormItem Label="账号">
+		<Input @bind-Value="@context.Account" MaxLength="20" />
+	</FormItem>
+	<FormItem Label="密码" Rules="@(_passwordRules?.ToArray())">
+		<InputPassword @bind-Value="@context.Password" />
+	</FormItem>
+	
+</Form>
+
+@code {
+	private UserCreateUpdateDto _model = null!;
+	private Form<UserCreateUpdateDto>? _form;
+
+	private List<FormValidationRule>? _passwordRules;
+
+
+	protected override void OnInitialized()
+	{
+		if (!base.Options.Id.HasValue)
+		{
+			_passwordRules =
+			[
+				new FormValidationRule {Required = true, Message = "请输入密码"}
+			];
+		}
+		_model = base.Options.Data;
+		base.OnInitialized();
+	}
+
+	public override async Task OnFeedbackOkAsync(ModalClosingEventArgs e)
+	{
+		if (_form!.Validate())
+		{
+			_ = base.Options.Id.HasValue ? await UserService.UpdateAsync(base.Options.Id.Value, _model) : await UserService.CreateAsync(_model);
+		}
+		else
+		{
+			e.Cancel = true;
+		}
+		await base.OnFeedbackOkAsync(e);
+	}
+}

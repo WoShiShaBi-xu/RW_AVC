@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RW.VAC.Infrastructure\RW.VAC.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Events\EventHandle\" />
+    <Folder Include="Services\Products\" />
+    <Folder Include="Services\Parameters\" />
+    <Folder Include="Services\Records\" />
+    <Folder Include="Services\Orders\" />
+    <Folder Include="Services\Users\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Polly" Version="8.5.0" />
+  </ItemGroup>
+
+</Project>

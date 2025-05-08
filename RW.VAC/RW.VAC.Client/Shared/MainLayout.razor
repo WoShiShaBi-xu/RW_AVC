@@ -1,0 +1,112 @@
+﻿@using Microsoft.JSInterop
+@using RW.Framework.EventBus
+@using RW.VAC.Application.Events.EventData
+@using RW.VAC.Client.Storage
+@using RW.VAC.Client.Shared.Components.Footer
+
+@inherits LayoutComponentBase
+@implements IDisposable
+
+@inject NavigationManager NavigationManager
+@inject NavigationProvider NavigationProvider
+@inject IJSRuntime JsRuntime
+@inject IEventBus EventBus
+@inject LogBuffer LogBuffer
+
+
+<AuthorizeView>
+	<Authorized>
+		<ConfigProvider Theme="GlobalTheme.Light">
+			<Layout>
+				<Sider>
+					<NavMenu/>
+				</Sider>
+				<Layout>
+					<Header>
+						<Card Size="small" Bordered="false">
+							<SectionOutlet SectionName="navBread"></SectionOutlet>
+						</Card>
+					</Header>
+					<Content>
+						<div class="rw-body">
+							@Body
+						</div>
+						<div class="rw-log">
+							<div class="fixed-widgets">
+								<Tooltip Title="运行日志">
+									<Button OnClick="Open" Class="fixed-widgets-button" Shape="@ButtonShape.Circle" Icon="snippets"></Button>
+								</Tooltip>
+							</div>
+							<Drawer Closable="true" @bind-Visible="_visible" Placement="right" Title='"运行日志"' OnOpen="OnOpenHandler">
+								<div class="rw-log-content">
+									@foreach (var item in LogMessages)
+									{
+										if (item == null) continue;
+										<p class="@($"rw-log-level-{item.Level}")">
+											<span class="rw-log-time">[@item.Timestamp]</span>
+											<span class="rw-log-source">(@item.Source)</span>
+											<span class="rw-log-msg">@item.Message</span>
+										</p>
+									}
+								</div>
+							</Drawer>
+						</div>
+					</Content>
+					<Footer>
+                        <EquipmentStatistics />
+                        <div>技术支持：湖南润伟智能机器有限公司</div>
+					</Footer>
+				</Layout>
+			</Layout>
+		</ConfigProvider>
+	</Authorized>
+	<NotAuthorized>
+		<RedirectToLogin/>
+	</NotAuthorized>
+</AuthorizeView>
+<script>
+	window.scrollToBottom = () => { 
+		var objDiv = document.getElementsByClassName("rw-log-content")[0];
+		objDiv.scrollIntoView(false);
+	}
+</script>
+
+@code
+{
+	private bool _visible;
+
+	private LogMessage?[] LogMessages => LogBuffer.Storage.ToArray();
+
+	protected override void OnInitialized()
+	{
+		NavigationProvider.Initialize(NavigationManager);
+		EventBus.Register<LogEventData>(AddLogMessage);
+	}
+
+	private void Open()
+	{
+		_visible = true;
+	}
+
+	private async Task OnOpenHandler()
+	{
+		await ScrollToBottom();
+	}
+
+	private async Task ScrollToBottom()
+	{ 
+		await JsRuntime.InvokeVoidAsync("scrollToBottom");
+	}
+
+	private async Task AddLogMessage(LogEventData data)
+	{
+		LogBuffer.Storage.PushBack(new LogMessage(data.Timestamp.ToString("HH:mm:ss.fff"), data.Level, data.Source, data.Message));
+		await InvokeAsync(StateHasChanged);
+		await ScrollToBottom();
+	}
+
+	public void Dispose()
+	{
+		EventBus.Unregister<LogEventData>(AddLogMessage);
+	}
+}

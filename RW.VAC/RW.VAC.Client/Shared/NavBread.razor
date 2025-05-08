@@ -1,0 +1,9 @@
+﻿<Breadcrumb>
+	<BreadcrumbItem Href="/">控制台</BreadcrumbItem>
+	@NavTemplate
+</Breadcrumb>
+@code
+{
+	[Parameter]
+	public RenderFragment? NavTemplate { get; set; }
+}

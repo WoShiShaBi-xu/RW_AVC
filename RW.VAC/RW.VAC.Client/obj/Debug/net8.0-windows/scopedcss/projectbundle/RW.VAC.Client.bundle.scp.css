@@ -1,0 +1,369 @@
+/* /Pages/ControlPanel.razor.rz.scp.css */
+.rw-content[b-i0njv7ssan]  .equipment-item {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column; /* 改为列方向 */
+    align-items: flex-start;
+}
+
+    .rw-content[b-i0njv7ssan]  .equipment-item .equipment-status {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%; /* 宽度设置为100% */
+        margin-top: 20px; /* 添加上边距 */
+
+    }
+
+        .rw-content[b-i0njv7ssan]  .equipment-item .equipment-status > div:not(:last-child) {
+            margin-right: 5px;
+
+        }
+
+.rw-content[b-i0njv7ssan]  .ant-card-grid {
+    padding: 12px;
+}
+
+
+
+/* /Pages/Login.razor.rz.scp.css */
+.rw-content[b-n3h1ma4fa2] {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(135, 197, 237);
+    /*background-color: #F0F2F5;*/
+    display: flex;
+    justify-content: center;
+}
+
+    .rw-content .login-box[b-n3h1ma4fa2] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+        .rw-content .login-box .login-title[b-n3h1ma4fa2] {
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 26px;
+        }
+
+        .rw-content .login-box .login-form[b-n3h1ma4fa2] {
+            padding: 30px 50px 0 50px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+            border-radius: 5px;
+            background-color: #fff;
+        }
+/* /Pages/Overview.razor.rz.scp.css */
+.rw-content[b-mh3pnnifd0]  .equipment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .rw-content[b-mh3pnnifd0]  .equipment-item .equipment-status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .rw-content[b-mh3pnnifd0]  .equipment-item .equipment-status > div:not(:last-child) {
+            margin-right: 5px;
+        }
+
+.rw-content[b-mh3pnnifd0]  .ant-card-grid {
+    padding: 12px;
+}
+/* /Pages/Record/Detail.razor.rz.scp.css */
+.rw-content[b-n5yczm28g6]  .rw-process .ant-card-body {
+    overflow: auto;
+}
+
+.rw-content[b-n5yczm28g6]  .rw-process .ant-steps {
+    margin-top: 10px;
+}
+
+.rw-content[b-n5yczm28g6]  .rw-detail {
+    margin-top: 10px;
+}
+
+    .rw-content[b-n5yczm28g6]  .rw-detail .ant-descriptions:not(:last-child):after {
+        display: block;
+        content: "";
+        border-top: 1px solid rgba(0,0,0,.06);
+
+
+        margin-bottom: 16px;
+    }
+
+.rw-content[b-n5yczm28g6]  .ant-descriptions-item-content div:not(:first-child) {
+    position: relative;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+    .rw-content[b-n5yczm28g6]  .ant-descriptions-item-content div:not(:first-child):before {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 60%;
+        background-color: #bfbfbf;
+        margin-left: -8px;
+    }
+
+.rw-data-value[b-n5yczm28g6] {
+    margin: 0 2px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+/* /Pages/Setting/Opc/GroupEdit.razor.rz.scp.css */
+.rw-form[b-5t2kqjdcel]  .rw-input-split {
+    background: #fff !important;
+    border-left: 0;
+    border-right: 0;
+    pointer-events: none;
+    width: 30px;
+}
+
+.rw-form[b-5t2kqjdcel]  .rw-input-right {
+    border-left-width: 0;
+}
+
+/* /Pages/Setting/Opc/List.razor.rz.scp.css */
+.rw-content[b-7pkwv8feqi]  .ant-list-item-action {
+    display: none;
+}
+
+    .rw-content[b-7pkwv8feqi]  .ant-list-item-action > li {
+        padding: 0 2px;
+    }
+
+.rw-content[b-7pkwv8feqi]  .ant-list-item:hover {
+    cursor: pointer;
+}
+
+    .rw-content[b-7pkwv8feqi]  .ant-list-item:hover .ant-list-item-action {
+        display: block;
+    }
+
+    .rw-content[b-7pkwv8feqi]  .ant-list-item:hover .ant-list-item-meta-title {
+        color: #1890ff;
+    }
+
+.rw-content[b-7pkwv8feqi]  .ant-list-item-selected {
+    background: #e6f7ff;
+    border-color: rgba(0, 0, 0, 0.03);
+    position: relative;
+}
+
+    .rw-content[b-7pkwv8feqi]  .ant-list-item-selected::after {
+        border-right: 3px solid #1890ff;
+        bottom: 0;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .rw-content[b-7pkwv8feqi]  .ant-list-item-selected .ant-list-item-meta-title {
+        color: #1890ff;
+    }
+
+.rw-content[b-7pkwv8feqi]  .group-description {
+    font-size: 14px;
+    font-weight: normal;
+}
+/* /Pages/Statistics.razor.rz.scp.css */
+.center-container[b-jblujeilqk] {
+    display: flex;
+    flex-direction: column; /* 将方向设置为列，以使卡片在表格上方 */
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%; /* 确保容器宽度为100% */
+    height: 130px;
+}
+
+.card-container[b-jblujeilqk] {
+    display: flex;
+    justify-content: center; /* 确保卡片容器内容水平居中 */
+    align-items: flex-start;
+    gap: 20px; /* 卡片之间的间距，根据需要调整 */
+    max-width: 1300px; /* 设置最大宽度，根据需要调整 */
+    max-height: 130px;
+    width: 100%; /* 设置宽度为100% */
+    height: 50%;
+}
+
+.card-grid[b-jblujeilqk] {
+    padding: 20px; /* 增加一些内边距，看起来更美观 */
+}
+.production-text[b-jblujeilqk] {
+    font-size: 24px; /* 放大字体 */
+    font-weight: normal; /* 正常字体 */
+    width:400px;
+    color: #333; /* 更改字体颜色 */
+    margin-right: 10px; /* 添加右边距以与图标分开 */
+}
+
+.production-number[b-jblujeilqk] {
+    font-size: 24px; /* 放大字体 */
+    font-weight: bold; /* 加粗字体 */
+    color: #333; /* 更改字体颜色 */
+    margin-top: 10px; /* 添加上边距以与上面的内容分开 */
+}
+
+.icon-bg[b-jblujeilqk] {
+    border-radius: 50%; /* 设置为圆形 */
+    width: 70px; /* 设置背景圆形的宽度 */
+    height: 70px; /* 设置背景圆形的高度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon[b-jblujeilqk] {
+    width: 50px; /* 保持图标的原始宽度 */
+    height: 50px; /* 保持图标的原始高度 */
+}
+.content-column[b-jblujeilqk] {
+    display: flex;
+    flex-direction: column; /* 垂直排列内容 */
+    align-items: flex-start; /* 内容左对齐 */
+    width: 100%; /* 确保内容占满整个卡片宽度 */
+}
+.content-row[b-jblujeilqk] {
+    display: flex;
+    align-items: center; /* 确保图标和文字在同一行对齐 */
+    width: 100%; /* 确保内容占满整个卡片宽度 */
+}
+.bg-color-1[b-jblujeilqk] {
+    background-color: #E4FDE9; /* 设置第一个图标背景颜色 */
+}
+
+.bg-color-2[b-jblujeilqk] {
+    background-color: #E6F6FF; /* 设置第二个图标背景颜色 */
+}
+.table-container[b-jblujeilqk] {
+    width: 63%; /* 设置表格容器的宽度 */
+    margin-top: 100px; /* 添加上边距以与卡片分开 */
+}
+
+/* /Shared/Components/Footer/EquipmentStatistics.razor.rz.scp.css */
+.rw-footer-status[b-1touyhjubc] {
+    display: flex;
+}
+
+    .rw-footer-status div[b-1touyhjubc] {
+        margin-right: 10px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+        .rw-footer-status div:not(:first-child)[b-1touyhjubc]:before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 60%;
+            background-color: #bfbfbf;
+            margin-left: -5px;
+        }
+/* /Shared/Components/StatusIndicator.razor.rz.scp.css */
+.rw-status[b-l25papzoe1] {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.rw-status-processing[b-l25papzoe1] {
+    position: relative;
+}
+
+    .rw-status-processing[b-l25papzoe1]::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: inherit;
+        content: "";
+        animation: pulse-b-l25papzoe1 1.2s ease-in-out infinite;
+    }
+
+
+@keyframes pulse-b-l25papzoe1 {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+/* /Shared/MainLayout.razor.rz.scp.css */
+.rw-body[b-3hp0cg34u0] {
+    padding: 20px;
+    height: 100%;
+    overflow-y: overlay;
+    background-color: rgb(93, 113, 170);
+}
+
+.rw-log .fixed-widgets[b-3hp0cg34u0] {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    z-index: 999;
+    display: flex;
+    cursor: pointer;
+}
+
+    .rw-log .fixed-widgets[b-3hp0cg34u0]  .fixed-widgets-button {
+        box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    }
+
+.rw-log[b-3hp0cg34u0]  .ant-drawer-content-wrapper {
+    width: 50% !important;
+}
+
+.rw-log .rw-log-content[b-3hp0cg34u0] {
+    overflow-y: auto;
+}
+
+    .rw-log .rw-log-content span[b-3hp0cg34u0] {
+        margin-right: 5px;
+    }
+
+.rw-log .rw-log-time[b-3hp0cg34u0] {
+}
+
+.rw-log .rw-log-source[b-3hp0cg34u0] {
+}
+
+.rw-log .rw-log-msg[b-3hp0cg34u0] {
+}
+
+.rw-log .rw-log-level-verbose[b-3hp0cg34u0],
+.rw-log .rw-log-level-debug[b-3hp0cg34u0],
+.rw-log .rw-log-level-information[b-3hp0cg34u0] {
+    color: #000;
+}
+
+.rw-log .rw-log-level-warning[b-3hp0cg34u0] {
+    color: #fa8c16;
+}
+
+.rw-log .rw-log-level-error[b-3hp0cg34u0],
+.rw-log .rw-log-level-fatal[b-3hp0cg34u0] {
+    color: #f5222d;
+}

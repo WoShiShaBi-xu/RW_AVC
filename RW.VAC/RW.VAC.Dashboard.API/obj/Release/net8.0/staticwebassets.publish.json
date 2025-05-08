@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "6HATU0SUkbXGSzESHwWoFRftzOABT8KoDrUGuhTe2s4=",
+  "Source": "RW.VAC.Dashboard.API",
+  "BasePath": "_content/RW.VAC.Dashboard.API",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

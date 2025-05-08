@@ -1,0 +1,61 @@
+@using RW.Framework.Extensions
+@using RW.VAC.Infrastructure.Opc
+
+@implements IDisposable
+
+@inject TagStorage Tags
+
+@if ( _tagItem != null )
+{
+@*     <div style="display:flex; align-items:center">
+        <Descriptions Title="生产信息"> *@
+            <div style="display:flex; align-items:center">
+        <span style="margin-left: 2px;font-size:0.8em">@Text</span>
+        <span style="margin-left: 2px;color: @color; font-size:1.5em">@IsOn</span>
+	</div>
+@*         </Descriptions>
+    </div> *@
+}
+
+@code {
+
+    [Parameter, EditorRequired] public string Text { get; set; } = null!;
+
+    [Parameter, EditorRequired] public required string GroupCode { get; set; }
+
+    [Parameter, EditorRequired] public required string ItemCode { get; set; }
+
+    [Parameter, EditorRequired] public string color { get; set; } = "#000000"; // 默认颜色黑色
+
+    public double IsOn { get; set; }
+
+    private TagItem? _tagItem;
+
+    protected override void OnInitialized( )
+    {
+        _tagItem = Tags [ GroupCode , ItemCode ];
+        if ( _tagItem != null )
+        {
+            _tagItem.Changed += OnChanged;
+        }
+    }
+
+    private void OnChanged( TagChangedEventArgs e )
+    {
+        if (e.Value!=null)
+        {
+            IsOn = e.Value.To<double>();
+            InvokeAsync(StateHasChanged);
+        }
+
+
+    }
+
+    public void Dispose( )
+    {
+        if ( _tagItem != null )
+        {
+            _tagItem.Changed -= OnChanged;
+        }
+    }
+}

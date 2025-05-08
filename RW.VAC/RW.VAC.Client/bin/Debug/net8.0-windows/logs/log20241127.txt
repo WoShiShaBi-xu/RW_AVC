@@ -1,0 +1,72 @@
+11:03:15.793 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:62787
+11:03:25.726 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448736
+11:06:46.558 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448737
+11:07:41.614 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448738
+11:09:55.245 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:63141
+11:09:55.857 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448732
+11:11:59.611 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:63288
+11:12:00.346 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448723
+11:22:39.557 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:63728
+11:22:40.496 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448723
+11:39:21.026 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:64358
+11:39:33.024 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448724
+14:18:41.444 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:4786
+14:18:42.200 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448723
+14:18:52.075 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448723
+14:19:55.767 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448723
+14:21:12.222 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448724
+14:25:51.530 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:5046
+14:26:50.020 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:28:39.350 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448728
+14:30:55.702 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:5261
+14:31:00.025 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448728
+14:31:37.469 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448728
+14:32:30.292 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:5360
+14:32:31.080 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448728
+14:34:52.754 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:43:56.653 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:5854
+14:43:57.577 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:44:04.389 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:44:12.148 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:44:19.636 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:44:25.517 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:44:32.109 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:44:57.540 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:50:58.709 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:6205
+14:50:59.852 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:51:14.741 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+14:51:14.745 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+14:51:20.447 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Received HTTP response headers after 5698.4587ms - 404
+14:51:20.448 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] End processing HTTP request after 5713.4197ms - 404
+14:53:02.616 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:6319
+14:53:03.309 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:53:15.336 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:53:21.216 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:53:57.801 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:54:15.343 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+14:54:15.348 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+14:54:21.039 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Received HTTP response headers after 5688.096ms - 404
+14:54:21.040 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] End processing HTTP request after 5703.5505ms - 404
+14:59:05.289 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:6553
+14:59:06.035 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:59:09.991 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:59:11.823 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+14:59:23.303 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+15:00:03.712 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+15:02:42.915 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+15:02:42.920 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+15:02:48.614 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Received HTTP response headers after 5691.652ms - 404
+15:02:48.616 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] End processing HTTP request after 5706.7484ms - 404
+15:04:17.215 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:6800
+15:04:18.682 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448727
+15:04:43.153 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+15:04:43.157 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+15:04:48.889 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Received HTTP response headers after 5728.2348ms - 404
+15:04:48.891 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] End processing HTTP request after 5744.5596ms - 404
+15:05:24.295 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:6902
+15:05:25.043 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448728
+15:06:03.823 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448728
+15:06:17.129 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+15:06:17.133 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+15:06:22.862 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Received HTTP response headers after 5726.7112ms - 404
+15:06:22.864 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] End processing HTTP request after 5741.3511ms - 404

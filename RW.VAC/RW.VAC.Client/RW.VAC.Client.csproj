@@ -1,0 +1,62 @@
+﻿
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>RW.VAC.Client</RootNamespace>
+		<ApplicationIcon>logo.ico</ApplicationIcon>
+		<SatelliteResourceLanguages>zh-cn</SatelliteResourceLanguages>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Store\**" />
+	  <Content Remove="Store\**" />
+	  <EmbeddedResource Remove="Store\**" />
+	  <None Remove="Store\**" />
+	  <Page Remove="Store\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Assets\Fonts\iconfont.ttf" />
+	  <None Remove="Assets\logo-128.png" />
+	  <None Remove="Assets\logo-32.png" />
+	  <None Remove="Assets\logo-64.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="logo.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AntDesign" Version="0.18.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Fluxor.Blazor.Web" Version="5.9.1" />
+		<PackageReference Include="MahApps.Metro" Version="2.4.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.14" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+		<PackageReference Include="Rougamo.Fody" Version="2.3.0" />
+		<PackageReference Include="Serilog" Version="3.1.1" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RW.VAC.Application\RW.VAC.Application.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Assets\Fonts\iconfont.ttf" />
+	  <Resource Include="Assets\logo-128.png" />
+	  <Resource Include="Assets\logo-32.png" />
+	  <Resource Include="Assets\logo-64.png" />
+	</ItemGroup>
+
+</Project>

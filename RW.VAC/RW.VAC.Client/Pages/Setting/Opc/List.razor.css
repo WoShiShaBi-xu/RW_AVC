@@ -1,0 +1,43 @@
+﻿.rw-content ::deep .ant-list-item-action {
+    display: none;
+}
+
+    .rw-content ::deep .ant-list-item-action > li {
+        padding: 0 2px;
+    }
+
+.rw-content ::deep .ant-list-item:hover {
+    cursor: pointer;
+}
+
+    .rw-content ::deep .ant-list-item:hover .ant-list-item-action {
+        display: block;
+    }
+
+    .rw-content ::deep .ant-list-item:hover .ant-list-item-meta-title {
+        color: #1890ff;
+    }
+
+.rw-content ::deep .ant-list-item-selected {
+    background: #e6f7ff;
+    border-color: rgba(0, 0, 0, 0.03);
+    position: relative;
+}
+
+    .rw-content ::deep .ant-list-item-selected::after {
+        border-right: 3px solid #1890ff;
+        bottom: 0;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .rw-content ::deep .ant-list-item-selected .ant-list-item-meta-title {
+        color: #1890ff;
+    }
+
+.rw-content ::deep .group-description {
+    font-size: 14px;
+    font-weight: normal;
+}

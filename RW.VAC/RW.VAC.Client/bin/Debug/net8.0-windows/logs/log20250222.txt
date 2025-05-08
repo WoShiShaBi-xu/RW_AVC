@@ -1,0 +1,7 @@
+09:17:32.595 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:25557
+09:18:46.391 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM19567815942
+09:19:12.044 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM19567815942
+09:19:33.976 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+09:19:33.986 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+09:19:34.296 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Received HTTP response headers after 302.5425ms - 200
+09:19:34.300 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] End processing HTTP request after 340.8228ms - 200

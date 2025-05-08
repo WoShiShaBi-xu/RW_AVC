@@ -1,0 +1,46 @@
+﻿@using RW.VAC.Application.Contracts.Opcs
+@inherits FeedbackComponent<FormOption<OpcGroupCreateUpdateDto>>
+
+@inject IOpcGroupService OpcGroupService
+
+<div class="rw-form">
+	<Form Model="@_model" ValidateOnChange="true" @ref="_form">
+		<FormItem Label="分组名称">
+			<Input @bind-Value="@context.Name" MaxLength="50" />
+		</FormItem>
+		<FormItem Label="分组编码">
+			<Input @bind-Value="@context.Code" MaxLength="50" />
+		</FormItem>
+		<FormItem Label="设备编码">
+			<InputGroup Compact>
+				<Input @bind-Value="@context.Device" MaxLength="100" Placeholder="请输入设备编码" />
+				<Input TValue="string" InputElementSuffixClass="rw-input-split" Placeholder="." Disabled />
+				<Input @bind-Value="@context.Group" InputElementSuffixClass="rw-input-right" MaxLength="50" Placeholder="请输入设备分组" />
+			</InputGroup>
+		</FormItem>
+	</Form>
+</div>
+@code
+{
+	private OpcGroupCreateUpdateDto _model = null!;
+	private Form<OpcGroupCreateUpdateDto>? _form;
+
+	protected override void OnInitialized()
+	{
+		_model = base.Options.Data;
+		base.OnInitialized();
+	}
+
+	public override async Task OnFeedbackOkAsync(ModalClosingEventArgs e)
+	{
+		if (_form!.Validate())
+		{
+			_ = base.Options.Id.HasValue ? await OpcGroupService.UpdateAsync(base.Options.Id.Value, _model) : await OpcGroupService.CreateAsync(_model);
+		}
+		else
+		{
+			e.Cancel = true;
+		}
+		await base.OnFeedbackOkAsync(e);
+	}
+}

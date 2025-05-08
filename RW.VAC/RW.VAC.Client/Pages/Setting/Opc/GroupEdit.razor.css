@@ -1,0 +1,12 @@
+﻿.rw-form ::deep .rw-input-split {
+    background: #fff !important;
+    border-left: 0;
+    border-right: 0;
+    pointer-events: none;
+    width: 30px;
+}
+
+.rw-form ::deep .rw-input-right {
+    border-left-width: 0;
+}
+

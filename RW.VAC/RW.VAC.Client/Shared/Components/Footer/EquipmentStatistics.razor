@@ -1,0 +1,30 @@
+﻿@using RW.VAC.Infrastructure.Devices.State
+
+@implements IDisposable
+
+@inject CodeReaderState CodeReaderState
+@inject PLCState PLCState
+
+<div class="rw-footer-status">
+	<div>PLC：@PLCState.Online/@PLCState.Total</div>
+	<div>读码器：@CodeReaderState.Online/@CodeReaderState.Total</div>
+</div>
+
+@code{
+	protected override void OnInitialized()
+	{
+		CodeReaderState.OnChange += StateHasChangedAsync;
+		PLCState.OnChange += StateHasChangedAsync;
+	}
+
+	public void Dispose()
+	{
+		CodeReaderState.OnChange -= StateHasChangedAsync;
+		PLCState.OnChange -= StateHasChangedAsync;
+	}
+
+	private async void StateHasChangedAsync()
+	{
+		await InvokeAsync(StateHasChanged);
+	}
+}

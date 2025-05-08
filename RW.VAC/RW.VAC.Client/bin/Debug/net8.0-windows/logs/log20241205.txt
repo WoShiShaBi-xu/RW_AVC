@@ -1,0 +1,2 @@
+10:19:54.504 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:39911
+10:20:05.500 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448456

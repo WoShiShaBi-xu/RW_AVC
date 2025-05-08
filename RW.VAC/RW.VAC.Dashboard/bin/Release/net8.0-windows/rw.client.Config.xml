@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">
+  <ApplicationName>rw.client</ApplicationName>
+  <ApplicationUri>urn:localhost:rw.client</ApplicationUri>
+  <ProductUri>http://godsharp.net/opc/ua</ProductUri>
+  <ApplicationType>Client_1</ApplicationType>
+  <SecurityConfiguration>
+    <ApplicationCertificate>
+      <StoreType>Directory</StoreType>
+      <StorePath>C:\ProgramData\godsharp\opcua\own</StorePath>
+      <SubjectName>CN=rw.client, O=GodSharp</SubjectName>
+    </ApplicationCertificate>
+    <TrustedIssuerCertificates>
+      <StoreType>Directory</StoreType>
+      <StorePath>C:\ProgramData\godsharp\opcua\trusted\issuer</StorePath>
+      <TrustedCertificates />
+    </TrustedIssuerCertificates>
+    <TrustedPeerCertificates>
+      <StoreType>Directory</StoreType>
+      <StorePath>C:\ProgramData\godsharp\opcua\trusted\peer</StorePath>
+      <TrustedCertificates />
+    </TrustedPeerCertificates>
+    <NonceLength>32</NonceLength>
+    <RejectedCertificateStore>
+      <StoreType>Directory</StoreType>
+      <StorePath>C:\ProgramData\godsharp\opcua\rejected</StorePath>
+    </RejectedCertificateStore>
+    <AutoAcceptUntrustedCertificates>true</AutoAcceptUntrustedCertificates>
+    <UserRoleDirectory i:nil="true" />
+    <MinimumCertificateKeySize>2048</MinimumCertificateKeySize>
+    <AddAppCertToTrustedStore>true</AddAppCertToTrustedStore>
+    <SendCertificateChain>true</SendCertificateChain>
+    <UserIssuerCertificates>
+      <StoreType>Directory</StoreType>
+      <StorePath>C:\ProgramData\godsharp\opcua\issuer\user</StorePath>
+      <TrustedCertificates />
+    </UserIssuerCertificates>
+    <TrustedUserCertificates>
+      <StoreType>Directory</StoreType>
+      <StorePath>C:\ProgramData\godsharp\opcua\trusted\user</StorePath>
+      <TrustedCertificates />
+    </TrustedUserCertificates>
+    <HttpsIssuerCertificates>
+      <StoreType>Directory</StoreType>
+      <StorePath>C:\ProgramData\godsharp\opcua\issuer\https</StorePath>
+      <TrustedCertificates />
+    </HttpsIssuerCertificates>
+    <TrustedHttpsCertificates>
+      <StoreType>Directory</StoreType>
+      <StorePath>C:\ProgramData\godsharp\opcua\trusted\https</StorePath>
+      <TrustedCertificates />
+    </TrustedHttpsCertificates>
+  </SecurityConfiguration>
+  <TransportConfigurations />
+  <TransportQuotas>
+    <OperationTimeout>600000</OperationTimeout>
+    <MaxStringLength>1048576</MaxStringLength>
+    <MaxByteStringLength>1048576</MaxByteStringLength>
+    <MaxArrayLength>65535</MaxArrayLength>
+    <MaxMessageSize>4194304</MaxMessageSize>
+    <MaxBufferSize>65535</MaxBufferSize>
+    <ChannelLifetime>300000</ChannelLifetime>
+    <SecurityTokenLifetime>3600000</SecurityTokenLifetime>
+  </TransportQuotas>
+  <ClientConfiguration>
+    <DefaultSessionTimeout>60000</DefaultSessionTimeout>
+    <WellKnownDiscoveryUrls xmlns:d3p1="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      <d3p1:String>opc.tcp://{0}:4840</d3p1:String>
+      <d3p1:String>https://{0}:4843</d3p1:String>
+      <d3p1:String>http://{0}:52601/UADiscovery</d3p1:String>
+      <d3p1:String>http://{0}/UADiscovery/Default.svc</d3p1:String>
+    </WellKnownDiscoveryUrls>
+    <DiscoveryServers xmlns:d3p1="http://opcfoundation.org/UA/2008/02/Types.xsd" />
+    <EndpointCacheFilePath>rw.client.Endpoints.xml</EndpointCacheFilePath>
+    <MinSubscriptionLifetime>10000</MinSubscriptionLifetime>
+    <ReverseConnect i:nil="true" />
+    <OperationLimits>
+      <MaxNodesPerRead>0</MaxNodesPerRead>
+      <MaxNodesPerHistoryReadData>0</MaxNodesPerHistoryReadData>
+      <MaxNodesPerHistoryReadEvents>0</MaxNodesPerHistoryReadEvents>
+      <MaxNodesPerWrite>0</MaxNodesPerWrite>
+      <MaxNodesPerHistoryUpdateData>0</MaxNodesPerHistoryUpdateData>
+      <MaxNodesPerHistoryUpdateEvents>0</MaxNodesPerHistoryUpdateEvents>
+      <MaxNodesPerMethodCall>0</MaxNodesPerMethodCall>
+      <MaxNodesPerBrowse>0</MaxNodesPerBrowse>
+      <MaxNodesPerRegisterNodes>0</MaxNodesPerRegisterNodes>
+      <MaxNodesPerTranslateBrowsePathsToNodeIds>0</MaxNodesPerTranslateBrowsePathsToNodeIds>
+      <MaxNodesPerNodeManagement>0</MaxNodesPerNodeManagement>
+      <MaxMonitoredItemsPerCall>0</MaxMonitoredItemsPerCall>
+    </OperationLimits>
+  </ClientConfiguration>
+</ApplicationConfiguration>

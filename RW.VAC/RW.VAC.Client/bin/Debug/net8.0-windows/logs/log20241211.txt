@@ -1,0 +1,23 @@
+15:21:25.170 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+15:21:25.299 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Cannot read properties of undefined (reading 'scrollIntoView')
+TypeError: Cannot read properties of undefined (reading 'scrollIntoView')
+    at window.scrollToBottom (<anonymous>:4:10)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3050
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98

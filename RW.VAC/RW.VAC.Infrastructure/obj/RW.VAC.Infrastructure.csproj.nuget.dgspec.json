@@ -1,0 +1,275 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj",
+        "projectName": "RW.Framework",
+        "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj",
+        "packagesPath": "C:\\Users\\xxh01\\.nuget\\packages\\",
+        "outputPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\xxh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "E:\\传动链试验台\\Report控件\\reportnuget": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Autofac": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Autofac.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "FreeSql": {
+              "target": "Package",
+              "version": "[3.2.820, )"
+            },
+            "FreeSql.Repository": {
+              "target": "Package",
+              "version": "[3.2.820, )"
+            },
+            "Microsoft.AspNetCore.Components.Authorization": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj",
+        "projectName": "RW.VAC.Domain",
+        "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj",
+        "packagesPath": "C:\\Users\\xxh01\\.nuget\\packages\\",
+        "outputPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\xxh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "E:\\传动链试验台\\Report控件\\reportnuget": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj": {
+                "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj",
+        "projectName": "RW.VAC.Infrastructure",
+        "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\xxh01\\.nuget\\packages\\",
+        "outputPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\xxh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "E:\\传动链试验台\\Report控件\\reportnuget": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj": {
+                "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CircularBuffer": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
+            "FreeSql.Provider.MySql": {
+              "target": "Package",
+              "version": "[3.2.820, )"
+            },
+            "GodSharp.Opc.Ua.Client": {
+              "target": "Package",
+              "version": "[2024.101.19, )"
+            },
+            "TouchSocket": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
+            "TouchSocket.Hosting": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

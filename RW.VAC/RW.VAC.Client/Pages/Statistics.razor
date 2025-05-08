@@ -1,0 +1,140 @@
+﻿@page "/statistics"
+@using RW.VAC.Application.Contracts.Equipments
+@using RW.VAC.Application.Contracts.Productions
+@using RW.VAC.Application.Contracts.Products
+@using RW.VAC.Client.Shared.Components.EquiStatus
+@using RW.VAC.Infrastructure.Opc
+@using AntDesign
+@using RW.VAC.Application.Contracts.Records
+@using AntDesign.TableModels
+@using RW.Framework.Extensions
+@using RW.VAC.Domain.Records
+
+@inject IProductionRecordService ProductionRecordService
+@inject IProductionDetailService ProductionDetailService
+
+<link href="css/styles.css" rel="stylesheet" />
+<div class="center-container">
+    <div class="card-container">
+        <CardGrid Style="width:40%; height:130px;background-color: rgb(255, 255, 255);border-radius: 5px;" Hoverable="true">
+            <div class="content-row">
+                <div class="content-column">
+                    <span class="production-text">当日产量：</span>
+                    <span class="production-number">@_total</span>
+                </div>
+                <div class="content-row">
+                    <div class="icon-bg bg-color-1">
+                        <img src="image/rili.png" class="icon" />
+                    </div>
+                </div>
+            </div>
+        </CardGrid>
+        <CardGrid Style="width:40%; height:130px;background-color: rgb(255, 255, 255); border-radius: 5px;" Hoverable="true">
+            <div class="content-row">
+                <div class="content-column">
+                    <span class="production-text">当月产量：</span>
+                    <span class="production-number">@_monthlyTotal</span>
+                </div>
+                <div class="content-row">
+                    <div class="icon-bg bg-color-2">
+                        <img src="image/xiangzi.png" class="icon" />
+                    </div>
+                </div>
+            </div>
+        </CardGrid>
+    </div>
+    <div class="table-container">
+        <Table TItem="ProductionRecordDto" Total="@_total" @ref="_table" DataSource="_recordList " OnChange="LoadRecordData" Size="TableSize.Small"
+               PaginationPosition="bottomRight">
+            <ColumnDefinitions>
+                <Column Title="" TData="int">
+                    <Template >
+                        @GetNextIndex() 
+                    </Template>
+                </Column>
+                <PropertyColumn Title="生产编号" Property="c => c.SerialNumber"></PropertyColumn>
+                <PropertyColumn Title="产品名称" Property="c => c.ProductName"></PropertyColumn>
+                <PropertyColumn Title="产品编号" Property="c => c.ProductCode"></PropertyColumn>
+                <PropertyColumn Title="生产时间" Property="c => c.StartTime"></PropertyColumn>
+
+            </ColumnDefinitions>
+        </Table>
+
+    </div>
+</div>
+
+@code {
+
+    private IReadOnlyList<ProductionRecordDto>? _recordList;
+    private IReadOnlyList<ProductionRecordDto>? _recordListMonths;
+    private int contextIndex = 1;
+
+    private int _total;
+    private int _monthlyTotal;
+    private ITable? _table;
+    private int GetNextIndex( )
+    {
+        return contextIndex++;
+    }
+    private readonly ProdRecordPagedListRequestDto _request = new()
+        {
+            Sorting = new List<(string, bool)> { ("StartTime", false) } ,
+            DateRange = new DateTime? [ ] { DateTime.Today , DateTime.Today.AddDays( 1 ).AddTicks( -1 ) }
+        };
+
+    private readonly ProdRecordPagedListRequestDto _reqestall = new()
+    {
+        Sorting = new List<(string, bool)> { ("StartTime", false) } ,
+        DateRange = new DateTime? [ ] { null , DateTime.Today.AddMonths( 1 ).AddTicks( -1 ) }
+    };
+    private  ProdDetailListRequestDto _detarequest;
+    public async Task LoadRecordData( QueryModel<ProductionRecordDto> queryModel )
+    {
+        _request.PageIndex = queryModel.PageIndex;
+        _request.Count = queryModel.PageSize;
+
+        var result = await ProductionRecordService.GetPagedListAsync( _request );
+        var restltall = await ProductionRecordService.GetPagedListAsync( _reqestall );
+        _recordList = await DeteLoad( result.Items );//这个一天的液压的记录
+        _recordListMonths = await DeteLoad( restltall.Items );//这个一个月的液压的记录
+        
+
+        _total = ( int ) _recordList.Count;
+        _monthlyTotal = ( int ) _recordListMonths.Count;
+
+        contextIndex -= _total;
+    }
+    private async Task<List<ProductionRecordDto>> DeteLoad( IReadOnlyList<ProductionRecordDto> recordDtos )
+    {
+        // 初始化一个列表来存储符合条件的记录项
+        List<ProductionRecordDto> matchingRecords = new List<ProductionRecordDto>();
+
+        // 遍历每个记录
+        foreach ( var record in recordDtos )
+        {
+            // 创建请求对象
+            _detarequest = new()
+                {
+                    Sorting = new List<(string, bool)> { ("StartTime", true) } ,
+                    RecordId = record.Id
+                };
+
+            // 获取详细记录
+            var detailList = await ProductionDetailService.GetListAsync( _detarequest );
+
+            // 检查详细记录的条件
+            if ( detailList.Count != 0 && detailList [ 0 ].ProcessName == "阿西部" )
+            {
+                // 如果条件满足，将当前记录项添加到列表
+                matchingRecords.Add( record );
+            }
+        }
+
+        // 返回符合条件的记录项列表
+        return matchingRecords;
+    }
+    public void Search( )
+    {
+        _table?.ReloadData();
+    }
+}

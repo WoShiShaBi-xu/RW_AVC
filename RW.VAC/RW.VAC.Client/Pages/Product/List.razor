@@ -1,0 +1,132 @@
+﻿@page "/product"
+@using AntDesign.TableModels
+@using RW.Framework.Extensions
+@using RW.VAC.Application.Contracts.Products
+
+@inject IProductService ProductService
+
+<SectionContent SectionName="navBread">
+	<NavBread>
+		<NavTemplate>
+			<BreadcrumbItem>产品管理</BreadcrumbItem>
+		</NavTemplate>
+	</NavBread>
+</SectionContent>
+<div class="rw-content">
+	<Card Size="small">
+		<Table @ref="_table"
+		       TItem="ProductDto"
+		       Bordered
+		       DataSource="_productList"
+		       Total="_total"
+		       Size="TableSize.Small"
+		       PaginationPosition="bottomRight"
+		       OnChange="LoadProductData"
+		       HidePagination="@(_total == 0)"
+		       RemoteDataSource>
+			<TitleTemplate>
+				<Flex Justify="space-between" Align="center">
+					<div>
+						<Row Gutter="8">
+							<Col>
+								<Input TValue="string" @bind-value="@_request.Name" Placeholder="请输入产品名称"/>
+							</Col>
+							<Col>
+								<Input TValue="string" @bind-value="@_request.Code" Placeholder="请输入产品编码"/>
+							</Col>
+							<Col>
+								<Button Type="@ButtonType.Primary" Icon="@IconType.Outline.Search" OnClick="Search"></Button>
+							</Col>
+						</Row>
+					</div>
+					<div>
+						<Button Type="@ButtonType.Primary" OnClick="() => OpenEdit()">新增</Button>
+					</div>
+				</Flex>
+			</TitleTemplate>
+			<ColumnDefinitions>
+				<PropertyColumn Title="产品名称" Property="c => c.Name"></PropertyColumn>
+                <PropertyColumn Title="产品编码" Property="c => c.Code"></PropertyColumn>
+                <PropertyColumn Title="工艺线路" Property="c => c.Routing">
+					@context.Routing.GetDescription()
+                </PropertyColumn>
+				<PropertyColumn Title="配方编号" Property="c => c.Recipe"></PropertyColumn>
+				<PropertyColumn Title="创建时间" Property="c => c.CreationTime"></PropertyColumn>
+				<ActionColumn Title="操作" Align="ColumnAlign.Center" Style="width: 100px">
+					<Space>
+						<SpaceItem>
+							<Button Type="@ButtonType.Link" OnClick="() => OpenEdit(context)">编辑</Button>
+						</SpaceItem>
+						<SpaceItem>
+							<Button Danger Type="@ButtonType.Link" OnClick="() => Delete(context.Id)">删除</Button>
+						</SpaceItem>
+					</Space>
+				</ActionColumn>
+			</ColumnDefinitions>
+		</Table>
+	</Card>
+</div>
+
+@code
+{
+	private IReadOnlyList<ProductDto>? _productList;
+
+	private int _total;
+
+	private ITable? _table;
+
+	private ModalRef? _modalRef;
+
+	private readonly ProductPagedListRequestDto _request = new() {Sorting = new List<(string, bool)> {("CreationTime", false)}};
+
+	public async Task LoadProductData(QueryModel<ProductDto> queryModel)
+	{
+		_request.PageIndex = queryModel.PageIndex;
+		_request.Count = queryModel.PageSize;
+		var result = await ProductService.GetPagedListAsync(_request);
+		_productList = result.Items;
+		_total = (int) result.TotalCount;
+	}
+
+	public async Task OpenEdit(ProductDto? data = null)
+	{
+		var modalConfig = new ModalOptions
+		{
+			Title = data == null ? "新增产品" : "编辑产品",
+			OkText = "提交",
+			CancelText = "取消",
+			Centered = true,
+			OnOk = async _ =>
+			{
+				_table?.ReloadData();
+				await _modalRef!.CloseAsync();
+			}
+		};
+		var option = new FormOption<ProductCreateUpdateDto>
+		{
+			Id = data?.Id,
+			Data = Mapper.Map<ProductCreateUpdateDto>(data) ?? new ProductCreateUpdateDto()
+		};
+		_modalRef = await ModalService.CreateModalAsync<Edit, FormOption<ProductCreateUpdateDto>>(modalConfig, option);
+	}
+
+	public async Task Delete(Guid id)
+	{
+		if (await ModalService.ConfirmAsync(new ConfirmOptions
+		    {
+			    Centered = true,
+			    Title = "是否删除该产品数据？",
+			    Icon = @<Icon Type="exclamation-circle" Theme="outline"></Icon>,
+			    OkType = "danger"
+		    }))
+		{
+			await ProductService.DeleteAsync(id);
+			_table?.ReloadData();
+		}
+	}
+
+	public void Search()
+	{
+		_table?.ReloadData();
+	}
+}

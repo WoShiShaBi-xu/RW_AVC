@@ -1,0 +1,247 @@
+﻿@page "/Overview"
+@using RW.Framework.Extensions
+@using RW.VAC.Application.Contracts.Equipments
+@using RW.VAC.Application.Contracts.Orders
+@using RW.VAC.Application.Contracts.Productions
+@using RW.VAC.Application.Contracts.Products
+@using AntDesign.TableModels
+@using RW.VAC.Client.Shared.Components.EquiStatus
+@using RW.VAC.Domain.Orders
+@using RW.VAC.Infrastructure.Opc
+
+@inject IProductService ProductService
+@inject IWorkOrderService WorkOrderService
+@inject IEquipmentService EquipmentService
+@inject Global Global
+
+<SectionContent SectionName="navBread">
+	<NavBread></NavBread>
+</SectionContent>
+<div class="rw-content">
+	<Card Bordered Size="small" Title="设备信息">
+		@{
+			foreach (var item in _equipmentList!)
+			{
+				<CardGrid Style="width:25%" Hoverable="true">
+					<div class="equipment-item">
+						<span style="font-weight:bold">@item.Name</span>
+						<div class="equipment-status">
+							<EquipmentStatus GroupCode="@item.Code" />
+							<SwitchStatus Text="缺料" GroupCode="@item.Code" ItemCode="@TagTypeConsts.LackTag" />
+							<SwitchStatus Text="NG超限" GroupCode="@item.Code" ItemCode="@TagTypeConsts.OverLimitTag" />
+						</div>
+
+					</div>
+				</CardGrid>
+			}
+		}
+	</Card>
+	<Card Size="small" Title="生产管理" Style="margin-top:20px">
+		<Form @ref="_form" Model="@_currentModel" Layout="@FormLayout.Inline">
+			<FormItem HasFeedback Label="产品信息">
+				<Select @bind-Value="@context.ProductId"
+				        DataSource="_productList"
+				        TItem="ProductDto"
+				        TItemValue="Guid?"
+				        ValueProperty="c => c.Id"
+				        LabelProperty="c => c.Name"
+				        Placeholder="请选择产品信息"
+				        Style="width:200px"
+				        ItemTemplate="@_selectItem"
+				        AllowClear
+				        Disabled="@_isConfirm"
+				        OnSelectedItemChanged="OnProductChangedHandler">
+				</Select>
+			</FormItem>
+			<FormItem Label="配方号">
+				<Input @bind-Value="@context.Recipe" Disabled="@_isConfirm" ReadOnly/>
+			</FormItem>
+@* 			<FormItem Label="工单号">
+				<Input @bind-Value="@context.OrderNo" Disabled="@_isConfirm"/>
+			</FormItem> *@
+			<FormItem>
+				@{
+					if (_isConfirm)
+					{
+						<Button Danger Type="@ButtonType.Primary" OnClick="OnModifyHandler">
+							修改
+						</Button>
+					}
+					else
+					{
+						<Button Type="@ButtonType.Primary" OnClick="OnConfirmHandler">
+							确认
+						</Button>
+					}
+				}
+			</FormItem>
+		</Form>
+	</Card>
+	<Card Size="small" Title="生产工单" Style="margin-top:20px">
+		<Extra>
+			<Button Type="@ButtonType.Link" OnClick="OnRefreshHandler">刷新</Button>
+		</Extra>
+		<Body>
+		<Table @ref="_table"
+		       TItem="WorkOrderDto"
+		       Bordered
+		       DataSource="_workOrderList"
+		       Total="_total"
+		       Size="TableSize.Small"
+		       PaginationPosition="bottomRight"
+		       OnChange="LoadWorkOrderData"
+		       HidePagination="@(_total == 0)"
+		       Loading="_loading"
+		       RemoteDataSource>
+			<PropertyColumn Title="工单号" Property="c => c.OrderNo"></PropertyColumn>
+			<PropertyColumn Title="产品名称" Property="c => c.ProductName"></PropertyColumn>
+			<PropertyColumn Title="产品编码" Property="c => c.ProductCode"></PropertyColumn>
+			<PropertyColumn Title="数量" Property="c => c.Quantity"></PropertyColumn>
+			<PropertyColumn Title="计划开始时间" Property="c => c.PlannedStartTime"></PropertyColumn>
+			<PropertyColumn Title="计划完成时间" Property="c => c.PlannedEndTime"></PropertyColumn>
+			<PropertyColumn Title="状态" Property="c => c.Status" Style="width: 100px">
+				@{
+					var color = context.Status switch
+					{
+						OrderStatus.ToBeExecuted => "orange-inverse",
+						OrderStatus.Completed => "green-inverse",
+						_ => "blue-inverse"
+					};
+					<Tag Color="@color">@(context.Status.GetDescription())</Tag>
+				}
+			</PropertyColumn>
+			<ActionColumn Title="操作" Align="ColumnAlign.Center" Style="width: 80px">
+				<Space>
+					<SpaceItem>
+						@{
+							if (context.Status == OrderStatus.ToBeExecuted)
+							{
+								<Button Type="@ButtonType.Link" OnClick="() => OnChangeHandler(context)">执行</Button>
+							}
+						}
+					</SpaceItem>
+				</Space>
+			</ActionColumn>
+		</Table>
+		</Body>
+	</Card>
+</div>
+
+@code {
+
+	readonly RenderFragment<ProductDto> _selectItem = dto => @<sapn>@($"{dto.Name}({dto.Code})")</sapn>;
+
+	private readonly CurrentExecDto _currentModel = new();
+	private Form<CurrentExecDto>? _form;
+
+	private IList<ProductDto>? _productList;
+
+	private bool _isConfirm;
+
+	#region 工单相关
+
+	private IReadOnlyList<WorkOrderDto>? _workOrderList;
+
+	private int _total;
+
+	private ITable? _table;
+
+	private bool _loading;
+
+	private readonly WorkOrderPagedListRequestDto _orderRequest = new();
+
+	#endregion
+
+	#region 设备相关
+
+	private IList<EquipmentDto>? _equipmentList;
+
+	private readonly EquipmentListRequestDto _rquiRequest = new() {IsAutomatic = true, Sorting = [("Code", true)]};
+
+	#endregion
+
+	protected override async Task OnInitializedAsync()
+	{
+		_productList = await ProductService.GetListAsync();
+		await LoadProductData();
+	}
+
+	private void OnProductChangedHandler(ProductDto? dto)
+	{
+		_currentModel.Recipe = dto?.Recipe;
+	}
+
+	private Task OnConfirmHandler()
+	{
+		if (_form!.Validate())
+		{
+			//Global.ProductId = _currentModel.ProductId!.Value;
+			_isConfirm = true;
+		}
+
+		return Task.CompletedTask;
+	}
+
+	private async Task OnModifyHandler()
+	{
+		if (await ModalService.ConfirmAsync(new ConfirmOptions
+		    {
+			    Centered = true,
+			    Title = "请确认所有设备处于待机状态！",
+			    Icon = @<Icon Type="exclamation-circle" Theme="outline"></Icon>,
+			    OkType = "danger"
+		    }))
+		{
+			_form!.Reset();
+			_isConfirm = false;
+		}
+	}
+
+	private async Task LoadWorkOrderData(QueryModel<WorkOrderDto> queryModel)
+	{
+		_loading = true;
+		_orderRequest.PageIndex = queryModel.PageIndex;
+		_orderRequest.Count = queryModel.PageSize;
+		var result = await WorkOrderService.GetPagedListAsync(_orderRequest);
+		_loading = false;
+		_workOrderList = result.Items;
+		_total = (int) result.TotalCount;
+	}
+
+	private Task OnRefreshHandler()
+	{
+		_table?.ReloadData();
+		return Task.CompletedTask;
+	}
+
+	private async Task OnChangeHandler(WorkOrderDto? dto = null)
+	{
+		if (await ModalService.ConfirmAsync(new ConfirmOptions
+		    {
+			    Centered = true,
+			    Title = "请确认所有设备处于待机状态！",
+			    Icon = @<Icon Type="exclamation-circle" Theme="outline"></Icon>,
+			    OkType = "danger"
+		    }))
+		{
+			if (dto != null)
+			{
+				// _currentModel.OrderNo = dto.OrderNo;
+				_currentModel.ProductId = dto.ProductId;
+				var product = _productList?.FirstOrDefault(c => c.Id == dto.ProductId);
+				if (product != null)
+				{
+					_currentModel.Recipe = product.Recipe;
+				}
+
+				//Global.ProductId = _currentModel.ProductId!.Value;
+				_isConfirm = true;
+			}
+		}
+	}
+
+	private async Task LoadProductData()
+	{
+		_equipmentList = await EquipmentService.GetListAsync(_rquiRequest);
+	}
+}

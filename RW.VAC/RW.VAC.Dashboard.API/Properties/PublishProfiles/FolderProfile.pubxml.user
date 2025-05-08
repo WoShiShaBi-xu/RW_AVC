@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Dashboard.API\bin\Release\net8.0\publish\RW_VAC_API</_PublishTargetUrl>
+    <History>True|2024-12-13T08:08:51.7176742Z||;True|2024-12-07T09:18:10.2491605+08:00||;True|2024-12-03T08:51:04.6597267+08:00||;True|2024-12-02T16:56:55.6778422+08:00||;True|2024-12-02T16:52:18.7100552+08:00||;True|2024-12-02T16:30:07.8322712+08:00||;True|2024-12-02T16:21:12.4993452+08:00||;True|2024-12-02T16:12:04.1710056+08:00||;True|2024-12-02T15:09:17.0040422+08:00||;True|2024-11-29T14:53:15.0272263+08:00||;True|2024-11-21T15:36:57.4295350+08:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

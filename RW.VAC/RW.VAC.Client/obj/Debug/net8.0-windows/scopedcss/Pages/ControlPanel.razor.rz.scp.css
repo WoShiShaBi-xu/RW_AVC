@@ -1,0 +1,27 @@
+.rw-content[b-i0njv7ssan]  .equipment-item {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column; /* 改为列方向 */
+    align-items: flex-start;
+}
+
+    .rw-content[b-i0njv7ssan]  .equipment-item .equipment-status {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%; /* 宽度设置为100% */
+        margin-top: 20px; /* 添加上边距 */
+
+    }
+
+        .rw-content[b-i0njv7ssan]  .equipment-item .equipment-status > div:not(:last-child) {
+            margin-right: 5px;
+
+        }
+
+.rw-content[b-i0njv7ssan]  .ant-card-grid {
+    padding: 12px;
+}
+
+
+

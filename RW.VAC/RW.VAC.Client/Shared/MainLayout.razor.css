@@ -1,0 +1,55 @@
+﻿.rw-body {
+    padding: 20px;
+    height: 100%;
+    overflow-y: overlay;
+    background-color: rgb(93, 113, 170);
+}
+
+.rw-log .fixed-widgets {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    z-index: 999;
+    display: flex;
+    cursor: pointer;
+}
+
+    .rw-log .fixed-widgets ::deep .fixed-widgets-button {
+        box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    }
+
+.rw-log ::deep .ant-drawer-content-wrapper {
+    width: 50% !important;
+}
+
+.rw-log .rw-log-content {
+    overflow-y: auto;
+}
+
+    .rw-log .rw-log-content span {
+        margin-right: 5px;
+    }
+
+.rw-log .rw-log-time {
+}
+
+.rw-log .rw-log-source {
+}
+
+.rw-log .rw-log-msg {
+}
+
+.rw-log .rw-log-level-verbose,
+.rw-log .rw-log-level-debug,
+.rw-log .rw-log-level-information {
+    color: #000;
+}
+
+.rw-log .rw-log-level-warning {
+    color: #fa8c16;
+}
+
+.rw-log .rw-log-level-error,
+.rw-log .rw-log-level-fatal {
+    color: #f5222d;
+}

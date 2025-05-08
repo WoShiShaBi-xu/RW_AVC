@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\RW.VAC\\RW.VAC.Client\\obj\\Release\\net8.0-windows\\scopedcss\\bundle\\RW.VAC.Client.styles.css",
+      "PackagePath": "staticwebassets\\RW.VAC.Client.styles.css"
+    },
+    {
+      "Id": "E:\\RW.VAC\\RW.VAC.Client\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "E:\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\lansechilun.png",
+      "PackagePath": "staticwebassets\\image\\lansechilun.png"
+    },
+    {
+      "Id": "E:\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\rili.png",
+      "PackagePath": "staticwebassets\\image\\rili.png"
+    },
+    {
+      "Id": "E:\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\xiangzi.png",
+      "PackagePath": "staticwebassets\\image\\xiangzi.png"
+    },
+    {
+      "Id": "E:\\RW.VAC\\RW.VAC.Client\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Release\\net8.0-windows\\staticwebassets\\msbuild.RW.VAC.Client.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0-windows\\staticwebassets\\msbuild.build.RW.VAC.Client.props",
+      "PackagePath": "build\\RW.VAC.Client.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0-windows\\staticwebassets\\msbuild.buildMultiTargeting.RW.VAC.Client.props",
+      "PackagePath": "buildMultiTargeting\\RW.VAC.Client.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0-windows\\staticwebassets\\msbuild.buildTransitive.RW.VAC.Client.props",
+      "PackagePath": "buildTransitive\\RW.VAC.Client.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,217 @@
+﻿@page "/setting/opc"
+@using RW.Framework.Extensions
+@using RW.VAC.Application.Contracts.Opcs
+@using AntDesign.TableModels
+
+@inject IOpcGroupService OpcGroupService
+@inject IOpcItemService OpcItemService
+
+<SectionContent SectionName="navBread">
+    <NavBread>
+        <NavTemplate>
+            <BreadcrumbItem>系统设置</BreadcrumbItem>
+            <BreadcrumbItem>OPC点位</BreadcrumbItem>
+        </NavTemplate>
+    </NavBread>
+</SectionContent>
+<div class="rw-content">
+    <GridRow Gutter="16">
+        <GridCol Span="6">
+            <Card Title="OPC分组" Size="small">
+                <Extra>
+                    <Button Size="small" Type="@ButtonType.Primary" OnClick="() => OpenGroupEdit()">新增</Button>
+                </Extra>
+                <ChildContent>
+                    <AntList DataSource="@GroupList" Size="small">
+                        <ListItem Class="@(GroupSelected == context.Id ? "ant-list-item-selected" : string.Empty)"
+                                  OnClick="() => GroupItemClick(context.Id)"
+                                  Actions="@(new[] { _editButton(async () => { await OpenGroupEdit(context); }), _deleteButton(async () => { await DeleteGroup(context.Id); }) })">
+                            <ListItemMeta Description="@(context.Group.NotNullOrWhiteSpace() ? string.Concat(context.Device, ".", context.Group) : context.Device)">
+                                <TitleTemplate>
+                                    @context.Name
+                                    <span class="group-description">(@context.Code)</span>
+                                </TitleTemplate>
+                            </ListItemMeta>
+                        </ListItem>
+                    </AntList>
+                </ChildContent>
+            </Card>
+        </GridCol>
+        <GridCol Span="18">
+            <Card Title="点位列表" Size="small">
+                <Extra>
+                    <Button Size="small" Type="@ButtonType.Primary" OnClick="() => OpenItemEdit()">新增</Button>
+                </Extra>
+                <ChildContent>
+                    <Table @ref="_itemTable"
+                           TItem="OpcItemDto"
+                           Bordered
+                           DataSource="_itemList"
+                           Total="_itemTotal"
+                           Size="TableSize.Small"
+                           PaginationPosition="bottomRight"
+                           OnChange="LoadOpcItemData"
+                           HidePagination="@(_itemTotal == 0)"
+                           PageSize="50"
+                           RemoteDataSource>
+                        <PropertyColumn Title="标记编码" Property="c => c.Code"></PropertyColumn>
+                        <PropertyColumn Title="标记名称" Property="c => c.Name"></PropertyColumn>
+                        <PropertyColumn Title="是否为工艺参数" Property="c => c.IsProcess"></PropertyColumn>
+                        <PropertyColumn Title="说明" Property="c => c.Description"></PropertyColumn>
+                        <ActionColumn Title="操作" Align="ColumnAlign.Center" Style="width: 100px">
+                            <Space>
+                                <SpaceItem>
+                                    <Button Type="@ButtonType.Link" OnClick="() => OpenItemEdit(context)">编辑</Button>
+                                </SpaceItem>
+                                <SpaceItem>
+                                    <Button Danger Type="@ButtonType.Link" OnClick="() => DeleteItem(context.Id)">删除</Button>
+                                </SpaceItem>
+                            </Space>
+                        </ActionColumn>
+                    </Table>
+                </ChildContent>
+            </Card>
+        </GridCol>
+    </GridRow>
+</div>
+
+@code
+{
+    RenderFragment _editButton(Func<Task> click) => @<Button OnClickStopPropagation="true" Type="@ButtonType.Link" OnClick="@click">编辑</Button>;
+
+    RenderFragment _deleteButton(Func<Task> click) => @<Button Danger Type="@ButtonType.Link" OnClickStopPropagation="true" OnClick="@click">删除</Button>;
+
+    /// <summary>
+    ///     分组数据
+    /// </summary>
+    private IList<OpcGroupDto>? GroupList { get; set; }
+
+    private int _itemTotal;
+
+    private ITable? _itemTable;
+
+    /// <summary>
+    ///     点位数据
+    /// </summary>
+    private IReadOnlyList<OpcItemDto>? _itemList;
+
+    /// <summary>
+    ///     当前选择分组
+    /// </summary>
+    private Guid? GroupSelected { get; set; }
+
+    private ModalRef? _modalRef;
+
+    private readonly OpcGroupListRequestDto _groupRequest = new() { Sorting = [("Code", true)] };
+
+    private readonly OpcItemListRequestDto _itemRequest = new() { Sorting = [("Name", true)] };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadGroupData();
+    }
+
+    private async Task LoadGroupData()
+    {
+        GroupList = await OpcGroupService.GetListAsync(_groupRequest);
+        if (GroupList.Any())
+        {
+            GroupSelected = GroupList[0].Id;
+        }
+    }
+
+    private void GroupItemClick(Guid groupId)
+    {
+        GroupSelected = groupId;
+        _itemTable?.ReloadData();
+    }
+
+    private async Task LoadOpcItemData(QueryModel<OpcItemDto> queryModel)
+    {
+        _itemRequest.GroupId = GroupSelected;
+        _itemRequest.PageIndex = queryModel.PageIndex;
+        _itemRequest.Count = queryModel.PageSize;
+        var result = await OpcItemService.GetPagedListAsync(_itemRequest);
+        _itemList = result.Items;
+        _itemTotal = (int)result.TotalCount;
+    }
+
+    public async Task OpenGroupEdit(OpcGroupDto? data = null)
+    {
+        var modalConfig = new ModalOptions
+        {
+            Title = data == null ? "新增分组" : "编辑分组",
+            OkText = "提交",
+            CancelText = "取消",
+            Centered = true,
+            OnOk = async _ =>
+            {
+                await LoadGroupData();
+                await _modalRef!.CloseAsync();
+            }
+        };
+        var option = new FormOption<OpcGroupCreateUpdateDto>
+        {
+            Id = data?.Id,
+            Data = Mapper.Map<OpcGroupCreateUpdateDto>(data) ?? new OpcGroupCreateUpdateDto()
+        };
+        _modalRef = await ModalService.CreateModalAsync<GroupEdit, FormOption<OpcGroupCreateUpdateDto>>(modalConfig, option);
+    }
+
+    public async Task DeleteGroup(Guid id)
+    {
+        if (await ModalService.ConfirmAsync(new ConfirmOptions
+            {
+                Centered = true,
+                Title = "是否删除该OPC分组数据？",
+                Icon = @<Icon Type="exclamation-circle" Theme="outline"></Icon>,
+                OkType = "danger"
+            }))
+        {
+            await OpcGroupService.DeleteWithItemAsync(id);
+            await LoadGroupData();
+        }
+    }
+
+    public async Task OpenItemEdit(OpcItemDto? data = null)
+    {
+        if (!GroupSelected.HasValue)
+        {
+            return;
+        }
+
+        var modalConfig = new ModalOptions
+        {
+            Title = data == null ? "新增点位" : "编辑点位",
+            OkText = "提交",
+            CancelText = "取消",
+            Centered = true,
+            OnOk = async _ =>
+            {
+                _itemTable?.ReloadData();
+                await _modalRef!.CloseAsync();
+            }
+        };
+        var option = new FormOption<OpcItemCreateUpdateDto>
+        {
+            Id = data?.Id,
+            Data = Mapper.Map<OpcItemCreateUpdateDto>(data) ?? new OpcItemCreateUpdateDto { GroupId = GroupSelected.Value }
+        };
+        _modalRef = await ModalService.CreateModalAsync<ItemEdit, FormOption<OpcItemCreateUpdateDto>>(modalConfig, option);
+    }
+
+    public async Task DeleteItem(Guid id)
+    {
+        if (await ModalService.ConfirmAsync(new ConfirmOptions
+            {
+                Centered = true,
+                Title = "是否删除该OPC点位数据？",
+                Icon = @<Icon Type="exclamation-circle" Theme="outline"></Icon>,
+                OkType = "danger"
+            }))
+        {
+            await OpcItemService.DeleteAsync(id);
+            _itemTable?.ReloadData();
+        }
+    }
+}

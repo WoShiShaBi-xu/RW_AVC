@@ -1,0 +1,12 @@
+15:38:08.933 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [ERR] 以一种访问权限不允许的方式做了一个访问套接字的尝试。
+System.Net.Sockets.SocketException (10013): 以一种访问权限不允许的方式做了一个访问套接字的尝试。
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at TouchSocket.Sockets.TcpService`1.AddListen(TcpListenOption option) in D:\CodeOpen\TouchSocketPro\Src\TouchSocket\Components\Tcp\TcpService.cs:line 232
+   at TouchSocket.Sockets.TcpService`1.BeginListen(List`1 optionList) in D:\CodeOpen\TouchSocketPro\Src\TouchSocket\Components\Tcp\TcpService.cs:line 589
+   at TouchSocket.Sockets.TcpService`1.StartAsync() in D:\CodeOpen\TouchSocketPro\Src\TouchSocket\Components\Tcp\TcpService.cs:line 437
+   at TouchSocket.Sockets.TcpService`1.StartAsync() in D:\CodeOpen\TouchSocketPro\Src\TouchSocket\Components\Tcp\TcpService.cs:line 464
+   at RW.VAC.Infrastructure.Tcp.TcpServer.StartAsync(String port) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Tcp\TcpServer.cs:line 38
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.InitTcpServer() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 199
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 54

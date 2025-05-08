@@ -1,0 +1,153 @@
+15:52:04.123 (RW.VAC.Infrastructure.Opc.UaClient) [ERR] BadRequestTimeout
+Opc.Ua.ServiceResultException: BadRequestTimeout
+   at Opc.Ua.Bindings.ChannelAsyncOperation`1.End(Int32 timeout, Boolean throwOnError)
+   at Opc.Ua.Bindings.UaSCUaBinaryClientChannel.EndSendRequest(IAsyncResult result)
+   at Opc.Ua.Bindings.UaSCUaBinaryTransportChannel.EndSendRequest(IAsyncResult result)
+   at Opc.Ua.Bindings.UaSCUaBinaryTransportChannel.SendRequest(IServiceRequest request)
+   at Opc.Ua.DiscoveryClient.GetEndpoints(RequestHeader requestHeader, String endpointUrl, StringCollection localeIds, StringCollection profileUris, EndpointDescriptionCollection& endpoints)
+   at Opc.Ua.DiscoveryClient.GetEndpoints(StringCollection profileUris)
+   at Opc.Ua.Client.CoreClientUtils.SelectEndpoint(ApplicationConfiguration application, String discoveryUrl, Boolean useSecurity, Int32 discoverTimeout)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.BuildAsync(Boolean open)
+   at Hsu.Sg.Sync.SyncHelper.<>c__DisplayClass7_0`1.<<Run>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass16_0`1.<Run>b__0(Task`1 t)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.Build(Boolean open)
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Open()
+   at RW.VAC.Infrastructure.Opc.UaClient.Connect(String url, String clientId) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 48
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.InitOpc() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 134
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 50
+15:52:07.166 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [ERR] BadRequestTimeout
+Opc.Ua.ServiceResultException: BadRequestTimeout
+   at Opc.Ua.Bindings.ChannelAsyncOperation`1.End(Int32 timeout, Boolean throwOnError)
+   at Opc.Ua.Bindings.UaSCUaBinaryClientChannel.EndSendRequest(IAsyncResult result)
+   at Opc.Ua.Bindings.UaSCUaBinaryTransportChannel.EndSendRequest(IAsyncResult result)
+   at Opc.Ua.Bindings.UaSCUaBinaryTransportChannel.SendRequest(IServiceRequest request)
+   at Opc.Ua.DiscoveryClient.GetEndpoints(RequestHeader requestHeader, String endpointUrl, StringCollection localeIds, StringCollection profileUris, EndpointDescriptionCollection& endpoints)
+   at Opc.Ua.DiscoveryClient.GetEndpoints(StringCollection profileUris)
+   at Opc.Ua.Client.CoreClientUtils.SelectEndpoint(ApplicationConfiguration application, String discoveryUrl, Boolean useSecurity, Int32 discoverTimeout)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.BuildAsync(Boolean open)
+   at Hsu.Sg.Sync.SyncHelper.<>c__DisplayClass7_0`1.<<Run>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass16_0`1.<Run>b__0(Task`1 t)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.Build(Boolean open)
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Open()
+   at RW.VAC.Infrastructure.Opc.UaClient.Connect(String url, String clientId) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 48
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.InitOpc() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 134
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 50
+15:55:43.322 (RW.VAC.Infrastructure.Opc.UaClient) [ERR] BadRequestTimeout
+Opc.Ua.ServiceResultException: BadRequestTimeout
+   at Opc.Ua.Bindings.ChannelAsyncOperation`1.End(Int32 timeout, Boolean throwOnError)
+   at Opc.Ua.Bindings.UaSCUaBinaryClientChannel.EndSendRequest(IAsyncResult result)
+   at Opc.Ua.Bindings.UaSCUaBinaryTransportChannel.EndSendRequest(IAsyncResult result)
+   at Opc.Ua.Bindings.UaSCUaBinaryTransportChannel.SendRequest(IServiceRequest request)
+   at Opc.Ua.DiscoveryClient.GetEndpoints(RequestHeader requestHeader, String endpointUrl, StringCollection localeIds, StringCollection profileUris, EndpointDescriptionCollection& endpoints)
+   at Opc.Ua.DiscoveryClient.GetEndpoints(StringCollection profileUris)
+   at Opc.Ua.Client.CoreClientUtils.SelectEndpoint(ApplicationConfiguration application, String discoveryUrl, Boolean useSecurity, Int32 discoverTimeout)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.BuildAsync(Boolean open)
+   at Hsu.Sg.Sync.SyncHelper.<>c__DisplayClass7_0`1.<<Run>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass16_0`1.<Run>b__0(Task`1 t)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.Build(Boolean open)
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Open()
+   at RW.VAC.Infrastructure.Opc.UaClient.Connect(String url, String clientId) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 48
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.InitOpc() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 134
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 50
+15:57:06.005 (RW.VAC.Infrastructure.Opc.UaClient) [ERR] BadSecurityChecksFailed
+Opc.Ua.ServiceResultException: BadSecurityChecksFailed
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSessionAsync(RequestHeader requestHeader, ApplicationDescription clientDescription, String serverUri, String endpointUrl, String sessionName, Byte[] clientNonce, Byte[] clientCertificate, Double requestedSessionTimeout, UInt32 maxResponseMessageSize, CancellationToken ct)
+   at Opc.Ua.Client.Session.OpenAsync(String sessionName, UInt32 sessionTimeout, IUserIdentity identity, IList`1 preferredLocales, Boolean checkDomain, CancellationToken ct)
+   at Opc.Ua.Client.Session.Create(ISessionInstantiator sessionInstantiator, ApplicationConfiguration configuration, ITransportWaitingConnection connection, ConfiguredEndpoint endpoint, Boolean updateBeforeConnect, Boolean checkDomain, String sessionName, UInt32 sessionTimeout, IUserIdentity identity, IList`1 preferredLocales, CancellationToken ct)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.BuildAsync(Boolean open)
+   at Hsu.Sg.Sync.SyncHelper.<>c__DisplayClass7_0`1.<<Run>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass16_0`1.<Run>b__0(Task`1 t)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.Build(Boolean open)
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Open()
+   at RW.VAC.Infrastructure.Opc.UaClient.Connect(String url, String clientId) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 48
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.InitOpc() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 134
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 50
+15:58:11.145 (RW.VAC.Infrastructure.Opc.UaClient) [ERR] BadSecurityChecksFailed
+Opc.Ua.ServiceResultException: BadSecurityChecksFailed
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSessionAsync(RequestHeader requestHeader, ApplicationDescription clientDescription, String serverUri, String endpointUrl, String sessionName, Byte[] clientNonce, Byte[] clientCertificate, Double requestedSessionTimeout, UInt32 maxResponseMessageSize, CancellationToken ct)
+   at Opc.Ua.Client.Session.OpenAsync(String sessionName, UInt32 sessionTimeout, IUserIdentity identity, IList`1 preferredLocales, Boolean checkDomain, CancellationToken ct)
+   at Opc.Ua.Client.Session.Create(ISessionInstantiator sessionInstantiator, ApplicationConfiguration configuration, ITransportWaitingConnection connection, ConfiguredEndpoint endpoint, Boolean updateBeforeConnect, Boolean checkDomain, String sessionName, UInt32 sessionTimeout, IUserIdentity identity, IList`1 preferredLocales, CancellationToken ct)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.BuildAsync(Boolean open)
+   at Hsu.Sg.Sync.SyncHelper.<>c__DisplayClass7_0`1.<<Run>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass16_0`1.<Run>b__0(Task`1 t)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.Build(Boolean open)
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Open()
+   at RW.VAC.Infrastructure.Opc.UaClient.Connect(String url, String clientId) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 48
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.InitOpc() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 134
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 50
+16:00:20.764 (RW.VAC.Infrastructure.Opc.UaClient) [ERR] BadSecurityChecksFailed
+Opc.Ua.ServiceResultException: BadSecurityChecksFailed
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSessionAsync(RequestHeader requestHeader, ApplicationDescription clientDescription, String serverUri, String endpointUrl, String sessionName, Byte[] clientNonce, Byte[] clientCertificate, Double requestedSessionTimeout, UInt32 maxResponseMessageSize, CancellationToken ct)
+   at Opc.Ua.Client.Session.OpenAsync(String sessionName, UInt32 sessionTimeout, IUserIdentity identity, IList`1 preferredLocales, Boolean checkDomain, CancellationToken ct)
+   at Opc.Ua.Client.Session.Create(ISessionInstantiator sessionInstantiator, ApplicationConfiguration configuration, ITransportWaitingConnection connection, ConfiguredEndpoint endpoint, Boolean updateBeforeConnect, Boolean checkDomain, String sessionName, UInt32 sessionTimeout, IUserIdentity identity, IList`1 preferredLocales, CancellationToken ct)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.BuildAsync(Boolean open)
+   at Hsu.Sg.Sync.SyncHelper.<>c__DisplayClass7_0`1.<<Run>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass16_0`1.<Run>b__0(Task`1 t)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.Build(Boolean open)
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Open()
+   at RW.VAC.Infrastructure.Opc.UaClient.Connect(String url, String clientId) in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 48
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.InitOpc() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 134
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 50

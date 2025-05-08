@@ -1,0 +1,130 @@
+is_global = true
+build_property.TargetFramework = net8.0-windows
+build_property.TargetPlatformMinVersion = 7.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RW.VAC.Client
+build_property.RootNamespace = RW.VAC.Client
+build_property.ProjectDir = E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\蝶阀\XCY23017-main-web\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Product/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Product/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Record/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjb3JkXExpc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/ItemEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xPcGNcSXRlbUVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Parameter/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xQYXJhbWV0ZXJcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Parameter/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xQYXJhbWV0ZXJcTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Setting/User/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xVc2VyXEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Setting/User/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xVc2VyXExpc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Routers.razor]
+build_metadata.AdditionalFiles.TargetPath = Um91dGVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/DescriptionsStatu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcRXF1aVN0YXR1c1xEZXNjcmlwdGlvbnNTdGF0dS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/EquipmentStatus.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcRXF1aVN0YXR1c1xFcXVpcG1lbnRTdGF0dXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/SwitchStatus.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcRXF1aVN0YXR1c1xTd2l0Y2hTdGF0dXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/NavBread.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdkJyZWFkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/NullLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE51bGxMYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlZGlyZWN0VG9Mb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/ControlPanel.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udHJvbFBhbmVsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-i0njv7ssan
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-n3h1ma4fa2
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Overview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3ZlcnZpZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-mh3pnnifd0
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Record/Detail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjb3JkXERldGFpbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-n5yczm28g6
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/GroupEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xPcGNcR3JvdXBFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-5t2kqjdcel
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xPcGNcTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-7pkwv8feqi
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Pages/Statistics.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlzdGljcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-jblujeilqk
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/Components/Footer/EquipmentStatistics.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcRm9vdGVyXEVxdWlwbWVudFN0YXRpc3RpY3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-1touyhjubc
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/Components/StatusIndicator.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcU3RhdHVzSW5kaWNhdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-l25papzoe1
+
+[E:/蝶阀/XCY23017-main-web/XCY23017-main/XCY23017-1蝶阀自动装配线/RW.VAC/RW.VAC.Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-3hp0cg34u0

@@ -1,0 +1,19 @@
+﻿.rw-footer-status {
+    display: flex;
+}
+
+    .rw-footer-status div {
+        margin-right: 10px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+        .rw-footer-status div:not(:first-child):before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 60%;
+            background-color: #bfbfbf;
+            margin-left: -5px;
+        }

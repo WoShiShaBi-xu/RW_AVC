@@ -1,0 +1,54 @@
+﻿@using RW.Framework.Extensions
+@using RW.VAC.Infrastructure.Opc
+@using System.Windows
+
+@implements IDisposable
+
+@inject TagStorage Tags
+
+@if (_tagItem != null)
+{
+	<div style="display:flex; align-items:center">
+		<StatusIndicator Pulse="@IsOn" Color="@CurrentColor" />
+		<span style="margin-left: 2px">@Text</span>	
+	</div>
+}
+
+@code
+{
+	[Parameter, EditorRequired] public string Text { get; set; } = null!;
+
+	[Parameter, EditorRequired] public required string GroupCode { get; set; }
+
+	[Parameter, EditorRequired] public required string ItemCode { get; set; }
+
+	[Parameter] public string OffColor { get; set; } = "#808080";
+
+	[Parameter] public string OnColor { get; set; } = "#f5222d";
+
+	public bool IsOn { get; set; }
+
+	private string CurrentColor => IsOn ? OnColor : OffColor;
+
+	private TagItem? _tagItem;
+
+	protected override void OnInitialized()
+	{
+		_tagItem = Tags[GroupCode, ItemCode];
+		if (_tagItem != null)
+		{
+			_tagItem.Changed += OnChanged;
+		}
+	}
+
+	private void OnChanged(TagChangedEventArgs e)
+	{
+		IsOn = e.Value.To<bool>();
+		InvokeAsync(StateHasChanged);
+	}
+
+	public void Dispose()
+	{
+		if (_tagItem != null) _tagItem.Changed -= OnChanged;
+	}
+}

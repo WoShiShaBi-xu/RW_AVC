@@ -1,0 +1,183 @@
+﻿@page "/"
+@using RW.VAC.Application.Contracts.Equipments
+@using RW.VAC.Application.Contracts.Productions
+@using RW.VAC.Application.Contracts.Products
+@using RW.VAC.Client.Shared.Components.EquiStatus
+@using RW.VAC.Infrastructure.Opc
+@using RW.VAC.Application.Hardwares.CodeReader;
+@using RW.VAC.Application.Hardwares.Opc;
+
+@inject IProductService ProductService
+@inject IEquipmentService EquipmentService
+@inject Global Global
+@inject GeneralControl generalcontrol
+
+<SectionContent SectionName="navBread">
+    <NavBread></NavBread>
+</SectionContent>
+<div class="rw-content">
+    <Card Size="small" Title="生产管理" Style="background-color: rgb(135, 197, 237);">
+        <!-- 产品信息表单 -->
+        <Form @ref="_form" Model="@_currentModel" Layout="@FormLayout.Inline">
+            <FormItem HasFeedback Label="产品信息">
+                <Select @bind-Value="@context.ProductId"
+                        DataSource="_productList"
+                        TItem="Domain.Products.Product"
+                        TItemValue="Guid?"
+                        ValueProperty="c => c.Id"
+                        LabelProperty="c => c.Name"
+                        Placeholder="请选择产品信息"
+                        Style="width:200px"
+                        ItemTemplate="@_selectItem"
+                        AllowClear
+                        Disabled="@_isConfirm"
+                        OnSelectedItemChanged="OnProductChangedHandler">
+                </Select>
+            </FormItem>
+            <FormItem Label="配方号">
+                <Input @bind-Value="@context.Recipe" Disabled="@_isConfirm" ReadOnly />
+            </FormItem>
+            <FormItem HasFeedback Label="统计方式">
+                <Select @bind-Value="@context.StatisticType"
+                        Disabled="@_isConfirm"
+                        TItem="string"
+                        TItemValue="string"
+                        Style="width:200px">
+                    <SelectOptions>
+                        <SelectOption TItemValue="string" TItem="string" Value="@("1")" Label="人工位3下料统计" />
+                        <SelectOption TItemValue="string" TItem="string" Value="@("2")" Label="阀盖统计" />
+                         <SelectOption TItemValue="string" TItem="string" Value="@("3")" Label="开关下料" />
+                        <SelectOption TItemValue="string" TItem="string" Value="@("4")" Label="油密下料" />
+                    </SelectOptions>
+                </Select>
+            </FormItem>
+            <FormItem>
+                <!-- 根据确认状态显示“修改”或“确认”按钮 -->
+                @{
+                    if ( _isConfirm )
+                    {
+                        <Button Danger Type="@ButtonType.Primary" OnClick="OnModifyHandler">
+                            修改
+                        </Button>
+                    }
+                    else
+                    {
+                        <Button Type="@ButtonType.Primary" OnClick="OnConfirmHandler">
+                            确认
+                        </Button>
+                    }
+                }
+            </FormItem>
+
+        </Form>
+    </Card>
+    <!-- 设备信息卡片 -->
+    <Card Bordered Size="small" Title="设备信息" Style="margin-top:20px;background-color: rgb(135, 197, 237)">
+        @{
+            foreach ( var item in _equipmentList! )
+            {
+                <CardGrid Style="width:25%;" Hoverable="true">
+                    <div class="equipment-item">
+                        <div style="display: flex; align-items: center;">
+                            <img src="image/lansechilun.png" width="35" height="35" />
+                            <span style="font-weight: bold; margin-left: 5px;">@item.Name</span>
+                        </div>
+                        <div class="equipment-status">
+                            <span>设备状态：</span>
+                            <EquipmentStatus GroupCode="@item.Code" />
+                            <SwitchStatus Text="缺料" GroupCode="@item.Code" ItemCode="@TagTypeConsts.LackTag" />
+                            <SwitchStatus Text="NG超限" GroupCode="@item.Code" ItemCode="@TagTypeConsts.OverLimitTag" />
+                        </div>
+                        <div class="equipment-status">
+                            <span>生产<br>信息：</span>
+                            <DescriptionsStatu Text="产量" GroupCode="@item.Code" ItemCode="@TagTypeConsts.ProductivityTag" color="#4DA75F"></DescriptionsStatu>
+                            <DescriptionsStatu Text="生产节拍：" GroupCode="@item.Code" ItemCode="@TagTypeConsts.BeatTag" color="#4880F0"></DescriptionsStatu>
+                            <DescriptionsStatu Text="NG数量：" GroupCode="@item.Code" ItemCode="@TagTypeConsts.NGCountTag" color="#C02E53"></DescriptionsStatu>
+                        </div>
+                    </div>
+                </CardGrid>
+            }
+        }
+    </Card>
+</div>
+
+@code {
+    // 用于选择产品项模板
+    readonly RenderFragment<Domain.Products.Product> _selectItem = dto => @<sapn>@($"{dto.Name}({dto.Code})")</sapn>;
+
+    private readonly CurrentExecDto _currentModel = new();
+
+    private Form<CurrentExecDto>? _form;
+
+    private IList<Domain.Products.Product>? _productList;
+
+    private bool _isConfirm;
+
+    #region 设备相关
+
+    private IList<EquipmentDto>? _equipmentList;
+
+    private readonly EquipmentListRequestDto _request = new() { IsAutomatic = true , Sorting = [ ("Code", true) ] };
+
+    #endregion
+
+    protected override async Task OnInitializedAsync( )
+    {
+        // 初始化产品列表
+        _productList = await ProductService.GetOriginListAsync();
+
+        if ( Global.StatisticType != null )
+        {
+            // 从 Global 恢复 _currentModel
+            _currentModel.StatisticType = Global.StatisticType;
+            _isConfirm = true;
+            var currentProduct = Global.CurrentProduct;
+            if ( currentProduct != null )
+            {
+                _currentModel.ProductId = currentProduct.Id;
+                _currentModel.Recipe = currentProduct.Recipe;
+                _isConfirm = true;
+            }
+        }
+        await LoadEquipmentData();
+    }
+
+    private async Task LoadEquipmentData( )
+    {
+        // 加载设备信息列表
+        _equipmentList = await EquipmentService.GetListAsync( _request );
+    }
+
+    private void OnProductChangedHandler( Domain.Products.Product? dto )
+    {
+        // 处理产品更改，更新配方号
+        _currentModel.Recipe = dto?.Recipe;
+    }
+
+    private void OnConfirmHandler( )
+    {
+        // 确认按钮处理逻辑，保存当前产品和配方信息
+        if ( !_form!.Validate() )
+            return;
+        Global.CurrentProduct = _productList?.First( t => t.Id == _currentModel.ProductId );
+        _isConfirm = true;
+        generalcontrol.Writeformula( Convert.ToUInt16( Global.CurrentProduct.Recipe ) );
+        Global.StatisticType = _currentModel.StatisticType;
+    }
+
+    private async Task OnModifyHandler( )
+    {
+        // 修改按钮处理逻辑，确认所有设备待机状态后允许修改
+        if ( await ModalService.ConfirmAsync( new ConfirmOptions
+                {
+                    Centered = true ,
+                    Title = "请确认所有设备处于待机状态！" ,
+                    Icon = @<Icon Type="exclamation-circle" Theme="outline"></Icon>,
+            OkType = "danger"
+        } ) )
+        {
+            _form!.Reset();
+            _isConfirm = false;
+        }
+    }
+}

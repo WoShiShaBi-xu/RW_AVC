@@ -1,0 +1,105 @@
+﻿@page "/setting/parameter"
+@using RW.VAC.Application.Contracts.Parameters
+@using AntDesign.TableModels
+
+@inject IParameterService ParameterService
+
+<SectionContent SectionName="navBread">
+	<NavBread>
+		<NavTemplate>
+			<BreadcrumbItem>参数管理</BreadcrumbItem>
+		</NavTemplate>
+	</NavBread>
+</SectionContent>
+<div class="">
+	<Card Size="small">
+		<Table @ref="_table"
+			   TItem="ParameterDto"
+		       Bordered
+		       DataSource="_parameterList"
+		       Total="_total"
+		       Size="TableSize.Small"
+		       PaginationPosition="bottomRight"
+		       OnChange="LoadParameterData"
+		       HidePagination="@(_total == 0)"
+		       RemoteDataSource>
+			<TitleTemplate>
+				<Flex Justify="space-between" Align="center">
+					<div>
+						<Row Gutter="8">
+							<Col>
+								<Input TValue="string" @bind-value="@_request.Code" Placeholder="请输入参数编码" />
+							</Col>
+							<Col>
+								<Button Type="@ButtonType.Primary" Icon="@IconType.Outline.Search" OnClick="Search"></Button>
+							</Col>
+						</Row>
+					</div>
+					<div>
+						<Button Type="@ButtonType.Primary" OnClick="() => OpenEdit()">新增</Button>
+					</div>
+				</Flex>
+			</TitleTemplate>
+			<ColumnDefinitions>
+				<PropertyColumn Title="参数编码" Property="c => c.Code"></PropertyColumn>
+				<PropertyColumn Title="参数值" Property="c => c.Value"></PropertyColumn>
+				<PropertyColumn Title="说明" Property="c => c.Description"></PropertyColumn>
+				<ActionColumn Title="操作" Align="ColumnAlign.Center" Style="width: 100px">
+					<Space>
+						<SpaceItem>
+							<Button Type="@ButtonType.Link" OnClick="() => OpenEdit(context)">编辑</Button>
+						</SpaceItem>
+						</Space>
+					</ActionColumn>
+				</ColumnDefinitions>
+		</Table>
+	</Card>
+</div>
+@code
+{
+	private IReadOnlyList<ParameterDto>? _parameterList;
+
+	private int _total;
+
+	private ITable? _table;
+
+	private ModalRef? _modalRef;
+
+	private readonly ParameterPagedListRequestDto _request = new() { Sorting = new List<(string, bool)> { ("CreationTime", false) } };
+
+	public async Task LoadParameterData(QueryModel<ParameterDto> queryModel)
+	{
+		_request.PageIndex = queryModel.PageIndex;
+		_request.Count = queryModel.PageSize;
+		var result = await ParameterService.GetPagedListAsync(_request);
+		_parameterList = result.Items;
+		_total = (int)result.TotalCount;
+	}
+
+	public async Task OpenEdit(ParameterDto? data = null)
+	{
+		var modalConfig = new ModalOptions
+		{
+			Title = data == null ? "新增产品" : "编辑产品",
+			OkText = "提交",
+			CancelText = "取消",
+			Centered = true,
+			OnOk = async _ =>
+			{
+				_table?.ReloadData();
+				await _modalRef!.CloseAsync();
+			}
+		};
+		var option = new FormOption<ParameterCreateUpdateDto>
+		{
+			Id = data?.Id,
+			Data = Mapper.Map<ParameterCreateUpdateDto>(data) ?? new ParameterCreateUpdateDto()
+		};
+		_modalRef = await ModalService.CreateModalAsync<Edit, FormOption<ParameterCreateUpdateDto>>(modalConfig, option);
+	}
+
+	public void Search()
+	{
+		_table?.ReloadData();
+	}
+}

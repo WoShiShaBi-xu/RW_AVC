@@ -1,0 +1,6 @@
+@RW.VAC.Dashboard.API_HostAddress = http://localhost:5218
+
+GET {{RW.VAC.Dashboard.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

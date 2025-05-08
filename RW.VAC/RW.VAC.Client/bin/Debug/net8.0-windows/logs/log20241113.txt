@@ -1,0 +1,1587 @@
+08:53:43.053 (RW.VAC.Infrastructure.Opc.UaClient) [ERR] Error establishing a connection: BadNotConnected
+Opc.Ua.ServiceResultException: Error establishing a connection: BadNotConnected
+   at Opc.Ua.Bindings.ChannelAsyncOperation`1.End(Int32 timeout, Boolean throwOnError)
+   at Opc.Ua.Bindings.UaSCUaBinaryClientChannel.EndSendRequest(IAsyncResult result)
+   at Opc.Ua.Bindings.UaSCUaBinaryTransportChannel.EndSendRequest(IAsyncResult result)
+   at Opc.Ua.Bindings.UaSCUaBinaryTransportChannel.SendRequest(IServiceRequest request)
+   at Opc.Ua.DiscoveryClient.GetEndpoints(RequestHeader requestHeader, String endpointUrl, StringCollection localeIds, StringCollection profileUris, EndpointDescriptionCollection& endpoints)
+   at Opc.Ua.DiscoveryClient.GetEndpoints(StringCollection profileUris)
+   at Opc.Ua.Client.CoreClientUtils.SelectEndpoint(ApplicationConfiguration application, String discoveryUrl, Boolean useSecurity, Int32 discoverTimeout)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.BuildAsync(Boolean open)
+   at Hsu.Sg.Sync.SyncHelper.<>c__DisplayClass7_0`1.<<Run>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass16_0`1.<Run>b__0(Task`1 t)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   at GodSharp.Opc.Ua.Client.SessionBuilder.Build(Boolean open)
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Open()
+   at RW.VAC.Infrastructure.Opc.UaClient.Connect(String url, String clientId) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 48
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.InitOpc() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 134
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 50
+09:30:55.580 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:55.642 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:55.657 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:55.689 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.704 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.719 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.733 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:55.747 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.762 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.778 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.792 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:55.806 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:55.821 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:55.835 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.849 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.862 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.876 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:55.890 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:55.904 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:55.918 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.933 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.947 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:55.962 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:55.976 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:55.989 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.002 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.016 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.030 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.045 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:56.061 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.074 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.088 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.103 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.116 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:56.130 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.145 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.158 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.172 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.188 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:56.202 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.217 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.231 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.245 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.259 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.273 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:56.291 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.305 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.319 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.334 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:56.348 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.363 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.377 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.391 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.405 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.419 (RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.EquipmentStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\EquipmentStatus.razor:line 60
+09:30:56.434 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.449 (RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.SwitchStatus.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\SwitchStatus.razor:line 40
+09:30:56.463 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.477 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.491 (RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu) [ERR] 未处理异常
+Opc.Ua.ServiceResultException: BadSessionIdInvalid
+   at Opc.Ua.ClientBase.ValidateResponse(ResponseHeader header)
+   at Opc.Ua.SessionClient.CreateSubscription(RequestHeader requestHeader, Double requestedPublishingInterval, UInt32 requestedLifetimeCount, UInt32 requestedMaxKeepAliveCount, UInt32 maxNotificationsPerPublish, Boolean publishingEnabled, Byte priority, UInt32& subscriptionId, Double& revisedPublishingInterval, UInt32& revisedLifetimeCount, UInt32& revisedMaxKeepAliveCount)
+   at Opc.Ua.Client.Subscription.Create()
+   at GodSharp.Opc.Ua.Client.SessionWrapper.Subscribe(String name, IEnumerable`1 nodes, Action`1 configure, Int32 samplingInterval, Action`3 notificationHandler)
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(List`1 nodeIds, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 79
+   at RW.VAC.Infrastructure.Opc.UaClient.Subscribe(String nodeId, String name, Boolean ignoreInitial, Action`1 action) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\UaClient.cs:line 61
+   at RW.VAC.Infrastructure.Opc.TagItem.add_Changed(Action`1 value) in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Infrastructure\Opc\TagItem.cs:line 66
+   at RW.VAC.Client.Shared.Components.EquiStatus.DescriptionsStatu.OnInitialized() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\Components\EquiStatus\DescriptionsStatu.razor:line 39
+09:30:56.923 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.923 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.923 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.934 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.934 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.958 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.961 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.968 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.968 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:56.968 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.052 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.070 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.070 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.070 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.075 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.082 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.090 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.090 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.090 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.101 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.115 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.119 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.168 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.189 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.189 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.189 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.204 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.219 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.219 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.219 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.228 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.233 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.234 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.241 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.246 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.253 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.285 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.285 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.320 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.320 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.320 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.320 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.332 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.343 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.353 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.364 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.375 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.408 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.408 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.409 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.434 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.451 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.456 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.461 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.473 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.479 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.481 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.499 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.504 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98
+09:30:57.516 (RW.VAC.Client.Shared.MainLayout) [ERR] 未处理异常
+Microsoft.JSInterop.JSException: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+Error: Could not find 'scrollToBottom' ('scrollToBottom' was undefined).
+    at https://0.0.0.0/_framework/blazor.webview.js:1:540
+    at Array.forEach (<anonymous>)
+    at l.findFunction (https://0.0.0.0/_framework/blazor.webview.js:1:508)
+    at w (https://0.0.0.0/_framework/blazor.webview.js:1:5251)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:3044
+    at new Promise (<anonymous>)
+    at g.beginInvokeJSFromDotNet (https://0.0.0.0/_framework/blazor.webview.js:1:3007)
+    at https://0.0.0.0/_framework/blazor.webview.js:1:48020
+    at EventTarget.<anonymous> (<anonymous>:7:62)
+    at EmbeddedBrowserWebView.<anonymous> (<anonymous>:1:44076)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+   at RW.VAC.Client.Shared.MainLayout.ScrollToBottom() in E:\XCY23017-main\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\Shared\MainLayout.razor:line 98

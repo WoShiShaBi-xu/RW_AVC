@@ -1,0 +1,12 @@
+16:58:55.773 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at RW.VAC.Domain.Parameters.ParameterManager.UpdateAsync(Guid id, String code, String value, String description) in G:\项目\XCY23017_蝶阀自动装配线\XCY23017-4\XCY23017-4\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Domain\Parameters\ParameterManager.cs:line 20
+   at RW.VAC.Application.Services.Parameters.ParameterService.SetParameterAsync(String code, String value) in G:\项目\XCY23017_蝶阀自动装配线\XCY23017-4\XCY23017-4\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Application\Services\Parameters\ParameterService.cs:line 23
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.LoadParameter() in G:\项目\XCY23017_蝶阀自动装配线\XCY23017-4\XCY23017-4\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 82
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in G:\项目\XCY23017_蝶阀自动装配线\XCY23017-4\XCY23017-4\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 37
+16:59:54.717 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at RW.VAC.Domain.Parameters.ParameterManager.UpdateAsync(Guid id, String code, String value, String description) in G:\项目\XCY23017_蝶阀自动装配线\XCY23017-4\XCY23017-4\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Domain\Parameters\ParameterManager.cs:line 20
+   at RW.VAC.Application.Services.Parameters.ParameterService.SetParameterAsync(String code, String value) in G:\项目\XCY23017_蝶阀自动装配线\XCY23017-4\XCY23017-4\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Application\Services\Parameters\ParameterService.cs:line 23
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.LoadParameter() in G:\项目\XCY23017_蝶阀自动装配线\XCY23017-4\XCY23017-4\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 82
+   at RW.VAC.Client.ViewModels.SplashWindowViewModel.<OnLoaded>b__7_0() in G:\项目\XCY23017_蝶阀自动装配线\XCY23017-4\XCY23017-4\XCY23017-main\XCY23017-1蝶阀自动装配线\RW.VAC\RW.VAC.Client\ViewModels\SplashWindowViewModel.cs:line 37

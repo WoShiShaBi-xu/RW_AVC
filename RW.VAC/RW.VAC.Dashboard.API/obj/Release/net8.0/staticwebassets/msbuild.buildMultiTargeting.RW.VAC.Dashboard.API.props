@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\RW.VAC.Dashboard.API.props" />
+</Project>

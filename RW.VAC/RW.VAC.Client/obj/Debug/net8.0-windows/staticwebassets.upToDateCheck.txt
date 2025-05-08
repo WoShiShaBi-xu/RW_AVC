@@ -1,0 +1,5 @@
+wwwroot\css\app.css
+wwwroot\image\lansechilun.png
+wwwroot\image\rili.png
+wwwroot\image\xiangzi.png
+wwwroot\index.html

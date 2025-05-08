@@ -1,0 +1,42 @@
+﻿.rw-content ::deep .rw-process .ant-card-body {
+    overflow: auto;
+}
+
+.rw-content ::deep .rw-process .ant-steps {
+    margin-top: 10px;
+}
+
+.rw-content ::deep .rw-detail {
+    margin-top: 10px;
+}
+
+    .rw-content ::deep .rw-detail .ant-descriptions:not(:last-child):after {
+        display: block;
+        content: "";
+        border-top: 1px solid rgba(0,0,0,.06);
+
+
+        margin-bottom: 16px;
+    }
+
+.rw-content ::deep .ant-descriptions-item-content div:not(:first-child) {
+    position: relative;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+    .rw-content ::deep .ant-descriptions-item-content div:not(:first-child):before {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 60%;
+        background-color: #bfbfbf;
+        margin-left: -8px;
+    }
+
+.rw-data-value {
+    margin: 0 2px;
+    font-weight: bold;
+    text-decoration: underline;
+}

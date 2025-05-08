@@ -1,0 +1,8 @@
+﻿<span style="background-color:@(string.IsNullOrWhiteSpace(Color) ? "#909399" : Color)" class="rw-status @(Pulse ? "rw-status-processing" : string.Empty)"></span>
+
+@code
+{
+	[Parameter] public bool Pulse { get; set; }
+
+	[Parameter] public string? Color { get; set; }
+}

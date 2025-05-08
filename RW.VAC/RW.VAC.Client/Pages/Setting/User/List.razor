@@ -1,0 +1,134 @@
+﻿@page "/setting/user"
+@using RW.Framework.Extensions
+@using RW.VAC.Application.Contracts.Users
+@using AntDesign.TableModels
+
+@inject IUserService UserService;
+
+<SectionContent SectionName="navBread">
+	<NavBread>
+		<NavTemplate>
+			<BreadcrumbItem>用户管理</BreadcrumbItem>
+		</NavTemplate>
+	</NavBread>
+</SectionContent>
+<div class="rw-content">
+	<Card Size="small">
+		<Table @ref="_table"
+		       TItem="UserDto"
+		       Bordered
+		       DataSource="_userList"
+		       Total="_total"
+		       Size="TableSize.Small"
+		       PaginationPosition="bottomRight"
+		       OnChange="LoadUserData"
+		       HidePagination="@(_total == 0)"
+		       RemoteDataSource>
+			<TitleTemplate>
+				<Flex Justify="space-between" Align="center">
+					<div> 
+						<Row Gutter="8">
+							<Col>
+								<Input TValue="string" @bind-value="@_request.UserName" Placeholder="请输入用户名"/>
+							</Col>
+							<Col>
+								<Input TValue="string" @bind-value="@_request.Account" Placeholder="请输入账号"/>
+							</Col>
+							<Col>
+								<Button Type="@ButtonType.Primary" Icon="@IconType.Outline.Search" OnClick="Search"></Button>
+							</Col>
+						</Row>
+					</div>
+					<div>
+						<Button Type="@ButtonType.Primary" OnClick="() => OpenEdit()">新增</Button>
+					</div>
+				</Flex>	
+			</TitleTemplate>
+			<ColumnDefinitions>
+				<PropertyColumn Title="用户名" Property="c => c.UserName"></PropertyColumn>
+				<PropertyColumn Title="账号" Property="c => c.Account"></PropertyColumn>
+				<PropertyColumn Title="角色" Property="c => c.Role">
+					@context.Role.GetDescription()
+				</PropertyColumn>
+				<ActionColumn Title="操作" Align="ColumnAlign.Center" Style="width: 100px">
+					<Space>
+						<SpaceItem>
+							<Button Type="@ButtonType.Link" OnClick="() => OpenEdit(context)">编辑</Button>
+						</SpaceItem>
+						@if (!context.IsSystemUser)
+						{
+							<SpaceItem>
+								<Button Danger Type="@ButtonType.Link" OnClick="() => Delete(context.Id)">删除</Button>
+							</SpaceItem>
+						}
+					</Space>
+				</ActionColumn>
+			</ColumnDefinitions>
+		</Table>
+	</Card>
+</div>
+
+@code {
+	private IReadOnlyList<UserDto>? _userList;
+
+	private int _total;
+
+	private ITable? _table;
+
+	private ModalRef? _modalRef;
+
+	private readonly UserPagedListRequestDto _request = new();
+
+	public async Task LoadUserData(QueryModel<UserDto> queryModel)
+	{
+		_request.PageIndex = queryModel.PageIndex;
+		_request.Count = queryModel.PageSize;
+		var result = await UserService.GetPagedListAsync(_request);
+		_userList = result.Items;
+		_total = (int) result.TotalCount;
+	}
+
+	public async Task OpenEdit(UserDto? data = null)
+	{	
+		var modalConfig = new ModalOptions
+		{
+			Title = data == null ? "新增用户" : "编辑用户",
+			OkText = "提交",
+			CancelText = "取消",
+			Centered = true,
+		
+			OnOk = async _ =>
+			{
+				_table?.ReloadData();
+				await _modalRef!.CloseAsync();
+			}
+		};
+		var option = new FormOption<UserCreateUpdateDto>
+		{
+			Id = data?.Id,
+			Data = Mapper.Map<UserCreateUpdateDto>(data) ?? new UserCreateUpdateDto()
+		};
+		_modalRef = await ModalService.CreateModalAsync<Edit, FormOption<UserCreateUpdateDto>>(modalConfig, option);
+	}	
+		
+	public async Task Delete(Guid id)
+	{
+		if (await ModalService.ConfirmAsync(new ConfirmOptions
+		    {
+			    Centered = true,
+			    Title = "是否删除该用户数据？",
+			    Icon = @<Icon Type="exclamation-circle" Theme="outline"></Icon>,
+			    OkType = "danger"
+		    }))
+		{
+			await UserService.DeleteAsync(id);
+			_table?.ReloadData();
+		}
+	}
+
+	public void Search()
+	{
+		_table?.ReloadData();
+	}
+
+}

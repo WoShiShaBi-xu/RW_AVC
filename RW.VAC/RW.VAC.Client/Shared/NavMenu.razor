@@ -1,0 +1,42 @@
+﻿<Menu Mode="MenuMode.Inline" Style="background-color: rgb(93, 113, 170);">
+	<AuthorizeView Roles="User">
+		<MenuItem RouterLink="/">
+			<Icon Type="control" Theme="outline"></Icon>
+			控制台
+		</MenuItem>
+		<MenuItem RouterLink="/record">
+			<Icon Type="file" Theme="outline"></Icon>
+			生产记录
+		</MenuItem>
+		<MenuItem RouterLink="/product">
+			<Icon Type="appstore" Theme="outline"></Icon>
+			产品管理
+		</MenuItem>
+	</AuthorizeView>
+	
+	<AuthorizeView Roles="ProductionStaff">
+		<MenuItem RouterLink="/statistics">
+			<Icon Type="pie-chart" Theme="outline"></Icon>
+			数据统计
+		</MenuItem>
+	</AuthorizeView>
+	 
+
+	<AuthorizeView Roles="Admin">
+		<Authorized>
+			<SubMenu TitleTemplate="@_settingTilte">
+				<MenuItem RouterLink="/setting/user">用户管理</MenuItem>
+				<MenuItem RouterLink="/setting/parameter">系统参数</MenuItem>
+				<MenuItem RouterLink="/setting/opc">OPC点位</MenuItem>
+			</SubMenu>
+		</Authorized>
+	</AuthorizeView>
+</Menu>
+
+@code {
+	readonly RenderFragment _settingTilte =
+		@<span>
+			<Icon Type="setting" Theme="outline"/>
+			系统设置
+		</span>;
+}

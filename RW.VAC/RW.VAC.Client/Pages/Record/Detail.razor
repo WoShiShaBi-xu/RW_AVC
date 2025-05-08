@@ -1,0 +1,137 @@
+﻿@page "/record/{Id:guid}" 
+@using RW.Framework.Extensions
+@using RW.VAC.Application.Contracts.Records
+@using RW.VAC.Domain.Records
+
+@inject Global Global
+@inject IProductionRecordService ProductionRecordService 
+@inject IProductionDetailService ProductionDetailService 
+@inject IProductionDataService ProductionDataService 
+
+<SectionContent SectionName="navBread">
+	<NavBread>
+		<NavTemplate>
+			<BreadcrumbItem Href="/record">生产记录</BreadcrumbItem> /
+			<BreadcrumbItem>详情</BreadcrumbItem> 
+		</NavTemplate>
+	</NavBread>
+</SectionContent>
+
+<div class="rw-content">
+	<Descriptions Column="2" Title="@_record.SerialNumber">
+		<DescriptionsItem Title="产品名称">@_record.ProductName</DescriptionsItem>
+		<DescriptionsItem Title="产品编号">@_record.ProductCode</DescriptionsItem>
+		<DescriptionsItem Title="开始时间">@_record.StartTime</DescriptionsItem>
+		<DescriptionsItem Title="完成时间">@(_record.EndTime.HasValue ? _record.EndTime.ToString() : "-")</DescriptionsItem>
+	</Descriptions>
+
+	@{
+		if (_routing != null)
+		{
+			<Card Size="small" Class="rw-process">
+				<Steps ShowProgressDot Size="small">
+					
+					@foreach (var routing in _routing)
+					{
+						<Step Title="@routing.Title" Description="@routing.Description" Status="@routing.Status" />
+					}
+				</Steps>
+			</Card>
+		}
+	}
+
+	<Card Size="small" Class="rw-detail">
+		@{
+			if (_details != null)
+			{
+				foreach (var detail in _details)
+				{
+					<Descriptions Title="@detail.ProcessName">
+						
+						<DescriptionsItem Title="开始时间">@detail.StartTime</DescriptionsItem>
+						<DescriptionsItem Title="完成时间">@(detail.EndTime.HasValue ? detail.EndTime.ToString() : "-")</DescriptionsItem>
+						<DescriptionsItem Title="状态">@detail.Status.GetDescription()</DescriptionsItem>
+						@if (detail.Data is { Count: > 0 })
+						{
+							<DescriptionsItem Title="工艺参数">
+								 
+								@foreach (var data in detail.Data)
+								{
+									<div>
+										<span class="rw-data-name">@data.Name</span>
+										<span class="rw-data-value">@data.Value</span>
+										<span>@data.Unit</span>
+									</div>
+								}
+							</DescriptionsItem>
+						}
+					</Descriptions>
+				}
+			}
+		}
+	</Card>
+</div>
+
+@code
+{
+	[Parameter] public Guid Id { get; set; } // 定义路由参数
+
+	private List<StepData>? _routing; // 存储流程步骤数据
+
+	private ProductionRecord _record = null!; // 存储生产记录数据
+	private IList<ProductionDetailDto>? _details; // 存储生产详情数据
+
+	protected override async Task OnInitializedAsync()
+	{
+		await LoadRecord(); // 加载生产记录数据
+		LoadRouting(); // 加载流程步骤数据
+		await LoadDetail(); // 加载生产详情数据
+	}
+
+	private async Task LoadRecord()
+	{
+		_record = await ProductionRecordService.GetAsync(Id); // 从服务获取生产记录数据
+	}
+
+	private async Task LoadDetail()
+	{
+		var statusMap = new Dictionary<ProcessStatus, string> // 定义状态映射
+		{
+			{ProcessStatus.InProgress, "process"},
+			{ProcessStatus.AbnormalOffline, "error"},
+			{ProcessStatus.Completed, "finish"}
+		};
+		var request = new ProdDetailListRequestDto { RecordId = Id, Sorting = [("StartTime", true)] }; // 定义请求参数
+		_details = await ProductionDetailService.GetListAsync(request); // 获取生产详情数据
+		var dataRequest = new ProdDataListRequestDto();
+		foreach (var item in _details)
+		{
+			dataRequest.DetailId = item.Id;
+			var data = await ProductionDataService.GetListAsync(dataRequest); // 获取每个详情的工艺参数数据
+			item.Data = data;
+			var step = _routing?.FirstOrDefault(t => t.Title == item.ProcessName);
+			if (step == null) continue;
+			step.Description = item.EndTime?.ToString("HH:mm:ss"); // 设置步骤描述为结束时间
+			step.Status = statusMap.GetValueOrDefault(item.Status, "wait"); // 设置步骤状态
+		}
+	}
+
+	private void LoadRouting()
+	{
+		if (!Global.Parameter.TryGetValue($"{_record.Routing}Routing", out var routing)) return; // 获取全局参数中的流程步骤数据
+		_routing ??= [];
+		foreach (var item in routing.Split("|"))
+		{
+			_routing.Add(new StepData(item, "wait")); // 初始化步骤数据
+		}
+	}
+
+	class StepData(string title, string status) // 定义步骤数据类
+	{
+		public string Title { get; } = title;
+
+		public string? Description { get; set; }
+
+		public string Status { get; set; } = status;
+	}
+}

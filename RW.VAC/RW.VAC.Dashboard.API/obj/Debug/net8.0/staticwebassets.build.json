@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "MSB8+hfIJhIiJqQo+c/id6yCnwjFP0p6LUYvFCFUHtE=",
+  "Source": "RW.VAC.Dashboard.API",
+  "BasePath": "_content/RW.VAC.Dashboard.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

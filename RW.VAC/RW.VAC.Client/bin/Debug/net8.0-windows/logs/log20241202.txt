@@ -1,0 +1,19 @@
+14:11:56.508 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:62156
+14:12:02.130 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448725
+14:17:40.309 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:49993
+14:17:50.914 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448724
+14:17:58.219 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448724
+14:18:20.891 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448456
+14:19:03.915 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448456
+14:19:07.483 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448457
+14:22:20.850 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:50041
+14:22:21.966 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448459
+14:28:18.673 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:50090
+14:28:19.631 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448459
+14:28:19.967 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+14:28:19.977 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+14:28:35.993 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448451
+14:29:20.718 (RW.VAC.Infrastructure.Tcp.TcpServer) [INF] 客户端连接：Id：1 IPAddress:127.0.0.1:50103
+14:29:21.310 (RW.VAC.Client.ViewModels.SplashWindowViewModel) [DBG] 读码器：127.0.0.1 读码内容：FM198756448451
+14:29:57.724 (System.Net.Http.HttpClient.Default.LogicalHandler) [INF] Start processing HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"
+14:29:57.729 (System.Net.Http.HttpClient.Default.ClientHandler) [INF] Sending HTTP request "POST" "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork"

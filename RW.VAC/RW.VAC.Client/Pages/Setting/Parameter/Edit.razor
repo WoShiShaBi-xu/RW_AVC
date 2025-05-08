@@ -1,0 +1,41 @@
+﻿@using RW.VAC.Application.Contracts.Parameters
+
+@inherits FeedbackComponent<FormOption<ParameterCreateUpdateDto>>
+
+@inject IParameterService ParameterService
+
+<Form @ref="_form" Model="@_model" LabelColSpan="4" ValidateOnChange="true">
+	<FormItem Label="参数编码">
+		<Input @bind-Value="@context.Code" MaxLength="50" />
+	</FormItem>
+	<FormItem Label="参数值">
+		<Input @bind-Value="@context.Value" MaxLength="200" />
+	</FormItem>
+	<FormItem Label="说明">
+		<Input @bind-Value="@context.Description" MaxLength="100" />
+	</FormItem>
+</Form>
+
+@code {
+	private ParameterCreateUpdateDto _model = null!;
+	private Form<ParameterCreateUpdateDto>? _form;
+
+	protected override void OnInitialized()
+	{
+		_model = base.Options.Data;
+		base.OnInitialized();
+	}
+
+	public override async Task OnFeedbackOkAsync(ModalClosingEventArgs e)
+	{
+		if (_form!.Validate())
+		{
+			_ = base.Options.Id.HasValue ? await ParameterService.UpdateAsync(base.Options.Id.Value, _model) : await ParameterService.CreateAsync(_model);
+		}
+		else
+		{
+			e.Cancel = true;
+		}
+		await base.OnFeedbackOkAsync(e);
+	}
+}

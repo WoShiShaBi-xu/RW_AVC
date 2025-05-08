@@ -1,0 +1,89 @@
+﻿@page "/login"
+@using RW.VAC.Application.Contracts.Users
+@using Microsoft.AspNetCore.Components.Forms
+@using RW.Framework.Security.Auth
+@using System.Security.Claims
+@using Rougamo
+@using RW.Framework.Exceptions
+@using RW.VAC.Client.ViewModels
+@layout NullLayout
+
+@inject NavigationManager Navigation
+@inject IUserService UserService
+@inject ExternalAuthService AuthService
+@inject MainWindowViewModel MainWindowVm
+
+<div class="rw-content">
+	<div class="login-box">
+		<div class="login-title">
+			蝶阀自动装配线中控
+		</div>
+		<div class="login-form">
+			<Form Model="@_model"
+			Loading="@_loading"
+			ValidateOnChange="true"
+			OnFinish="OnLoginHandler">
+				<FormItem>
+					<Input Placeholder="请输入账号" @bind-Value="@context.Account" MaxLength="20">
+						<Prefix>
+							<Icon Type="user"/>
+						</Prefix>
+					</Input>
+				</FormItem>
+				<FormItem>
+					<InputPassword Placeholder="请输入密码" @bind-Value="@context.Password">
+						<Prefix>
+							<Icon Type="lock" />
+						</Prefix>
+					</InputPassword>
+				</FormItem>
+				<FormItem>
+					<Button Style="width: 100%" Type="@ButtonType.Primary" HtmlType="submit">
+						登录
+					</Button>
+				</FormItem>
+			</Form>
+		</div>
+	</div>
+</div>
+
+@code {
+	private readonly LoginDto _model = new();
+	private bool _loading;
+
+	[IgnoreMo]
+	private async Task OnLoginHandler(EditContext context)
+	{
+		_loading = true;
+		try
+		{
+			var identity = await UserService.GetIdentityAsync(_model);
+			MainWindowVm.UserName = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value ?? string.Empty;
+			AuthService.CurrentUser = new ClaimsPrincipal(identity);
+			Global.CurrentUser = AuthService.CurrentUser;
+		}
+		catch (Exception e)
+		{
+			var message = "未处理异常";
+			var description = "请稍后重试或联系管理人员";
+			if (e is BusinessException)
+			{
+				message = "系统错误";
+                description = e.Message;
+			}
+
+			await NotificationService.Error(new()
+			{
+				Message = message,
+                Description = description,
+				Duration = 1
+			});
+			return;
+		}
+		finally
+		{
+			_loading = false;
+		}
+		Navigation.NavigateTo("/");
+	}
+}
