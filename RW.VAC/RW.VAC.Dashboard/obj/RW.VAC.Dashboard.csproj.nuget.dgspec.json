@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj": {}
+    "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj": {}
   },
   "projects": {
-    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj": {
+    "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj",
+        "projectUniqueName": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj",
         "projectName": "RW.Framework",
-        "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj",
-        "packagesPath": "C:\\Users\\xxh01\\.nuget\\packages\\",
-        "outputPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\obj\\",
+        "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj",
+        "packagesPath": "C:\\Users\\言午许\\.nuget\\packages\\",
+        "outputPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.Framework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\xxh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\言午许\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,8 +26,9 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\传动链试验台\\Report控件\\reportnuget": {},
-          "https://www.nuget.org/api/v2/": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\言午许\\.nuget\\packages\\livechartscore.skiasharpview.winforms\\2.0.0-rc5.4": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -44,7 +45,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -107,24 +109,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj": {
+    "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj",
+        "projectUniqueName": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj",
         "projectName": "RW.VAC.Application",
-        "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj",
-        "packagesPath": "C:\\Users\\xxh01\\.nuget\\packages\\",
-        "outputPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Application\\obj\\",
+        "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj",
+        "packagesPath": "C:\\Users\\言午许\\.nuget\\packages\\",
+        "outputPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\xxh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\言午许\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -133,15 +135,16 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\传动链试验台\\Report控件\\reportnuget": {},
-          "https://www.nuget.org/api/v2/": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\言午许\\.nuget\\packages\\livechartscore.skiasharpview.winforms\\2.0.0-rc5.4": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj": {
-                "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj"
+              "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj": {
+                "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj"
               }
             }
           }
@@ -155,7 +158,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -182,24 +186,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj": {
+    "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj",
+        "projectUniqueName": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj",
         "projectName": "RW.VAC.Dashboard",
-        "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj",
-        "packagesPath": "C:\\Users\\xxh01\\.nuget\\packages\\",
-        "outputPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Dashboard\\obj\\",
+        "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj",
+        "packagesPath": "C:\\Users\\言午许\\.nuget\\packages\\",
+        "outputPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Dashboard\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\xxh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\言午许\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -208,15 +212,16 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\传动链试验台\\Report控件\\reportnuget": {},
-          "https://www.nuget.org/api/v2/": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\言午许\\.nuget\\packages\\livechartscore.skiasharpview.winforms\\2.0.0-rc5.4": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj": {
-                "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj"
+              "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj": {
+                "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Application\\RW.VAC.Application.csproj"
               }
             }
           }
@@ -230,7 +235,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -268,24 +274,24 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj": {
+    "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj",
+        "projectUniqueName": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj",
         "projectName": "RW.VAC.Domain",
-        "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj",
-        "packagesPath": "C:\\Users\\xxh01\\.nuget\\packages\\",
-        "outputPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\obj\\",
+        "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj",
+        "packagesPath": "C:\\Users\\言午许\\.nuget\\packages\\",
+        "outputPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\xxh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\言午许\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -294,15 +300,16 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\传动链试验台\\Report控件\\reportnuget": {},
-          "https://www.nuget.org/api/v2/": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\言午许\\.nuget\\packages\\livechartscore.skiasharpview.winforms\\2.0.0-rc5.4": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj": {
-                "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj"
+              "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj": {
+                "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.Framework\\RW.Framework.csproj"
               }
             }
           }
@@ -316,7 +323,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -337,24 +345,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj": {
+    "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj",
+        "projectUniqueName": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj",
         "projectName": "RW.VAC.Infrastructure",
-        "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\xxh01\\.nuget\\packages\\",
-        "outputPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Infrastructure\\obj\\",
+        "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Infrastructure\\RW.VAC.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\言午许\\.nuget\\packages\\",
+        "outputPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\xxh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\言午许\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -363,15 +371,16 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\传动链试验台\\Report控件\\reportnuget": {},
-          "https://www.nuget.org/api/v2/": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\言午许\\.nuget\\packages\\livechartscore.skiasharpview.winforms\\2.0.0-rc5.4": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj": {
-                "projectPath": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj"
+              "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj": {
+                "projectPath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Domain\\RW.VAC.Domain.csproj"
               }
             }
           }
@@ -385,7 +394,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -428,7 +438,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

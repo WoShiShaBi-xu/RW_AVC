@@ -175,81 +175,6 @@
     font-size: 14px;
     font-weight: normal;
 }
-/* /Pages/Statistics.razor.rz.scp.css */
-.center-container[b-jblujeilqk] {
-    display: flex;
-    flex-direction: column; /* 将方向设置为列，以使卡片在表格上方 */
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%; /* 确保容器宽度为100% */
-    height: 130px;
-}
-
-.card-container[b-jblujeilqk] {
-    display: flex;
-    justify-content: center; /* 确保卡片容器内容水平居中 */
-    align-items: flex-start;
-    gap: 20px; /* 卡片之间的间距，根据需要调整 */
-    max-width: 1300px; /* 设置最大宽度，根据需要调整 */
-    max-height: 130px;
-    width: 100%; /* 设置宽度为100% */
-    height: 50%;
-}
-
-.card-grid[b-jblujeilqk] {
-    padding: 20px; /* 增加一些内边距，看起来更美观 */
-}
-.production-text[b-jblujeilqk] {
-    font-size: 24px; /* 放大字体 */
-    font-weight: normal; /* 正常字体 */
-    width:400px;
-    color: #333; /* 更改字体颜色 */
-    margin-right: 10px; /* 添加右边距以与图标分开 */
-}
-
-.production-number[b-jblujeilqk] {
-    font-size: 24px; /* 放大字体 */
-    font-weight: bold; /* 加粗字体 */
-    color: #333; /* 更改字体颜色 */
-    margin-top: 10px; /* 添加上边距以与上面的内容分开 */
-}
-
-.icon-bg[b-jblujeilqk] {
-    border-radius: 50%; /* 设置为圆形 */
-    width: 70px; /* 设置背景圆形的宽度 */
-    height: 70px; /* 设置背景圆形的高度 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.icon[b-jblujeilqk] {
-    width: 50px; /* 保持图标的原始宽度 */
-    height: 50px; /* 保持图标的原始高度 */
-}
-.content-column[b-jblujeilqk] {
-    display: flex;
-    flex-direction: column; /* 垂直排列内容 */
-    align-items: flex-start; /* 内容左对齐 */
-    width: 100%; /* 确保内容占满整个卡片宽度 */
-}
-.content-row[b-jblujeilqk] {
-    display: flex;
-    align-items: center; /* 确保图标和文字在同一行对齐 */
-    width: 100%; /* 确保内容占满整个卡片宽度 */
-}
-.bg-color-1[b-jblujeilqk] {
-    background-color: #E4FDE9; /* 设置第一个图标背景颜色 */
-}
-
-.bg-color-2[b-jblujeilqk] {
-    background-color: #E6F6FF; /* 设置第二个图标背景颜色 */
-}
-.table-container[b-jblujeilqk] {
-    width: 63%; /* 设置表格容器的宽度 */
-    margin-top: 100px; /* 添加上边距以与卡片分开 */
-}
-
 /* /Shared/Components/Footer/EquipmentStatistics.razor.rz.scp.css */
 .rw-footer-status[b-1touyhjubc] {
     display: flex;
@@ -316,7 +241,7 @@
     padding: 20px;
     height: 100%;
     overflow-y: overlay;
-    background-color: rgb(93, 113, 170);
+    background-color: rgb(255, 255, 255);
 }
 
 .rw-log .fixed-widgets[b-3hp0cg34u0] {

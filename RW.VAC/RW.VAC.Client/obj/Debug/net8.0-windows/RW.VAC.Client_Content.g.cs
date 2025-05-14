@@ -28,7 +28,6 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/setting/parameter/list.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/setting/user/edit.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/setting/user/list.razor")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/statistics.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("routers.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/components/equistatus/descriptionsstatu.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/components/equistatus/equipmentstatus.razor")]

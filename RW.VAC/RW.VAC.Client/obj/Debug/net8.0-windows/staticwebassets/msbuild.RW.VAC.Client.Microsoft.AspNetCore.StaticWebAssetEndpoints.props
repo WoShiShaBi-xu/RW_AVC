@@ -60,17 +60,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Tjr8dS12XziI6Y4g0Ep\u002Bag8k1B\u002BmD\u002B7LVK\u002BoNrZDiUQ="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"964"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022Tjr8dS12XziI6Y4g0Ep\u002Bag8k1B\u002BmD\u002B7LVK\u002BoNrZDiUQ=\u0022"},{"Name":"Last-Modified","Value":"Wed, 11 Sep 2024 01:53:29 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="RW.VAC.Client.3wq4rfua05.styles.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RW.VAC.Client.styles.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"3wq4rfua05"},{"Name":"integrity","Value":"sha256-I1g99kkmmB4DMXAHFExOiYMhpKIRSL5NK8vzoKqmLwo="},{"Name":"label","Value":"RW.VAC.Client.styles.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"9698"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022I1g99kkmmB4DMXAHFExOiYMhpKIRSL5NK8vzoKqmLwo=\u0022"},{"Name":"Last-Modified","Value":"Mon, 16 Dec 2024 06:50:36 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="RW.VAC.Client.styles.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RW.VAC.Client.styles.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-I1g99kkmmB4DMXAHFExOiYMhpKIRSL5NK8vzoKqmLwo="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"9698"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022I1g99kkmmB4DMXAHFExOiYMhpKIRSL5NK8vzoKqmLwo=\u0022"},{"Name":"Last-Modified","Value":"Mon, 16 Dec 2024 06:50:36 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7244"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 08:51:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="RW.VAC.Client.v2n4tw20kr.styles.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RW.VAC.Client.styles.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"v2n4tw20kr"},{"Name":"integrity","Value":"sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="},{"Name":"label","Value":"RW.VAC.Client.styles.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7244"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 08:51:56 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

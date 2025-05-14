@@ -1,28 +1,32 @@
 {
   "Files": [
     {
-      "Id": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Client\\obj\\Debug\\net8.0-windows\\scopedcss\\bundle\\RW.VAC.Client.styles.css",
+      "Id": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\obj\\Debug\\net8.0-windows\\scopedcss\\bundle\\RW.VAC.Client.styles.css",
       "PackagePath": "staticwebassets\\RW.VAC.Client.styles.css"
     },
     {
-      "Id": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\css\\app.css",
+      "Id": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\lansechilun.png",
+      "Id": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\lansechilun.png",
       "PackagePath": "staticwebassets\\image\\lansechilun.png"
     },
     {
-      "Id": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\rili.png",
+      "Id": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\rili.png",
       "PackagePath": "staticwebassets\\image\\rili.png"
     },
     {
-      "Id": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\xiangzi.png",
+      "Id": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\image\\xiangzi.png",
       "PackagePath": "staticwebassets\\image\\xiangzi.png"
     },
     {
-      "Id": "E:\\XCY23017-main-web\\XCY23017-main\\XCY23017-1蝶阀自动装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\index.html",
+      "Id": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\staticwebassets\\msbuild.RW.VAC.Client.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0-windows\\staticwebassets\\msbuild.RW.VAC.Client.Microsoft.AspNetCore.StaticWebAssets.props",

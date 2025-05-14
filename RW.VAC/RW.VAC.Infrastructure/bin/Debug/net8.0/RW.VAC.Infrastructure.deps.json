@@ -700,7 +700,10 @@
           "System.Configuration.ConfigurationManager": "8.0.0"
         },
         "runtime": {
-          "RW.Framework.dll": {}
+          "RW.Framework.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RW.VAC.Domain/1.0.0": {
@@ -708,7 +711,10 @@
           "RW.Framework": "1.0.0"
         },
         "runtime": {
-          "RW.VAC.Domain.dll": {}
+          "RW.VAC.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

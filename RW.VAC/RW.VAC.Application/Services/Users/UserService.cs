@@ -5,7 +5,6 @@ using RW.Framework.Application.Services;
 using RW.Framework.Exceptions;
 using RW.Framework.Extensions;
 using RW.VAC.Application.Contracts.Users;
-using RW.VAC.Application.Hardwares.CodeReader;
 using RW.VAC.Domain.Users;
 
 namespace RW.VAC.Application.Services.Users;
@@ -50,7 +49,6 @@ public class UserService(IUserRepository repository, UserManager userManager)
         new(ClaimTypes.Name, user.UserName),
         new(ClaimTypes.Role, user.Role.ToString())
     };
-        GeneralCodeReader.username = user.UserName;
 
         return new ClaimsIdentity( claims , "UserAuth" );
     }

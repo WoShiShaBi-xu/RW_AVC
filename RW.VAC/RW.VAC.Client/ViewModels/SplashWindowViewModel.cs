@@ -7,7 +7,6 @@ using RW.Framework.Extensions;
 using RW.VAC.Application.Contracts.CodeReaders;
 using RW.VAC.Application.Contracts.Opcs;
 using RW.VAC.Application.Contracts.Parameters;
-using RW.VAC.Application.Hardwares.CodeReader;
 using RW.VAC.Application.Hardwares.Opc;
 using RW.VAC.Client.Storage;
 using RW.VAC.Infrastructure.Devices.State;
@@ -22,7 +21,7 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 {
 	[ObservableProperty] private double _progress;
 
-	[ObservableProperty] private string _title = "蝶阀自动装配线";
+	[ObservableProperty] private string _title = "";
 
 	[ObservableProperty] private string _tooltip = string.Empty;
 
@@ -46,13 +45,13 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 				await LoadOpcTag();
 				Progress = 30;
 
-				Tooltip = "初始化OPC";
-				await InitOpc();
-				Progress = 60;
+				//Tooltip = "初始化OPC";
+				//await InitOpc();
+				//Progress = 60;
 
-				Tooltip = "初始化TCP服务";
-				await InitTcpServer();
-				Progress = 95;
+				//Tooltip = "初始化TCP服务";
+				//await InitTcpServer();
+				//Progress = 95;
 
 				Tooltip = "启动主窗体";
 			}
@@ -77,11 +76,11 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 
 	private async Task LoadParameter()
 	{
-        var parameterService = serviceProvider.GetRequiredService<IParameterService>();
-        var parameterList = await parameterService.GetListAsync();
-        await parameterService.SetParameterAsync( "CurrentProduct" , "0" );
-        await parameterService.SetParameterAsyncStatisticType( "StatisticType" , "0" );
-        foreach ( var param in parameterList ) global.Parameter.TryAdd( param.Code , param.Value );
+        //var parameterService = serviceProvider.GetRequiredService<IParameterService>();
+        //var parameterList = await parameterService.GetListAsync();
+        //await parameterService.SetParameterAsync( "CurrentProduct" , "0" );
+        //await parameterService.SetParameterAsyncStatisticType( "StatisticType" , "0" );
+        //foreach ( var param in parameterList ) global.Parameter.TryAdd( param.Code , param.Value );
     }
 
 	private void LoadLogBuffer()
@@ -95,37 +94,37 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 
 	private async Task LoadCodeReader()
 	{
-		var codeReaderService = serviceProvider.GetRequiredService<ICodeReaderService>();
-		var codeReaderList = await codeReaderService.GetListAsync();
-		foreach (var codeReader in codeReaderList)
-			global.CodeReader.TryAdd(codeReader.IP, (codeReader.ProcessName, codeReader.ProcessType));
+		//var codeReaderService = serviceProvider.GetRequiredService<ICodeReaderService>();
+		//var codeReaderList = await codeReaderService.GetListAsync();
+		//foreach (var codeReader in codeReaderList)
+		//	global.CodeReader.TryAdd(codeReader.IP, (codeReader.ProcessName, codeReader.ProcessType));
 	}
 
 	private async Task LoadOpcTag()
 	{
-		var tag = serviceProvider.GetRequiredService<TagStorage>();
-		var uaClient = serviceProvider.GetRequiredService<IUaClient>();
-		var plcState = serviceProvider.GetRequiredService<PLCState>();
+		//var tag = serviceProvider.GetRequiredService<TagStorage>();
+		//var uaClient = serviceProvider.GetRequiredService<IUaClient>();
+		//var plcState = serviceProvider.GetRequiredService<PLCState>();
 
-		var opcGroupService = serviceProvider.GetRequiredService<IOpcGroupService>();
-		var opcItemService = serviceProvider.GetRequiredService<IOpcItemService>();
-		var groupList = await opcGroupService.GetListAsync();
-		var itemList = await opcItemService.GetListAsync();
-		foreach (var group in groupList)
-		{
-			var prefix = group.Group.NotNullOrWhiteSpace()
-				? string.Concat(group.Device, ".", group.Group)
-				: group.Device;
-			var items = itemList.Where(t => t.GroupId == group.Id).ToList();
-			foreach (var i in items)
-			{
-				var nodeName = string.Concat(prefix, ".", i.Name);
-				tag.AddTag(group.Code, i.Code, nodeName, uaClient);
-			}
+		//var opcGroupService = serviceProvider.GetRequiredService<IOpcGroupService>();
+		//var opcItemService = serviceProvider.GetRequiredService<IOpcItemService>();
+		//var groupList = await opcGroupService.GetListAsync();
+		//var itemList = await opcItemService.GetListAsync();
+		//foreach (var group in groupList)
+		//{
+		//	var prefix = group.Group.NotNullOrWhiteSpace()
+		//		? string.Concat(group.Device, ".", group.Group)
+		//		: group.Device;
+		//	var items = itemList.Where(t => t.GroupId == group.Id).ToList();
+		//	foreach (var i in items)
+		//	{
+		//		var nodeName = string.Concat(prefix, ".", i.Name);
+		//		tag.AddTag(group.Code, i.Code, nodeName, uaClient);
+		//	}
 
-			plcState[string.Concat(group.Device, "._System._NoError")] = false;
-		}
-		tag.Initialize();
+		//	plcState[string.Concat(group.Device, "._System._NoError")] = false;
+		//}
+		//tag.Initialize();
 	}
 
 	private async Task InitOpc()
@@ -177,25 +176,25 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 
 	private async Task InitTcpServer()
 	{
-		var tcpServer = serviceProvider.GetRequiredService<ITcpServer>();
-		var adaptor = serviceProvider.GetRequiredService<CodeReaderAdaptor>();
-		var codeReaderState = serviceProvider.GetRequiredService<CodeReaderState>();
+		//var tcpServer = serviceProvider.GetRequiredService<ITcpServer>();
+		//var adaptor = serviceProvider.GetRequiredService<CodeReaderAdaptor>();
+		//var codeReaderState = serviceProvider.GetRequiredService<CodeReaderState>();
 
-		tcpServer.ClientConnected += args => codeReaderState[args.IP] = true;
-		tcpServer.ClientDisconnected += args => codeReaderState[args.IP] = false;
-		tcpServer.DataReceived += async args =>
-        { // 将接收到的字节块转换为字符串，即序列号
-            var serialNumber = args.ByteBlock.ToString();
-			logger.LogDebug($"读码器：{args.IP} 读码内容：{serialNumber}");
-            // 检查序列号是否为空或是否与"NoRead读码失败"参数相同，若是则不处理
-            if (serialNumber.IsNullOrWhiteSpace() || string.Equals(global.Parameter["NoRead"], serialNumber,
-					StringComparison.OrdinalIgnoreCase)) return;
-			if ( serialNumber.Contains( global.Parameter [ "NoRead" ] ) )
-				return;
+		//tcpServer.ClientConnected += args => codeReaderState[args.IP] = true;
+		//tcpServer.ClientDisconnected += args => codeReaderState[args.IP] = false;
+		//tcpServer.DataReceived += async args =>
+  //      { // 将接收到的字节块转换为字符串，即序列号
+  //          var serialNumber = args.ByteBlock.ToString();
+		//	logger.LogDebug($"读码器：{args.IP} 读码内容：{serialNumber}");
+  //          // 检查序列号是否为空或是否与"NoRead读码失败"参数相同，若是则不处理
+  //          if (serialNumber.IsNullOrWhiteSpace() || string.Equals(global.Parameter["NoRead"], serialNumber,
+		//			StringComparison.OrdinalIgnoreCase)) return;
+		//	if ( serialNumber.Contains( global.Parameter [ "NoRead" ] ) )
+		//		return;
 
-            // 调用 CodeReaderAdaptor 的 Do 方法，传入 IP 地址、序列号和当前产品
-            await adaptor.Do(args.IP, serialNumber, global.CurrentProduct);
-		};
-		await tcpServer.StartAsync(global.Parameter["TcpServerPort"]);
+  //          // 调用 CodeReaderAdaptor 的 Do 方法，传入 IP 地址、序列号和当前产品
+  //          await adaptor.Do(args.IP, serialNumber, global.CurrentProduct);
+		//};
+		//await tcpServer.StartAsync(global.Parameter["TcpServerPort"]);
 	}
 }

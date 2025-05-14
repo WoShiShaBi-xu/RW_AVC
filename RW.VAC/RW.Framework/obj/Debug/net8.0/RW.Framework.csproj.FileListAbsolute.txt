@@ -70,3 +70,16 @@ E:\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.dll
 E:\RW.VAC\RW.Framework\obj\Debug\net8.0\refint\RW.Framework.dll
 E:\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.pdb
 E:\RW.VAC\RW.Framework\obj\Debug\net8.0\ref\RW.Framework.dll
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\bin\Debug\net8.0\RW.Framework.deps.json
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\bin\Debug\net8.0\RW.Framework.dll
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\bin\Debug\net8.0\RW.Framework.pdb
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.csproj.AssemblyReference.cache
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.GeneratedMSBuildEditorConfig.editorconfig
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.AssemblyInfoInputs.cache
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.AssemblyInfo.cs
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.csproj.CoreCompileInputs.cache
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.sourcelink.json
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.dll
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\refint\RW.Framework.dll
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\RW.Framework.pdb
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.Framework\obj\Debug\net8.0\ref\RW.Framework.dll

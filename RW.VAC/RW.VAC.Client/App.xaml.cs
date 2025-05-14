@@ -10,7 +10,6 @@ using RW.Framework.Autofac.Modules;
 using RW.Framework.Config;
 using RW.Framework.EventBus;
 using RW.Framework.Security.Auth;
-using RW.VAC.Application.Hardwares.CodeReader;
 using RW.VAC.Application.Hardwares.Opc;
 using RW.VAC.Client.LogSink;
 using RW.VAC.Client.Services;
@@ -117,14 +116,8 @@ public partial class App
 				builder.RegisterType<TcpServer>().As<ITcpServer>().SingleInstance();
 				builder.RegisterType<CodeReaderState>().SingleInstance();
 				builder.RegisterType<CodeQueue>().SingleInstance();
-				builder.RegisterType<CodeReaderAdaptor>().WithParameter((p, _) => p.Name == "cache",
-					(_, c) => c.Resolve<Global>().CodeReader);
-				builder.RegisterType<GeneralCodeReader>().Keyed<ICodeReader>(ProcessType.General).PropertiesAutowired();
-				builder.RegisterType<FeedCodeReader>().Keyed<ICodeReader>(ProcessType.Feed).PropertiesAutowired();
-				builder.RegisterType<FasteningCodeReader>().Keyed<ICodeReader>(ProcessType.Fastening).PropertiesAutowired();
-                builder.RegisterType<BedstandCodeReader>().Keyed<ICodeReader>(ProcessType.Bedstand).PropertiesAutowired();
-                builder.RegisterType<SwitchingCodeReader>().Keyed<ICodeReader>(ProcessType.Switching).PropertiesAutowired();
-				builder.RegisterType<ArtificialBitCodeReader>().Keyed<ICodeReader>( ProcessType.ArtificialBit ).PropertiesAutowired();
+				
+
 				#endregion
 
 				#region OPC相关

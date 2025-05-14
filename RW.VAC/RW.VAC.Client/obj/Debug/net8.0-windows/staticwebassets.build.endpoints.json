@@ -3,51 +3,6 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
-      "Route": "RW.VAC.Client.3wq4rfua05.styles.css",
-      "AssetFile": "RW.VAC.Client.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "9698"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"I1g99kkmmB4DMXAHFExOiYMhpKIRSL5NK8vzoKqmLwo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 16 Dec 2024 06:50:36 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "3wq4rfua05"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-I1g99kkmmB4DMXAHFExOiYMhpKIRSL5NK8vzoKqmLwo="
-        },
-        {
-          "Name": "label",
-          "Value": "RW.VAC.Client.styles.css"
-        }
-      ]
-    },
-    {
       "Route": "RW.VAC.Client.modules.json",
       "AssetFile": "RW.VAC.Client.modules.json",
       "Selectors": [],
@@ -99,7 +54,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9698"
+          "Value": "7244"
         },
         {
           "Name": "Content-Type",
@@ -107,17 +62,62 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"I1g99kkmmB4DMXAHFExOiYMhpKIRSL5NK8vzoKqmLwo=\""
+          "Value": "\"KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 16 Dec 2024 06:50:36 GMT"
+          "Value": "Thu, 08 May 2025 08:51:56 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-I1g99kkmmB4DMXAHFExOiYMhpKIRSL5NK8vzoKqmLwo="
+          "Value": "sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="
+        }
+      ]
+    },
+    {
+      "Route": "RW.VAC.Client.v2n4tw20kr.styles.css",
+      "AssetFile": "RW.VAC.Client.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7244"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 08 May 2025 08:51:56 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "v2n4tw20kr"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="
+        },
+        {
+          "Name": "label",
+          "Value": "RW.VAC.Client.styles.css"
         }
       ]
     },
