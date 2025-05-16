@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using RW.VAC.Application.Hardwares.Opc;
 using RW.VAC.Domain.API;
 using RW.VAC.Domain.Entities;
 using System;

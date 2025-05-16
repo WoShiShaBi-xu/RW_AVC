@@ -5,12 +5,10 @@ using RW.Framework.EventBus;
 using RW.Framework.Extensions;
 using RW.VAC.Application.Contracts.Opcs;
 using RW.VAC.Application.Events.EventData;
-using RW.VAC.Dashboard.Bridge;
 using RW.VAC.Dashboard.settings;
 using RW.VAC.Infrastructure.Opc;
 using System;
 using RW.VAC.Dashboard.subscribe;
-using RW.VAC.Application.Contracts.Parameters;
 
 namespace RW.VAC.Dashboard;
 
@@ -44,7 +42,7 @@ public partial class FrmMain : Form
 		await WebView.EnsureCoreWebView2Async();
 		var path = Path.Combine( Environment.CurrentDirectory , "site" );
 		WebView.CoreWebView2.SetVirtualHostNameToFolderMapping( "app.local" , path , CoreWebView2HostResourceAccessKind.DenyCors );
-		WebView.CoreWebView2.AddHostObjectToScript( "capacity" , _componentContext.Resolve<CapacityBridge>() );
+		//WebView.CoreWebView2.AddHostObjectToScript( "capacity" , _componentContext.Resolve<CapacityBridge>() );
 		//WebView.CoreWebView2.Navigate("http://localhost:5173/");
 		WebView.CoreWebView2.Navigate( "https://app.local/index.html" );
 		WebView.NavigationCompleted += WebView_NavigationCompleted;

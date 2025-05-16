@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using RW.Framework.Extensions;
 using RW.Framework.Security.Auth;
 using RW.VAC.Client.Models;
-using RW.VAC.Domain.Users;
 
 namespace RW.VAC.Client.ViewModels;
 
@@ -52,11 +51,7 @@ public partial class MainWindowViewModel : ObservableObject
             {
                 using ( var scope = _serviceProvider.CreateScope() )
                 {
-                    var fsql = scope.ServiceProvider.GetRequiredService<IFreeSql>();
-                    await fsql.Update<User>()
-                              .Set( u => u.IsLoggedIn , false )
-                              .Where( u => u.Id == userId )
-                              .ExecuteAffrowsAsync();
+                   
                 }
             }
         }

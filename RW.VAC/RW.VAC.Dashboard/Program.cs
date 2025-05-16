@@ -10,14 +10,10 @@ using RW.Framework.Autofac.Modules;
 using RW.Framework.Config;
 using RW.Framework.Security.Auth;
 using RW.VAC.Application.Events.EventData;
-using RW.VAC.Dashboard.Bridge;
 using RW.VAC.Dashboard.service;
 using RW.VAC.Dashboard.settings;
 using RW.VAC.Dashboard.subscribe;
 using RW.VAC.Domain.Opcs;
-using RW.VAC.Domain.Parameters;
-using RW.VAC.Domain.Products;
-using RW.VAC.Domain.Records;
 using RW.VAC.Infrastructure.Opc;
 using WindowsFormsLifetime;
 
@@ -54,7 +50,6 @@ namespace RW.VAC.Dashboard
 				})
 				.ConfigureServices((context, services) =>
 				{
-					services.AddHostedService<ApplicationHostService>();
 					services.AddHostedService<CommunicationHostService>();
 					
 
@@ -83,10 +78,7 @@ namespace RW.VAC.Dashboard
 					//TODO:领域服务统一注册
 					builder.RegisterType<OpcGroupManager>().InstancePerLifetimeScope();
 					builder.RegisterType<OpcItemManager>().InstancePerLifetimeScope();
-					builder.RegisterType<ProductManager>().InstancePerLifetimeScope();
-					builder.RegisterType<ProductionRecordManager>().InstancePerLifetimeScope();
-					builder.RegisterType<ParameterManager>().InstancePerLifetimeScope();
-					builder.RegisterType<CapacityBridge>().InstancePerLifetimeScope();
+
 				})
 			.UseWindowsFormsLifetime<FrmMain>();
 		}

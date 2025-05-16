@@ -63,14 +63,14 @@
     <StaticWebAssetEndpoint Include="RW.VAC.Client.styles.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RW.VAC.Client.styles.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7244"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 08:51:56 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7485"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 15 May 2025 06:39:56 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="RW.VAC.Client.v2n4tw20kr.styles.css">
+    <StaticWebAssetEndpoint Include="RW.VAC.Client.x5v22atdlw.styles.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RW.VAC.Client.styles.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"v2n4tw20kr"},{"Name":"integrity","Value":"sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="},{"Name":"label","Value":"RW.VAC.Client.styles.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7244"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 08:51:56 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"x5v22atdlw"},{"Name":"integrity","Value":"sha256-RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg="},{"Name":"label","Value":"RW.VAC.Client.styles.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7485"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 15 May 2025 06:39:56 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "p5h8fE0lFOrf5qQAlR3goq+/VvblV2zFW+o0U65Cy7s=",
+  "Hash": "DC2gRX07nnUwxzP5ob+/NCgJkU0HtCv9uoe8F3//ioE=",
   "Source": "RW.VAC.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -7843,8 +7843,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "v2n4tw20kr",
-      "Integrity": "KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=",
+      "Fingerprint": "x5v22atdlw",
+      "Integrity": "RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\obj\\Debug\\net8.0-windows\\scopedcss\\bundle\\RW.VAC.Client.styles.css"
@@ -7864,8 +7864,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "v2n4tw20kr",
-      "Integrity": "KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=",
+      "Fingerprint": "x5v22atdlw",
+      "Integrity": "RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\obj\\Debug\\net8.0-windows\\scopedcss\\projectbundle\\RW.VAC.Client.bundle.scp.css"
@@ -22125,7 +22125,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7244"
+          "Value": "7485"
         },
         {
           "Name": "Content-Type",
@@ -22133,11 +22133,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\""
+          "Value": "\"RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 08 May 2025 08:51:56 GMT"
+          "Value": "Thu, 15 May 2025 06:39:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22147,7 +22147,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="
+          "Value": "sha256-RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg="
         }
       ]
     },
@@ -22174,7 +22174,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 16 Dec 2024 06:50:36 GMT"
+          "Value": "Thu, 15 May 2025 06:39:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22199,7 +22199,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7244"
+          "Value": "7485"
         },
         {
           "Name": "Content-Type",
@@ -22207,11 +22207,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\""
+          "Value": "\"RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 08 May 2025 08:51:56 GMT"
+          "Value": "Thu, 15 May 2025 06:39:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22221,12 +22221,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="
+          "Value": "sha256-RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg="
         }
       ]
     },
     {
-      "Route": "RW.VAC.Client.v2n4tw20kr.bundle.scp.css",
+      "Route": "RW.VAC.Client.x5v22atdlw.bundle.scp.css",
       "AssetFile": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\obj\\Debug\\net8.0-windows\\scopedcss\\projectbundle\\RW.VAC.Client.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -22236,7 +22236,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7244"
+          "Value": "7485"
         },
         {
           "Name": "Content-Type",
@@ -22244,11 +22244,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\""
+          "Value": "\"RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 08 May 2025 08:51:56 GMT"
+          "Value": "Thu, 15 May 2025 06:39:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22258,7 +22258,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "v2n4tw20kr"
+          "Value": "x5v22atdlw"
         },
         {
           "Name": "label",
@@ -22266,12 +22266,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="
+          "Value": "sha256-RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg="
         }
       ]
     },
     {
-      "Route": "RW.VAC.Client.v2n4tw20kr.styles.css",
+      "Route": "RW.VAC.Client.x5v22atdlw.styles.css",
       "AssetFile": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Client\\obj\\Debug\\net8.0-windows\\scopedcss\\bundle\\RW.VAC.Client.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -22281,7 +22281,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7244"
+          "Value": "7485"
         },
         {
           "Name": "Content-Type",
@@ -22289,11 +22289,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo=\""
+          "Value": "\"RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 08 May 2025 08:51:56 GMT"
+          "Value": "Thu, 15 May 2025 06:39:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22303,7 +22303,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "v2n4tw20kr"
+          "Value": "x5v22atdlw"
         },
         {
           "Name": "label",
@@ -22311,7 +22311,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-KdWymjNBtGGJFSXYG9xGoi0lIPTQkhLmSKl5EQtQnIo="
+          "Value": "sha256-RcSCNhW3f0hIwDY2FolIIVGVSztG6P3LIrVj/NcpCAg="
         }
       ]
     }

@@ -4,12 +4,8 @@ using RW.Framework.EventBus.Local;
 using RW.VAC.Application.Contracts.Opcs;
 using RW.VAC.Application.Services.Opcs;
 using RW.VAC.Dashboard.API.WebSocketManagers;
-using RW.VAC.Dashboard.Bridge;
 using RW.VAC.Dashboard.subscribe;
 using RW.VAC.Domain.Opcs;
-using RW.VAC.Domain.Parameters;
-using RW.VAC.Domain.Products;
-using RW.VAC.Domain.Records;
 using RW.VAC.Infrastructure.Opc;
 using RW.VAC.Infrastructure.Repositories.Opcs;
 using System.Net.WebSockets;
@@ -25,17 +21,11 @@ using RW.Framework.Autofac.Modules;
 using RW.Framework.Config;
 using RW.Framework.Security.Auth;
 using RW.VAC.Application.Events.EventData;
-using RW.VAC.Dashboard.Bridge;
 using RW.VAC.Dashboard.service;
 using RW.VAC.Dashboard.settings;
 using RW.VAC.Dashboard.subscribe;
 using RW.VAC.Domain.Opcs;
-using RW.VAC.Domain.Parameters;
-using RW.VAC.Domain.Products;
-using RW.VAC.Domain.Records;
 using RW.VAC.Infrastructure.Opc;
-using RW.VAC.Application.Services.Records;
-using RW.VAC.Infrastructure.Repositories.Records;
 
 
 var builder = WebApplication.CreateBuilder( args );
@@ -59,7 +49,6 @@ var applicationLayer = configuration [ "LayerConfig:ApplicationLayer" ];
 if ( applicationLayer == null ) throw new ConfigurationErrorsException( "应用服务层配置错误" );
 builder.Services.AddAutoMapper( Assembly.Load( applicationLayer ) );
 
-builder.Services.AddHostedService<ApplicationHostService>();
 builder.Services.AddHostedService<CommunicationHostService>();
 
 
@@ -83,25 +72,11 @@ builder.Host.ConfigureContainer<ContainerBuilder>( container =>
     container.RegisterType<UaClient>().As<IUaClient>().SingleInstance();
     container.RegisterType<DeviceSubscribe>().SingleInstance();
     container.RegisterType<OpcItemService>().As<IOpcItemService>().InstancePerLifetimeScope();
-    container.RegisterType<OpcGroupService>().As<IOpcGroupService>().InstancePerLifetimeScope();
     // 领域服务注册
     container.RegisterType<OpcNodeManager>().InstancePerLifetimeScope();
-    container.RegisterType<ProductionDetailService>().InstancePerLifetimeScope();
     container.RegisterType<OpcGroupManager>().InstancePerLifetimeScope();
     container.RegisterType<OpcItemManager>().InstancePerLifetimeScope();
-    container.RegisterType<ProductManager>().InstancePerLifetimeScope();
-    container.RegisterType<ProductionRecordManager>().InstancePerLifetimeScope();
-    container.RegisterType<ParameterManager>().InstancePerLifetimeScope();
-    container.RegisterType<CapacityBridge>().InstancePerLifetimeScope();
     container.RegisterType<WebSocketManagers>().SingleInstance();
-    container.RegisterType<ProductionDetailManager>().InstancePerLifetimeScope();
-    container.RegisterType<ProductionDetailRepository>()
-       .As<IProductionDetailRepository>()
-       .InstancePerLifetimeScope();
-
-    container.RegisterType<ProductionDetailManager>()
-           .AsSelf()
-           .InstancePerLifetimeScope();
 
 } );
 builder.Services.AddCors( options =>

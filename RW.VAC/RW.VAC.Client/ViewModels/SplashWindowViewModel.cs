@@ -6,8 +6,6 @@ using Microsoft.Extensions.Logging;
 using RW.Framework.Extensions;
 using RW.VAC.Application.Contracts.CodeReaders;
 using RW.VAC.Application.Contracts.Opcs;
-using RW.VAC.Application.Contracts.Parameters;
-using RW.VAC.Application.Hardwares.Opc;
 using RW.VAC.Client.Storage;
 using RW.VAC.Infrastructure.Devices.State;
 using RW.VAC.Infrastructure.Opc;
@@ -87,8 +85,6 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 	{
 		var logBuffer = serviceProvider.GetRequiredService<LogBuffer>();
 		int? capacity = null;
-		global.Parameter.TryGetValue("LogMaxLength", out var len);
-		if (len.NotNullOrWhiteSpace() && int.TryParse(len, out var result)) capacity = result;
 		logBuffer.Initialize(capacity);
 	}
 
@@ -130,42 +126,23 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 	private async Task InitOpc()
 	{
 		var uaClient = serviceProvider.GetRequiredService<IUaClient>();
-		await uaClient.Connect(global.Parameter["OpcUrl"]);
-
 		var tags = serviceProvider.GetRequiredService<TagStorage>();
         var plcState = serviceProvider.GetRequiredService<PLCState>();
-        var generalControl = serviceProvider.GetRequiredService<GeneralControl>();
-        var trussControl = serviceProvider.GetRequiredService<TrussControl>();
-		var bedstand = serviceProvider.GetRequiredService<Bedstand>();
 
 
         #region 总控相关订阅事件
 
-        uaClient.Subscribe(tags["Control", TagTypeConsts.RemoteModeTag]!.TagName, TagTypeConsts.RemoteModeTag, true,
-            generalControl.RemoteMode);
-        uaClient.Subscribe(tags["Control", TagTypeConsts.StartTag]!.TagName, TagTypeConsts.StartTag, true,
-            generalControl.Start);
-        uaClient.Subscribe(tags["Control", TagTypeConsts.PauseTag]!.TagName, TagTypeConsts.PauseTag, true,
-            generalControl.Pause);
-        uaClient.Subscribe(tags["Control", TagTypeConsts.ResetTag]!.TagName, TagTypeConsts.ResetTag, true,
-            generalControl.Reset);
-        uaClient.Subscribe(tags["Control", TagTypeConsts.EmergencyStopTag]!.TagName, TagTypeConsts.EmergencyStopTag, true,
-            generalControl.EmergencyStop);
 
         #endregion
 
         #region 上料桁架相关
 
-        uaClient.Subscribe(tags["M01", "Feed"]!.TagName, "TrussFeed", true, trussControl.Feed);
-        uaClient.Subscribe(tags["M01", "Lower"]!.TagName, "TrussLower", true, trussControl.Lower);
+
 
         #endregion
 
         #region 试验台数据导出
-        //uaClient.Subscribe(tags["M09", "Endofprocess"]!.TagName, "TrussEndofprocess", true, bedstand.AirtightEndofprocess);//工序结束
-        uaClient.Subscribe(tags["M09", "Blanking"]!.TagName, "TrussBlanking", true, bedstand.AirtightBlanking);//获取下料工位号
-        //uaClient.Subscribe(tags["M12", "Endofprocess"]!.TagName, "12TrussEndofprocess", true, bedstand.OiltightEndofprocess);//工序结束
-        uaClient.Subscribe(tags["M12", "Blanking"]!.TagName, "12TrussBlanking", true, bedstand.OiltightBlanking);//获取下料工位号
+
         #endregion
 
         uaClient.Subscribe(plcState.Tags, "PLCState", false, args =>

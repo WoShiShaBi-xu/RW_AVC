@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RW.VAC.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5d6ef2e08434e617aadef1f4f838a3a0110487c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a72dd29338f21e5f5c855224b92ef9f767832d35")]
 [assembly: System.Reflection.AssemblyProductAttribute("RW.VAC.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RW.VAC.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

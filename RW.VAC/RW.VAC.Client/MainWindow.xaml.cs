@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Web.WebView2.Core;
-using RW.VAC.Application.Hardwares.Opc;
 using RW.VAC.Client.ViewModels;
 
 namespace RW.VAC.Client;
@@ -17,7 +16,7 @@ public partial class MainWindow
 
 	private readonly System.Timers.Timer _timer = new();
 
-	public MainWindow(IServiceProvider serviceProvider, MainWindowViewModel viewModel, GeneralControl generalControl)
+	public MainWindow(IServiceProvider serviceProvider, MainWindowViewModel viewModel)
 	{
 		_serviceProvider = serviceProvider;
 		ViewModel = viewModel;
@@ -61,16 +60,5 @@ public partial class MainWindow
 		this.Top = (screenHeight / 2) - (this.Height / 2);
 	}
 
-	private void SetHeartbeat()
-	{
-		var generalControl = _serviceProvider.GetRequiredService<GeneralControl>();
-		var global = _serviceProvider.GetRequiredService<Global>();
-		double interval = double.TryParse(global.Parameter["Heartbeat"], out interval) ? interval : 200;
-		_timer.Interval = interval;
-		_timer.Elapsed += (_, _) =>
-		{
-			generalControl.Heartbeat();
-		};
-		_timer.Start();
-	}
+	
 }

@@ -1,45 +1,62 @@
-﻿using FreeSql.DataAnnotations;
-using RW.Framework.Domain.Entities.Auditing;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace RW.VAC.Domain.Products;
-
-[Table(Name = "Product")]
-public class Product : FullAuditedAggregateRoot<Guid>
+namespace RW.VAC.Domain.Products
 {
-	public Product(string name, string code, RoutingTypes routing, int? recipe, string? statisticType )
-	{
-		Name = name;
-		Code = code;
-		Routing = routing;
-		Recipe = recipe;
-        StatisticType = statisticType;
+    public class Product
+    {
+        /// <summary>
+        /// 产品ID
+        /// </summary>
+        public string ProductId { get; set; }
+
+        /// <summary>
+        /// 产品类型（制动装置/辅助装置）
+        /// </summary>
+        public ProductType ProductType { get; set; }
+
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string ProductName { get; set; }
+
+        /// <summary>
+        /// 产品规格
+        /// </summary>
+        public string ProductSpecs { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime? CreateTime { get; set; }
+
+        /// <summary>
+        /// 产品状态(待组装/已组装/待试验/已试验/已检测)
+        /// </summary>
+        public string Status { get; set; }
+
+        /// <summary>
+        /// 更新时间
+        /// </summary>
+        public DateTime? UpdateTime { get; set; }
     }
 
-	public Product(Guid id, string name, string code, RoutingTypes routing, int? recipe,string? statisticType ) : base(id)
-	{
-		Name = name;
-		Code = code;
-		Routing = routing;
-		Recipe = recipe;
-        StatisticType=statisticType;
+    /// <summary>
+    /// 产品类型枚举
+    /// </summary>
+    public enum ProductType
+    {
+        /// <summary>
+        /// 制动装置
+        /// </summary>
+        BrakeDevice,
 
+        /// <summary>
+        /// 辅助装置
+        /// </summary>
+        AuxiliaryDevice
     }
-
-	[Column(StringLength = 50)] public string Name { get; set; }
-
-	[Column(StringLength = 50)] public string Code { get; set; }
-
-	public int? Recipe { get; set; }
-
-    public string? StatisticType { get; set; }
-
-    public RoutingTypes Routing { get; set; }
-
-	public void Update(string name, string code, RoutingTypes routing, int? recipe)
-	{
-		this.Name = name;
-		this.Code = code;
-		this.Routing = routing;
-		this.Recipe = recipe;
-	}
 }

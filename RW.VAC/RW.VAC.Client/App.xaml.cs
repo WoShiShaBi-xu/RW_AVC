@@ -10,17 +10,12 @@ using RW.Framework.Autofac.Modules;
 using RW.Framework.Config;
 using RW.Framework.EventBus;
 using RW.Framework.Security.Auth;
-using RW.VAC.Application.Hardwares.Opc;
 using RW.VAC.Client.LogSink;
 using RW.VAC.Client.Services;
 using RW.VAC.Client.Storage;
 using RW.VAC.Client.ViewModels;
 using RW.VAC.Domain.CodeReaders;
 using RW.VAC.Domain.Opcs;
-using RW.VAC.Domain.Parameters;
-using RW.VAC.Domain.Products;
-using RW.VAC.Domain.Records;
-using RW.VAC.Domain.Users;
 using RW.VAC.Infrastructure.Devices.State;
 using RW.VAC.Infrastructure.Opc;
 using RW.VAC.Infrastructure.Tcp;
@@ -105,11 +100,6 @@ public partial class App
 				//TODO:领域服务统一注册
 				builder.RegisterType<OpcGroupManager>().InstancePerLifetimeScope();
 				builder.RegisterType<OpcItemManager>().InstancePerLifetimeScope();
-				builder.RegisterType<ProductManager>().InstancePerLifetimeScope();
-				builder.RegisterType<UserManager>().InstancePerLifetimeScope();
-				builder.RegisterType<ParameterManager>().InstancePerLifetimeScope();
-				builder.RegisterType<ProductionRecordManager>().InstancePerLifetimeScope();
-				builder.RegisterType<ProductionDetailManager>().InstancePerLifetimeScope();
 
 				#region 读码器相关
 
@@ -126,9 +116,7 @@ public partial class App
 				builder.RegisterType<UaClient>().As<IUaClient>().SingleInstance();
                 builder.RegisterType<PLCState>().SingleInstance();
 
-                builder.RegisterType<GeneralControl>();
-                builder.RegisterType<TrussControl>();
-                builder.RegisterType<Bedstand>();
+
                 #endregion
                 #region API服务注册
                 builder.RegisterType<WMSClient>().As<IAutoAssemblyWorkClient>().SingleInstance();
@@ -152,21 +140,7 @@ public partial class App
 
 	private async void OnExit(object sender, ExitEventArgs e)
     {
-		if( Global.CurrentUser !=null)
-		{
-            var id = Global.CurrentUser.FindFirst( ClaimTypes.NameIdentifier )?.Value;
-            if ( Guid.TryParse( id , out var userId ) )
-            {
-                using ( var scope = _host.Services.CreateScope() )
-                {
-                    var fsql = scope.ServiceProvider.GetRequiredService<IFreeSql>();
-                    await fsql.Update<User>()
-                              .Set( u => u.IsLoggedIn , false )
-                              .Where( u => u.Id == userId )
-                              .ExecuteAffrowsAsync();
-                }
-            }
-        }
+		
 		
             
 

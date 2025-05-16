@@ -1,47 +1,60 @@
-﻿using RW.Framework.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FreeSql.DataAnnotations;
 
 namespace RW.VAC.Domain.Pallet
 {
-    [Table( Name = "pallets" )]
-    public class Pallet : AggregateRoot<string>
+    /// <summary>
+    /// 托盘实体类
+    /// </summary>
+    public class Pallet
     {
-        public Pallet( ) { }
+        /// <summary>
+        /// 托盘ID
+        /// </summary>
+        public string PalletId { get; set; }
 
-        public Pallet( string palletId , string palletType , string status = "空闲" , string locationId = null )
-        {
-            Id = palletId;
-            PalletType = palletType;
-            Status = status;
-            LocationId = locationId;
-            CreateTime = DateTime.Now;
-            LastUpdate = DateTime.Now;
-        }
+        /// <summary>
+        /// 托盘类型（制动装置托盘/辅助装置托盘）
+        /// </summary>
+        public PalletType PalletType { get; set; }
 
-        [Column( Name = "pallet_id" , StringLength = 20 )]
-        public string Id { get; set; }
-
-        [Column( Name = "pallet_type" , StringLength = 50 )]
-        public string PalletType { get; set; }
-
-        [Column( Name = "status" , StringLength = 20 )]
+        /// <summary>
+        /// 托盘状态(空闲/使用中)
+        /// </summary>
         public string Status { get; set; }
 
-        [Column( Name = "location_id" , StringLength = 20 )]
+        /// <summary>
+        /// 当前位置
+        /// </summary>
         public string LocationId { get; set; }
 
-        [Column( Name = "create_time" )]
+        /// <summary>
+        /// 创建时间
+        /// </summary>
         public DateTime? CreateTime { get; set; }
 
-        [Column( Name = "last_update" )]
+        /// <summary>
+        /// 最后更新时间
+        /// </summary>
         public DateTime? LastUpdate { get; set; }
+    }
 
-        // 关联的产品
-        public string ProductId { get; set; }
+    /// <summary>
+    /// 托盘类型枚举
+    /// </summary>
+    public enum PalletType
+    {
+        /// <summary>
+        /// 制动装置托盘
+        /// </summary>
+        BrakeDevicePallet,
+
+        /// <summary>
+        /// 辅助装置托盘
+        /// </summary>
+        AuxiliaryDevicePallet
     }
 }

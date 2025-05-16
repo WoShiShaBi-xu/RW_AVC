@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿ <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -12,12 +12,9 @@
 
   <ItemGroup>
     <Folder Include="Events\EventHandle\" />
-    <Folder Include="Hardwares\CodeReader\" />
-    <Folder Include="Services\Products\" />
-    <Folder Include="Services\Parameters\" />
-    <Folder Include="Services\Records\" />
-    <Folder Include="Services\Orders\" />
-    <Folder Include="Services\Users\" />
+    <Folder Include="Services\ProductPalletBinding\" />
+    <Folder Include="Services\TaskLoadMapping\" />
+    <Folder Include="Services\TestStation\" />
   </ItemGroup>
 
   <ItemGroup>
