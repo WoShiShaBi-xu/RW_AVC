@@ -1,0 +1,98 @@
+﻿@using RW.VAC.Domain.DockingPosition
+@using RW.VAC.Domain.TestStation
+@using RW.VAC.Client.Models
+@inherits FeedbackComponent<DockingPositionEditModel>
+
+@inject IDockingPositionService DockingPositionService
+@inject ITestStationService TestStationService
+
+<div class="docking-position-edit">
+    <Form @ref="_form" Model="@_model" Layout="FormLayout.Vertical">
+        <FormItem Label="接驳位类型" Required>
+            <Input @bind-Value="@_model.PositionType" Placeholder="请输入接驳位类型" />
+        </FormItem>
+
+        <FormItem Label="关联试验台">
+            <Select TItem="TestStation"
+                    TItemValue="string"
+                    DataSource="@_availableStations"
+                    @bind-Value="@_model.StationId"
+                    ValueName="@(nameof(TestStation.StationId))"
+                    LabelTemplate="@StationTemplate"
+                    Style="width: 100%"
+                    Placeholder="请选择关联的试验台"
+                    AllowClear>
+            </Select>
+        </FormItem>
+    </Form>
+</div>
+
+@code {
+    private Form<DockingPositionEditModel> _form;
+    private DockingPositionEditModel _model = new();
+    private List<TestStation> _availableStations = new();
+
+    protected override async Task OnInitializedAsync( )
+    {
+        // 初始化模型
+        _model = base.Options ?? new DockingPositionEditModel();
+
+        await LoadTestStations();
+        await base.OnInitializedAsync();
+    }
+
+    private async Task LoadTestStations( )
+    {
+        try
+        {
+            // 获取所有试验台
+            var allStations = await TestStationService.GetAllAsync();
+            _availableStations = allStations.ToList();
+        }
+        catch (Exception ex)
+        {
+            await NotificationService.Error( new NotificationConfig
+                    {
+                        Message = "加载试验台列表失败" ,
+                        Description = ex.Message
+                    } );
+        }
+    }
+
+    public override async Task OnFeedbackOkAsync( ModalClosingEventArgs e )
+    {
+        if (!_form.Validate())
+        {
+            e.Cancel = true;
+            return;
+        }
+
+        try
+        {
+            if (string.IsNullOrEmpty( _model.PositionType ))
+            {
+                throw new Exception( "请输入接驳位类型" );
+            }
+
+            // 调用服务创建新接驳位
+            await DockingPositionService.CreateDockingPositionAsync( _model.PositionType , _model.StationId );
+
+            await NotificationService.Success( new NotificationConfig { Message = "接驳位创建成功" } );
+        }
+        catch (Exception ex)
+        {
+            await NotificationService.Error( new NotificationConfig
+                    {
+                        Message = "接驳位创建失败" ,
+                        Description = ex.Message
+                    } );
+            e.Cancel = true;
+        }
+
+        await base.OnFeedbackOkAsync( e );
+    }
+
+    private RenderFragment<TestStation> StationTemplate = station => @<span>
+        @station.StationId (@station.StationType.ToString()) - @(station.Status == StationStatus.Idle ? "空闲" : station.Status == StationStatus.Testing ? "试验中" : "故障")
+    </span>;
+}

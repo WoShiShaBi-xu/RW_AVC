@@ -1,95 +1,81 @@
-/* /Pages/ControlPanel.razor.rz.scp.css */
-.location-grid[b-i0njv7ssan] {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
+/* /Pages/Location/List.razor.rz.scp.css */
+.rw-content[b-6f13hd9rmc] {
+    padding: 0 !important;
 }
 
-.location-card[b-i0njv7ssan] {
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    padding: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.action-bar[b-6f13hd9rmc] {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
-    .location-card:hover[b-i0njv7ssan] {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-.location-code[b-i0njv7ssan] {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.location-name[b-i0njv7ssan] {
-    color: #6c757d;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-.location-status[b-i0njv7ssan] {
-    text-align: right;
-}
-
-.location-free[b-i0njv7ssan] {
-    background-color: #f8f9fa;
-    border-left: 4px solid #28a745;
-}
-
-.location-occupied[b-i0njv7ssan] {
-    background-color: #fff8f8;
-    border-left: 4px solid #dc3545;
-}
-/* /Pages/Login.razor.rz.scp.css */
-.rw-content[b-n3h1ma4fa2] {
-    height: 100%;
-    width: 100%;
-    background-color: rgb(135, 197, 237);
-    /*background-color: #F0F2F5;*/
+.loading-container[b-6f13hd9rmc] {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 300px;
 }
 
-    .rw-content .login-box[b-n3h1ma4fa2] {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
+/* 库位网格 */
+.location-grid[b-6f13hd9rmc], .docking-grid[b-6f13hd9rmc] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* 库位卡片样式 */
+.location-card[b-6f13hd9rmc], .docking-card[b-6f13hd9rmc] {
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+    .location-card:hover[b-6f13hd9rmc], .docking-card:hover[b-6f13hd9rmc] {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-        .rw-content .login-box .login-title[b-n3h1ma4fa2] {
-            margin-bottom: 20px;
-            font-weight: bold;
-            font-size: 26px;
-        }
-
-        .rw-content .login-box .login-form[b-n3h1ma4fa2] {
-            padding: 30px 50px 0 50px;
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-            border-radius: 5px;
-            background-color: #fff;
-        }
-/* /Pages/Overview.razor.rz.scp.css */
-.rw-content[b-mh3pnnifd0]  .equipment-item {
+.location-header[b-6f13hd9rmc], .docking-header[b-6f13hd9rmc] {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 8px;
 }
 
-    .rw-content[b-mh3pnnifd0]  .equipment-item .equipment-status {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.location-code[b-6f13hd9rmc], .docking-code[b-6f13hd9rmc] {
+    font-weight: bold;
+    font-size: 16px;
+}
 
-        .rw-content[b-mh3pnnifd0]  .equipment-item .equipment-status > div:not(:last-child) {
-            margin-right: 5px;
-        }
+.location-name[b-6f13hd9rmc] {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
 
-.rw-content[b-mh3pnnifd0]  .ant-card-grid {
-    padding: 12px;
+.location-type[b-6f13hd9rmc], .docking-type[b-6f13hd9rmc],
+.location-pallet[b-6f13hd9rmc], .docking-pallet[b-6f13hd9rmc],
+.docking-station[b-6f13hd9rmc], .location-update[b-6f13hd9rmc],
+.docking-update[b-6f13hd9rmc] {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.location-actions[b-6f13hd9rmc], .docking-actions[b-6f13hd9rmc] {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+/* 状态样式 */
+.location-free[b-6f13hd9rmc], .docking-free[b-6f13hd9rmc] {
+    background-color: #f9fffe;
+    border-left: 4px solid #52c41a;
+}
+
+.location-occupied[b-6f13hd9rmc], .docking-occupied[b-6f13hd9rmc] {
+    background-color: #fff8f8;
+    border-left: 4px solid #f5222d;
 }
 /* /Pages/Record/Detail.razor.rz.scp.css */
 .rw-content[b-n5yczm28g6]  .rw-process .ant-card-body {

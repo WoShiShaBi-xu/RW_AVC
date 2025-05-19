@@ -1,0 +1,78 @@
+﻿@using RW.VAC.Domain.Pallet
+@using RW.VAC.Domain.Location
+@using RW.VAC.Client.Models
+@inherits FeedbackComponent<AssignPalletModalModel>
+
+@inject IPalletService PalletService
+@inject ILocationService LocationService
+
+<div class="assign-pallet-modal">
+    <Form @ref="_form" Model="@_model" Layout="FormLayout.Vertical">
+        <FormItem Label="托盘ID" Required>
+            <Input @bind-Value="@_model.PalletId" Placeholder="请输入托盘ID" />
+            <Text Type="Secondary">请输入要分配的托盘ID</Text>
+        </FormItem>
+
+        <FormItem Label="托盘类型">
+            <RadioGroup @bind-Value="@_model.PalletType">
+                <Radio Value="@PalletType.BrakeDevicePallet">制动装置托盘</Radio>
+                <Radio Value="@PalletType.AuxiliaryDevicePallet">辅助装置托盘</Radio>
+            </RadioGroup>
+        </FormItem>
+    </Form>
+</div>
+
+@code {
+    private Form<AssignPalletModalModel> _form;
+    private AssignPalletModalModel _model = new();
+
+    protected override void OnInitialized( )
+    {
+        _model = base.Options ?? new AssignPalletModalModel();
+        base.OnInitialized();
+    }
+
+    public override async Task OnFeedbackOkAsync( ModalClosingEventArgs e )
+    {
+        if (!_form.Validate())
+        {
+            e.Cancel = true;
+            return;
+        }
+
+        try
+        {
+            if (string.IsNullOrEmpty( _model.PalletId ))
+            {
+                throw new Exception( "请输入托盘ID" );
+            }
+
+            // 验证托盘是否存在，如果不存在则创建
+            try
+            {
+                await PalletService.GetPalletDetailsAsync( _model.PalletId );
+            }
+            catch (KeyNotFoundException)
+            {
+                // 如果托盘不存在，创建一个新托盘
+                await PalletService.CreatePalletAsync( _model.PalletType );
+            }
+
+            // 调用服务分配托盘到库位
+            await LocationService.AssignPalletToLocationAsync( _model.LocationId , _model.PalletId );
+
+            await NotificationService.Success( new NotificationConfig { Message = "托盘分配成功" } );
+        }
+        catch (Exception ex)
+        {
+            await NotificationService.Error( new NotificationConfig
+                {
+                    Message = "托盘分配失败" ,
+                    Description = ex.Message
+                } );
+            e.Cancel = true;
+        }
+
+        await base.OnFeedbackOkAsync( e );
+    }
+}

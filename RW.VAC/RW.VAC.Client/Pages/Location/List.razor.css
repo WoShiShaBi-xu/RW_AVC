@@ -1,0 +1,78 @@
+﻿.rw-content {
+    padding: 0 !important;
+}
+
+.action-bar {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+/* 库位网格 */
+.location-grid, .docking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* 库位卡片样式 */
+.location-card, .docking-card {
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+    .location-card:hover, .docking-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+.location-header, .docking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.location-code, .docking-code {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.location-name {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.location-type, .docking-type,
+.location-pallet, .docking-pallet,
+.docking-station, .location-update,
+.docking-update {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.location-actions, .docking-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+/* 状态样式 */
+.location-free, .docking-free {
+    background-color: #f9fffe;
+    border-left: 4px solid #52c41a;
+}
+
+.location-occupied, .docking-occupied {
+    background-color: #fff8f8;
+    border-left: 4px solid #f5222d;
+}

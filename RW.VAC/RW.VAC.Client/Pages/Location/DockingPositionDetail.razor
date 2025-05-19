@@ -1,0 +1,50 @@
+﻿@using RW.VAC.Domain.DockingPosition
+@inherits FeedbackComponent<DockingPosition>
+
+<div class="docking-detail">
+    <Descriptions Bordered>
+        <DescriptionsItem Title="接驳位ID">@_position.PositionId</DescriptionsItem>
+        <DescriptionsItem Title="接驳位类型">@_position.PositionType</DescriptionsItem>
+        <DescriptionsItem Title="关联试验台">
+            @if (!string.IsNullOrEmpty( _position.StationId ))
+            {
+                <Tag Color="blue">@_position.StationId</Tag>
+            }
+            else
+            {
+                <span>无</span>
+            }
+        </DescriptionsItem>
+        <DescriptionsItem Title="占用状态">
+            @if (_position.Status == PositionStatus.Occupied)
+            {
+                <Tag Color="red">已占用</Tag>
+            }
+            else
+            {
+                <Tag Color="green">空闲</Tag>
+            }
+        </DescriptionsItem>
+        <DescriptionsItem Title="当前托盘">
+            @if (!string.IsNullOrEmpty( _position.CurrentPalletId ))
+            {
+                <Tag Color="blue">@_position.CurrentPalletId</Tag>
+            }
+            else
+            {
+                <span>无</span>
+            }
+        </DescriptionsItem>
+        <DescriptionsItem Title="更新时间">@(_position.LastUpdate?.ToString( "yyyy-MM-dd HH:mm:ss" ) ?? "-")</DescriptionsItem>
+    </Descriptions>
+</div>
+
+@code {
+    private DockingPosition _position = new();
+
+    protected override void OnInitialized( )
+    {
+        _position = base.Options ?? new DockingPosition();
+        base.OnInitialized();
+    }
+}

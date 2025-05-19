@@ -1,0 +1,49 @@
+﻿@using RW.VAC.Domain.Location
+@inherits FeedbackComponent<Location>
+
+<div class="location-detail">
+    <Descriptions Bordered>
+        <DescriptionsItem Title="库位ID">@Location.LocationId</DescriptionsItem>
+        <DescriptionsItem Title="库位名称">@Location.LocationName</DescriptionsItem>
+        <DescriptionsItem Title="库位类型">@GetLocationTypeName( Location.LocationType )</DescriptionsItem>
+        <DescriptionsItem Title="占用状态">
+            @if (Location.IsOccupied == true)
+            {
+                <Tag Color="red">已占用</Tag>
+            }
+            else
+            {
+                <Tag Color="green">空闲</Tag>
+            }
+        </DescriptionsItem>
+        <DescriptionsItem Title="当前托盘">
+            @if (!string.IsNullOrEmpty( Location.CurrentPalletId ))
+            {
+                <Tag Color="blue">@Location.CurrentPalletId</Tag>
+            }
+            else
+            {
+                <span>无</span>
+            }
+        </DescriptionsItem>
+        <DescriptionsItem Title="更新时间">@(Location.LastUpdate?.ToString( "yyyy-MM-dd HH:mm:ss" ) ?? "-")</DescriptionsItem>
+    </Descriptions>
+</div>
+
+@code {
+    [Parameter] public Location Location { get; set; }
+
+    private string GetLocationTypeName( LocationType type )
+    {
+        return type switch
+        {
+            LocationType.BufferWaitingTest => "缓存区-待试验",
+            LocationType.BufferTested => "缓存区-已试验",
+            LocationType.TestAreaDock => "试验区接驳位",
+            LocationType.FinishedProductInspectionDock => "成品检测接驳位",
+            LocationType.ProtectiveBoxPreparationArea => "护箱备料区",
+            LocationType.ProductionLineDock => "产线接驳位",
+            _ => type.ToString()
+        };
+    }
+}

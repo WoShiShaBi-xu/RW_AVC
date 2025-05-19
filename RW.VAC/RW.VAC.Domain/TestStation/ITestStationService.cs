@@ -40,7 +40,7 @@ namespace RW.VAC.Domain.TestStation
 
         /// <summary>
         /// 查找可用的试验台
-        /// </summary>
+        /// </summary>  
         /// <param name="stationType">试验台类型</param>
         /// <returns>可用试验台列表</returns>
         Task<IEnumerable<TestStation>> FindAvailableStationsAsync( StationType stationType );
@@ -51,5 +51,11 @@ namespace RW.VAC.Domain.TestStation
         /// <param name="stationId">试验台ID</param>
         /// <returns>试验台详情</returns>
         Task<TestStation> GetStationDetailsAsync( string stationId );
+
+        /// <summary>
+        /// 获取所有试验台
+        /// </summary>
+        /// <returns>试验台列表</returns>
+        Task<IEnumerable<TestStation>> GetAllAsync( );
     }
 }

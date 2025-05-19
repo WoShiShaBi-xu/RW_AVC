@@ -25,6 +25,16 @@ namespace RW.VAC.Application.Services.Pallets
         }
 
         /// <summary>
+        /// 获取所有托盘
+        /// </summary>
+        /// <returns>托盘列表</returns>
+        public async Task<IEnumerable<Pallet>> GetAllAsync( )
+        {
+            // 调用仓储接口获取所有托盘
+            return await _palletRepository.GetAllAsync();
+        }
+
+        /// <summary>
         /// 创建新托盘
         /// </summary>
         /// <param name="palletType">托盘类型</param>
@@ -185,5 +195,13 @@ namespace RW.VAC.Application.Services.Pallets
 
             return $"{prefix}{dateStr}{randomStr}";
         }
+
+
+
+        /// <summary>
+        /// 获取所有托盘
+        /// </summary>
+        /// <returns>托盘列表</returns>
+
     }
 }

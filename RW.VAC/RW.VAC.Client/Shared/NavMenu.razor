@@ -1,40 +1,36 @@
 ﻿<Menu Mode="MenuMode.Inline" Style="background-color: rgb(255, 255, 255);">
-	<AuthorizeView Roles="User">
-		<MenuItem RouterLink="/">
-			<Icon Type="control" Theme="outline"></Icon>
-			控制台
-		</MenuItem>
-		<MenuItem RouterLink="/record">
-			<Icon Type="file" Theme="outline"></Icon>
-			产品记录
-		</MenuItem>
-		<MenuItem RouterLink="/product">
-			<Icon Type="appstore" Theme="outline"></Icon>
-			库位管理
-		</MenuItem>
-		<MenuItem RouterLink="/product">
-			<Icon Type="appstore" Theme="outline"></Icon>
-			接驳位管理
-		</MenuItem>
-	</AuthorizeView>
-	
-	<AuthorizeView Roles="ProductionStaff">
-		<MenuItem RouterLink="/statistics">
-			<Icon Type="pie-chart" Theme="outline"></Icon>
-			数据统计
-		</MenuItem>
-	</AuthorizeView>
-	 
+    <AuthorizeView Roles="User">
+        <MenuItem RouterLink="/">
+            <Icon Type="control" Theme="outline"></Icon>
+            控制台
+        </MenuItem>
+        <MenuItem RouterLink="/record">
+            <Icon Type="file" Theme="outline"></Icon>
+            产品记录
+        </MenuItem>
+        <MenuItem RouterLink="/location">
+            <Icon Type="environment" Theme="outline"></Icon>
+            位置管理
+        </MenuItem>
+    </AuthorizeView>
 
-	<AuthorizeView Roles="Admin">
-		<Authorized>
-			<SubMenu TitleTemplate="@_settingTilte">
-				<MenuItem RouterLink="/setting/user">用户管理</MenuItem>
-				<MenuItem RouterLink="/setting/parameter">系统参数</MenuItem>
-				<MenuItem RouterLink="/setting/opc">OPC点位</MenuItem>
-			</SubMenu>
-		</Authorized>
-	</AuthorizeView>
+    <!-- 保留原有的其他菜单项 -->
+    <AuthorizeView Roles="ProductionStaff">
+        <MenuItem RouterLink="/statistics">
+            <Icon Type="pie-chart" Theme="outline"></Icon>
+            数据统计
+        </MenuItem>
+    </AuthorizeView>
+
+    <AuthorizeView Roles="Admin">
+        <Authorized>
+            <SubMenu TitleTemplate="@_settingTilte">
+                <MenuItem RouterLink="/setting/user">用户管理</MenuItem>
+                <MenuItem RouterLink="/setting/parameter">系统参数</MenuItem>
+                <MenuItem RouterLink="/setting/opc">OPC点位</MenuItem>
+            </SubMenu>
+        </Authorized>
+    </AuthorizeView>
 </Menu>
 
 @code {

@@ -23,7 +23,15 @@ namespace RW.VAC.Application.Services.Locations
             _locationRepository = locationRepository ?? throw new ArgumentNullException( nameof( locationRepository ) );
             _palletRepository = palletRepository ?? throw new ArgumentNullException( nameof( palletRepository ) );
         }
-
+        /// <summary>
+        /// 获取所有库位
+        /// </summary>
+        /// <returns>库位列表</returns>
+        public async Task<IEnumerable<Location>> GetAllLocationsAsync( )
+        {
+            // 调用仓储接口获取所有库位
+            return await _locationRepository.GetAllAsync();
+        }
         /// <summary>
         /// 创建新库位
         /// </summary>

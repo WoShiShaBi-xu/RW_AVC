@@ -9,6 +9,11 @@ namespace RW.VAC.Domain.DockingPosition
     public interface IDockingPositionService
     {
         /// <summary>
+        /// 获取所有接驳位
+        /// </summary>
+        /// <returns>接驳位列表</returns>
+        Task<IEnumerable<DockingPosition>> GetAllDockingPositionsAsync( );
+        /// <summary>
         /// 创建新接驳位
         /// </summary>
         /// <param name="positionType">接驳位类型</param>

@@ -922,9 +922,6 @@ D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能�
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\RW.VAC.Client.sourcelink.json
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\RW.VAC.Client.csproj.Fody.CopyLocal.cache
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\jsmodules\jsmodules.build.manifest.json
-D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\scopedcss\Pages\ControlPanel.razor.rz.scp.css
-D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\scopedcss\Pages\Login.razor.rz.scp.css
-D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\scopedcss\Pages\Overview.razor.rz.scp.css
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\scopedcss\Pages\Record\Detail.razor.rz.scp.css
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\scopedcss\Pages\Setting\Opc\GroupEdit.razor.rz.scp.css
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\scopedcss\Pages\Setting\Opc\List.razor.rz.scp.css
@@ -949,3 +946,4 @@ D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能�
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\RW.VAC.Client.pdb
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\RW.VAC.Client.genruntimeconfig.cache
 D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\ref\RW.VAC.Client.dll
+D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\obj\Debug\net8.0-windows\scopedcss\Pages\Location\List.razor.rz.scp.css

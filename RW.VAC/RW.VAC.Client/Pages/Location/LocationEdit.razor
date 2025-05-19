@@ -1,0 +1,103 @@
+﻿@using RW.VAC.Domain.Location
+@using RW.VAC.Client.Models
+@inherits FeedbackComponent<LocationEditModel>
+
+@inject ILocationService LocationService
+
+<div class="location-edit">
+    <Form @ref="_form" Model="@_model" Layout="FormLayout.Vertical">
+        <FormItem Label="库位名称" Required>
+            <Input @bind-Value="@_model.LocationName" Placeholder="请输入库位名称" />
+        </FormItem>
+
+        <FormItem Label="库位类型" Required>
+            <Select TItem="LocationTypeItem"
+                    TItemValue="LocationType"
+                    DataSource="@LocationTypes"
+                    @bind-Value="@_model.LocationType"
+                    ValueName="@nameof(LocationTypeItem.Value)"
+                    LabelName="@nameof(LocationTypeItem.Label)"
+                    Style="width: 100%"
+                    Placeholder="请选择库位类型">
+            </Select>
+        </FormItem>
+    </Form>
+</div>
+
+@code {
+    private Form<LocationEditModel> _form;
+    private LocationEditModel _model = new();
+
+    private List<LocationTypeItem> LocationTypes { get; set; } = new();
+
+    protected override void OnInitialized( )
+    {
+        // 初始化模型
+        _model = base.Options ?? new LocationEditModel();
+
+        // 初始化库位类型列表
+        LocationTypes = Enum.GetValues( typeof( LocationType ) )
+            .Cast<LocationType>()
+            .Select( t => new LocationTypeItem
+                {
+                    Value = t ,
+                    Label = GetLocationTypeName( t )
+                } )
+            .ToList();
+
+        base.OnInitialized();
+    }
+
+    public override async Task OnFeedbackOkAsync( ModalClosingEventArgs e )
+    {
+        if (!_form.Validate())
+        {
+            e.Cancel = true;
+            return;
+        }
+
+        try
+        {
+            if (string.IsNullOrEmpty( _model.LocationName ))
+            {
+                throw new Exception( "请输入库位名称" );
+            }
+
+            // 调用服务创建新库位
+            await LocationService.CreateLocationAsync( _model.LocationType , _model.LocationName );
+
+            await NotificationService.Success( new NotificationConfig { Message = "库位创建成功" } );
+        }
+        catch (Exception ex)
+        {
+            await NotificationService.Error( new NotificationConfig
+                {
+                    Message = "库位创建失败" ,
+                    Description = ex.Message
+                } );
+            e.Cancel = true;
+        }
+
+        await base.OnFeedbackOkAsync( e );
+    }
+
+    private string GetLocationTypeName( LocationType type )
+    {
+        return type switch
+        {
+            LocationType.BufferWaitingTest => "缓存区-待试验",
+            LocationType.BufferTested => "缓存区-已试验",
+            LocationType.TestAreaDock => "试验区接驳位",
+            LocationType.FinishedProductInspectionDock => "成品检测接驳位",
+            LocationType.ProtectiveBoxPreparationArea => "护箱备料区",
+            LocationType.ProductionLineDock => "产线接驳位",
+            _ => type.ToString()
+        };
+    }
+
+    public class LocationTypeItem
+    {
+        public LocationType Value { get; set; }
+        public string Label { get; set; }
+    }
+}

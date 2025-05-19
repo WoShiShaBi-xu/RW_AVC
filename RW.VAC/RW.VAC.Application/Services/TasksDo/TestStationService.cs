@@ -1,4 +1,5 @@
-﻿using RW.VAC.Domain.Products;
+﻿using RW.VAC.Domain.Pallet;
+using RW.VAC.Domain.Products;
 using RW.VAC.Domain.TestStation;
 using System;
 using System.Collections.Generic;
@@ -260,6 +261,11 @@ namespace RW.VAC.Application.Services.TasksDo
             string randomStr = new Random().Next( 100 , 999 ).ToString();
 
             return $"{prefix}{dateStr}{randomStr}";
+        }
+
+        public Task<IEnumerable<TestStation>> GetAllAsync( )
+        {
+            return _stationRepository.GetAllAsync();
         }
     }
 }

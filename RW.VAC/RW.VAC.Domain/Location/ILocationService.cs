@@ -52,5 +52,11 @@ namespace RW.VAC.Domain.Location
         /// <param name="locationId">库位ID</param>
         /// <returns>库位详情</returns>
         Task<Location> GetLocationDetailsAsync( string locationId );
+
+        /// <summary>
+        /// 获取所有库位
+        /// </summary>
+        /// <returns>库位列表</returns>
+        Task<IEnumerable<Location>> GetAllLocationsAsync( );
     }
 }

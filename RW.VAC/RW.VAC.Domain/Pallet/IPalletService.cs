@@ -37,5 +37,11 @@ namespace RW.VAC.Domain.Pallet
         /// <param name="palletId">托盘ID</param>
         /// <returns>托盘详情</returns>
         Task<Pallet> GetPalletDetailsAsync( string palletId );
+
+        /// <summary>
+        /// 获取所有托盘
+        /// </summary>
+        /// <returns>托盘列表</returns>
+        Task<IEnumerable<Pallet>> GetAllAsync( );
     }
 }
