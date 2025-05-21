@@ -14,6 +14,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("wwwroot/image/xiangzi.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("wwwroot/index.html")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("appsettings.json")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/controlpanel.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/location/assigndockingpalletmodal.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/location/assignpalletmodal.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/location/dockingpositiondetail.razor")]

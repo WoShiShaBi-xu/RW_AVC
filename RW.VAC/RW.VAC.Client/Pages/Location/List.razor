@@ -137,11 +137,11 @@
                 <div class="docking-grid">
                     @foreach (var position in _filteredDockingPositions)
                     {
-                        <Card Bordered Class="@($"docking-card {(position.Status == PositionStatus.Occupied ? "docking-occupied" : "docking-free")}")">
+                        <Card Bordered Class="@($"docking-card {(position.Status == PositionStatus.有料 ? "docking-occupied" : "docking-free")}")">
                             <div class="docking-header">
                                 <div class="docking-code">@position.PositionId</div>
                                 <div class="docking-status">
-                                    @if (position.Status == PositionStatus.Occupied)
+                                    @if (position.Status == PositionStatus.有料)
                                     {
                                         <Tag Color="red">占用</Tag>
                                     }
@@ -175,8 +175,8 @@
 
                             <div class="docking-actions">
                                 <Button Type="primary" Size="small" OnClick="() => ViewDockingDetails(position)">详情</Button>
-                                <Button Type="@(position.Status == PositionStatus.Occupied ? "danger" : "default")" Size="small" OnClick="() => ManageDockingPallet(position)">
-                                    @(position.Status == PositionStatus.Occupied ? "移除托盘" : "分配托盘")
+                                <Button Type="@(position.Status == PositionStatus.有料 ? "danger" : "default")" Size="small" OnClick="() => ManageDockingPallet(position)">
+                                    @(position.Status == PositionStatus.有料 ? "移除托盘" : "分配托盘")
                                 </Button>
                             </div>
                         </Card>
@@ -198,7 +198,6 @@
     // 依赖注入服务
     [Inject] private ILocationService LocationService { get; set; }
     [Inject] private IDockingPositionService DockingPositionService { get; set; }
-
     // 库位数据
     private List<Location> _locations = new();
     private List<Location> _filteredLocations = new();
@@ -470,7 +469,7 @@
 
     private async Task ManageDockingPallet( DockingPosition position )
     {
-        if (position.Status == PositionStatus.Occupied)
+        if (position.Status == PositionStatus.有料)
         {
             // 移除托盘
             if (await ModalService.ConfirmAsync( new ConfirmOptions

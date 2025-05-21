@@ -47,11 +47,11 @@ namespace RW.VAC.Domain.DockingPosition
         /// <summary>
         /// 空闲
         /// </summary>
-        Idle,
+        空闲,
 
         /// <summary>
         /// 有料
         /// </summary>
-        Occupied
+        有料
     }
 }

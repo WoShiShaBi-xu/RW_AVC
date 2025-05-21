@@ -1,3 +1,4 @@
+﻿@page "/"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Routing
@@ -13,3 +14,8 @@
 @inject INotificationService NotificationService
 @inject ModalService ModalService
 @inject NavigationManager Navigation
+
+<SectionContent SectionName="navBread">
+    <NavBread></NavBread>
+</SectionContent>
+

@@ -30,6 +30,16 @@ using RW.VAC.Application.Contracts.API;
 using RW.VAC.Domain.API;
 using System;
 using System.Security.Claims;
+using RW.VAC.Application.Services.DockingPositionService;
+using RW.VAC.Application.Services.Locations;
+using RW.VAC.Application.Services.Pallets;
+using RW.VAC.Application.Services.TasksDo;
+using RW.VAC.Domain.DockingPosition;
+using RW.VAC.Domain.Location;
+using RW.VAC.Domain.Pallet;
+using RW.VAC.Domain.TestStation;
+using RW.VAC.Infrastructure.Repositories;
+using RW.VAC.Domain.Products;
 
 [assembly: ComponentException]
 namespace RW.VAC.Client;
@@ -90,8 +100,19 @@ public partial class App
 				builder.RegisterType<Global>().SingleInstance();
 				builder.RegisterType<LogBuffer>().SingleInstance();
 				builder.RegisterType<NavigationProvider>().SingleInstance();
+                // 在 ConfigureContainer 方法中添加以下注册
+                builder.RegisterType<LocationService>().As<ILocationService>().SingleInstance();
+                builder.RegisterType<DockingPositionService>().As<IDockingPositionService>().SingleInstance();
+                builder.RegisterType<PalletService>().As<IPalletService>().SingleInstance();
+                builder.RegisterType<TestStationService>().As<ITestStationService>().SingleInstance();
+                builder.RegisterType<ProductRepository>().As<IProductRepository>().SingleInstance();
+                // 确保仓储也已注册
+                builder.RegisterType<LocationRepository>().As<ILocationRepository>().SingleInstance();
+                builder.RegisterType<DockingPositionRepository>().As<IDockingPositionRepository>().SingleInstance();
+                builder.RegisterType<PalletRepository>().As<IPalletRepository>().SingleInstance();
+                builder.RegisterType<TestStationRepository>().As<ITestStationRepository>().SingleInstance();
 
-				builder.RegisterType<SplashWindowViewModel>().SingleInstance();
+                builder.RegisterType<SplashWindowViewModel>().SingleInstance();
 				builder.RegisterType<SplashWindow>().SingleInstance();
 
 				builder.RegisterType<MainWindowViewModel>().SingleInstance();
