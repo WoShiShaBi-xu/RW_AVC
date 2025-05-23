@@ -137,11 +137,11 @@
                 <div class="docking-grid">
                     @foreach (var position in _filteredDockingPositions)
                     {
-                        <Card Bordered Class="@($"docking-card {(position.Status == PositionStatus.有料 ? "docking-occupied" : "docking-free")}")">
+                        <Card Bordered Class="@($"docking-card {(position.Status == DockingPositionStatus.有料 ? "docking-occupied" : "docking-free")}")">
                             <div class="docking-header">
                                 <div class="docking-code">@position.PositionId</div>
                                 <div class="docking-status">
-                                    @if (position.Status == PositionStatus.有料)
+                                    @if (position.Status == DockingPositionStatus.有料)
                                     {
                                         <Tag Color="red">占用</Tag>
                                     }
@@ -175,8 +175,8 @@
 
                             <div class="docking-actions">
                                 <Button Type="primary" Size="small" OnClick="() => ViewDockingDetails(position)">详情</Button>
-                                <Button Type="@(position.Status == PositionStatus.有料 ? "danger" : "default")" Size="small" OnClick="() => ManageDockingPallet(position)">
-                                    @(position.Status == PositionStatus.有料 ? "移除托盘" : "分配托盘")
+                                <Button Type="@(position.Status == DockingPositionStatus.有料 ? "danger" : "default")" Size="small" OnClick="() => ManageDockingPallet(position)">
+                                    @(position.Status == DockingPositionStatus.有料 ? "移除托盘" : "分配托盘")
                                 </Button>
                             </div>
                         </Card>
@@ -374,7 +374,7 @@
         var options = new ModalOptions
             {
                 Title = "新增接驳位" ,
-                Width = 500 ,
+                Width = 1000 ,
                 DestroyOnClose = true ,
                 OnOk = async _ =>
                 {
@@ -390,18 +390,17 @@
 
     private async Task ViewLocationDetails( Location location )
     {
-        // 查看库位详情
-        var options = new ModalOptions
+        var modalRef = await ModalService.CreateModalAsync( new ModalOptions
             {
                 Title = $"库位详情 - {location.LocationId}" ,
-                Width = 600 ,
-                Footer = null
-            };
-
-        await ModalService.CreateModalAsync<LocationDetail , Location>(
-            options ,
-            location
-        );
+                Width = 1000 ,
+                Content = builder =>
+                {
+                    builder.OpenComponent<LocationDetail>( 0 );
+                    builder.AddAttribute( 1 , nameof( LocationDetail.Location ) , location );
+                    builder.CloseComponent();
+                }
+            } );
     }
 
     private async Task ViewDockingDetails( DockingPosition position )
@@ -409,8 +408,7 @@
         var options = new ModalOptions
             {
                 Title = $"接驳位详情 - {position.PositionId}" ,
-                Width = 600 ,
-                Footer = null
+                Width = 1000 ,
             };
 
         await ModalService.CreateModalAsync<DockingPositionDetail , DockingPosition>(
@@ -469,7 +467,7 @@
 
     private async Task ManageDockingPallet( DockingPosition position )
     {
-        if (position.Status == PositionStatus.有料)
+        if (position.Status == DockingPositionStatus.有料)
         {
             // 移除托盘
             if (await ModalService.ConfirmAsync( new ConfirmOptions
@@ -519,12 +517,12 @@
     {
         return type switch
         {
-            LocationType.BufferWaitingTest => "缓存区-待试验",
-            LocationType.BufferTested => "缓存区-已试验",
-            LocationType.TestAreaDock => "试验区接驳位",
-            LocationType.FinishedProductInspectionDock => "成品检测接驳位",
-            LocationType.ProtectiveBoxPreparationArea => "护箱备料区",
-            LocationType.ProductionLineDock => "产线接驳位",
+            LocationType.缓存区_待试验 => "缓存区-待试验",
+            LocationType.缓存区_已试验 => "缓存区-已试验",
+            LocationType.试验区接驳位 => "试验区接驳位",
+            LocationType.成品检测接驳位 => "成品检测接驳位",
+            LocationType.护箱备料区 => "护箱备料区",
+            LocationType.产线接驳位 => "产线接驳位",
             _ => type.ToString()
         };
     }

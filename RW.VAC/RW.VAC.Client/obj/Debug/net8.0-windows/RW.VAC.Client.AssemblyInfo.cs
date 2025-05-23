@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RW.VAC.Client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4706c7d3c674f46b794734967bf75ba5099a3d2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f47e4e334052a864b57a2df27c16575f34a91588")]
 [assembly: System.Reflection.AssemblyProductAttribute("RW.VAC.Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RW.VAC.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

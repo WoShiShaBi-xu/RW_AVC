@@ -85,12 +85,12 @@
     {
         return type switch
         {
-            LocationType.BufferWaitingTest => "缓存区-待试验",
-            LocationType.BufferTested => "缓存区-已试验",
-            LocationType.TestAreaDock => "试验区接驳位",
-            LocationType.FinishedProductInspectionDock => "成品检测接驳位",
-            LocationType.ProtectiveBoxPreparationArea => "护箱备料区",
-            LocationType.ProductionLineDock => "产线接驳位",
+            LocationType.缓存区_待试验 => "缓存区-待试验",
+            LocationType.缓存区_已试验 => "缓存区-已试验",
+            LocationType.试验区接驳位 => "试验区接驳位",
+            LocationType.成品检测接驳位 => "成品检测接驳位",
+            LocationType.护箱备料区 => "护箱备料区",
+            LocationType.产线接驳位 => "产线接驳位",
             _ => type.ToString()
         };
     }

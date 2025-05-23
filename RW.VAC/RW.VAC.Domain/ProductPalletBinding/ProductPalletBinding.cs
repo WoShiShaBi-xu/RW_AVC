@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeSql.DataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,21 +10,26 @@ namespace RW.VAC.Domain.ProductPalletBinding
     /// <summary>
     /// 产品托盘绑定实体类
     /// </summary>
+    /// 
+    [Table( Name = "ProductPalletBinding" )]
     public class ProductPalletBinding
     {
         /// <summary>
         /// 绑定ID
         /// </summary>
+        [Column( IsPrimary = true , IsIdentity = true )]
         public int BindingId { get; set; }
 
         /// <summary>
         /// 产品ID
         /// </summary>
+        [Column( StringLength = 20 )]
         public string ProductId { get; set; }
 
         /// <summary>
         /// 托盘ID
         /// </summary>
+        [Column( StringLength = 20 )]
         public string PalletId { get; set; }
 
         /// <summary>
@@ -39,6 +45,7 @@ namespace RW.VAC.Domain.ProductPalletBinding
         /// <summary>
         /// 绑定状态(绑定中/已解绑)
         /// </summary>
+        [Column( MapType = typeof( string ) )]
         public BindingStatus BindingStatus { get; set; }
     }
 
@@ -50,11 +57,11 @@ namespace RW.VAC.Domain.ProductPalletBinding
         /// <summary>
         /// 绑定中
         /// </summary>
-        Bound,
+        绑定中,
 
         /// <summary>
         /// 已解绑
         /// </summary>
-        Unbound
+        已解绑
     }
 }

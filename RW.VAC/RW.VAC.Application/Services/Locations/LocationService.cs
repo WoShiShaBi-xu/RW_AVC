@@ -274,22 +274,22 @@ namespace RW.VAC.Application.Services.Locations
 
             switch (locationType)
             {
-                case LocationType.BufferWaitingTest:
+                case LocationType.缓存区_待试验:
                     prefix = "BWT";
                     break;
-                case LocationType.BufferTested:
+                case LocationType.缓存区_已试验:
                     prefix = "BTD";
                     break;
-                case LocationType.TestAreaDock:
+                case LocationType.试验区接驳位    :
                     prefix = "TAD";
                     break;
-                case LocationType.FinishedProductInspectionDock:
+                case LocationType.成品检测接驳位:
                     prefix = "FPI";
                     break;
-                case LocationType.ProtectiveBoxPreparationArea:
+                case LocationType.护箱备料区:
                     prefix = "PBP";
                     break;
-                case LocationType.ProductionLineDock:
+                case LocationType.产线接驳位:
                     prefix = "PLD";
                     break;
                 default:

@@ -29,7 +29,7 @@ namespace RW.VAC.Infrastructure.Repositories
             return await Select.Where( x => x.PositionType == positionType ).ToListAsync();
         }
 
-        public async Task<IEnumerable<DockingPosition>> GetByStatusAsync( PositionStatus status )
+        public async Task<IEnumerable<DockingPosition>> GetByStatusAsync( DockingPositionStatus status )
         {
             return await Select.Where( x => x.Status == status ).ToListAsync();
         }

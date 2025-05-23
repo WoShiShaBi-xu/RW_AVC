@@ -93,6 +93,6 @@
     }
 
     private RenderFragment<TestStation> StationTemplate = station => @<span>
-        @station.StationId (@station.StationType.ToString()) - @(station.Status == StationStatus.Idle ? "空闲" : station.Status == StationStatus.Testing ? "试验中" : "故障")
+        @station.StationId (@station.StationType.ToString()) - @(station.Status == StationStatus.空闲 ? "空闲" : station.Status == StationStatus.试验中 ? "试验中" : "故障")
     </span>;
 }

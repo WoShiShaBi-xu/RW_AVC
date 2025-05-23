@@ -117,7 +117,7 @@ namespace RW.VAC.Application.Services.Products
         private string GenerateProductId( ProductType productType )
         {
             // 生成规则：类型前缀 + 年月日 + 6位随机数
-            string prefix = productType == ProductType.BrakeDevice ? "BD" : "AD";
+            string prefix = productType == ProductType.制动装置 ? "BD" : "AD";
             string dateStr = DateTime.Now.ToString( "yyyyMMdd" );
             string randomStr = new Random().Next( 100000 , 999999 ).ToString();
 

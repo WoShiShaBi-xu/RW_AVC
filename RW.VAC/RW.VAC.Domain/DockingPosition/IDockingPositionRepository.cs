@@ -33,7 +33,7 @@ namespace RW.VAC.Domain.DockingPosition
         /// </summary>
         /// <param name="status">接驳位状态</param>
         /// <returns>接驳位列表</returns>
-        Task<IEnumerable<DockingPosition>> GetByStatusAsync( PositionStatus status );
+        Task<IEnumerable<DockingPosition>> GetByStatusAsync( DockingPositionStatus status );
 
         /// <summary>
         /// 根据试验台ID获取接驳位

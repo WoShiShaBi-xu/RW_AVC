@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeSql.DataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,26 +7,31 @@ using System.Threading.Tasks;
 
 namespace RW.VAC.Domain.TasksDo
 {
+    [Table( Name = "Tasks" )]
     public class Tasks
     {
         /// <summary>
         /// 任务ID（UUID格式）
         /// </summary>
+        [Column( IsPrimary = true , StringLength = 36 )]
         public string TaskId { get; set; }
 
         /// <summary>
         /// 自定义任务编码
         /// </summary>
+        [Column( StringLength = 50 )]
         public string CustomTaskCode { get; set; }
 
         /// <summary>
         /// 任务类型(运输/取料/上料/送回)
         /// </summary>
+        [Column( MapType = typeof( string ) )]
         public TaskType TaskType { get; set; }
 
         /// <summary>
         /// 任务状态（与API对应的状态集合）
         /// </summary>
+        [Column( MapType = typeof( string ) )]
         public TaskStatus TaskStatus { get; set; }
 
         /// <summary>
@@ -56,11 +62,13 @@ namespace RW.VAC.Domain.TasksDo
         /// <summary>
         /// 起始位置
         /// </summary>
+        [Column( StringLength = 20 )]
         public string SourceLocation { get; set; }
 
         /// <summary>
         /// 目标位置
         /// </summary>
+        [Column( StringLength = 20 )]
         public string TargetLocation { get; set; }
 
         /// <summary>
@@ -83,10 +91,6 @@ namespace RW.VAC.Domain.TasksDo
         /// </summary>
         public DateTime? UpdateTime { get; set; }
 
-        /// <summary>
-        /// 外部系统任务ID
-        /// </summary>
-        public string ExternalTaskId { get; set; }
     }
     /// <summary>
     /// 任务类型枚举
@@ -96,23 +100,24 @@ namespace RW.VAC.Domain.TasksDo
         /// <summary>
         /// 运输
         /// </summary>
-        Transport,
+        运输,
 
         /// <summary>
         /// 取料
         /// </summary>
-        Pickup,
+        取料,
 
         /// <summary>
         /// 上料
         /// </summary>
-        Loading,
+        上料,
 
         /// <summary>
         /// 送回
         /// </summary>
-        Return
+        送回
     }
+
 
     /// <summary>
     /// 任务状态枚举
@@ -125,24 +130,19 @@ namespace RW.VAC.Domain.TasksDo
         New,
 
         /// <summary>
-        /// 已分配
+        /// 等待中
         /// </summary>
-        Assigned,
+        Waiting,
 
         /// <summary>
-        /// 进行中
+        /// 处理中
         /// </summary>
-        InProgress,
+        Processing,
 
         /// <summary>
         /// 已完成
         /// </summary>
         Completed,
-
-        /// <summary>
-        /// 已取消
-        /// </summary>
-        Canceled,
 
         /// <summary>
         /// 失败

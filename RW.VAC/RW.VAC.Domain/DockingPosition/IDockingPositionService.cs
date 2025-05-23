@@ -27,7 +27,7 @@ namespace RW.VAC.Domain.DockingPosition
         /// <param name="positionId">接驳位ID</param>
         /// <param name="status">新状态</param>
         /// <returns>更新结果</returns>
-        Task<bool> UpdatePositionStatusAsync( string positionId , PositionStatus status );
+        Task<bool> UpdatePositionStatusAsync( string positionId , DockingPositionStatus status );
 
         /// <summary>
         /// 分配托盘到接驳位

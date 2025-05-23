@@ -37,7 +37,7 @@ namespace RW.VAC.Application.Services.TasksDo
             {
                 StationId = GenerateStationId( stationType ) ,
                 StationType = stationType ,
-                Status = StationStatus.Idle ,
+                Status = StationStatus.空闲 ,
                 CurrentProductId = null ,
                 LastUpdate = DateTime.Now
             };
@@ -76,11 +76,11 @@ namespace RW.VAC.Application.Services.TasksDo
             }
 
             // 如果设置为空闲，需要清除当前产品ID
-            if (status == StationStatus.Idle)
+            if (status == StationStatus.空闲)
             {
                 station.CurrentProductId = null;
             }
-            else if (status == StationStatus.Testing && string.IsNullOrEmpty( station.CurrentProductId ))
+            else if (status == StationStatus.试验中 && string.IsNullOrEmpty( station.CurrentProductId ))
             {
                 // 如果设置为试验中但没有产品ID，抛出异常
                 throw new InvalidOperationException( "设置试验台为试验中状态时，必须分配产品" );
@@ -121,7 +121,7 @@ namespace RW.VAC.Application.Services.TasksDo
             }
 
             // 检查试验台是否已被占用
-            if (station.Status != StationStatus.Idle)
+            if (station.Status != StationStatus.空闲)
             {
                 throw new InvalidOperationException( $"试验台{stationId}不是空闲状态，无法分配产品" );
             }
@@ -134,8 +134,8 @@ namespace RW.VAC.Application.Services.TasksDo
             }
 
             // 检查产品和试验台类型是否匹配
-            bool isTypeMatched = (product.ProductType == ProductType.BrakeDevice && station.StationType == StationType.BrakeDevice) ||
-                                (product.ProductType == ProductType.AuxiliaryDevice && station.StationType == StationType.AuxiliaryDevice);
+            bool isTypeMatched = (product.ProductType == ProductType.制动装置 && station.StationType == StationType.制动装置) ||
+                                (product.ProductType == ProductType.辅助装置 && station.StationType == StationType.辅助装置);
             if (!isTypeMatched)
             {
                 throw new InvalidOperationException( "产品类型与试验台类型不匹配" );
@@ -149,7 +149,7 @@ namespace RW.VAC.Application.Services.TasksDo
             }
 
             // 更新试验台状态
-            station.Status = StationStatus.Testing;
+            station.Status = StationStatus.试验中;
             station.CurrentProductId = productId;
             station.LastUpdate = DateTime.Now;
 
@@ -195,7 +195,7 @@ namespace RW.VAC.Application.Services.TasksDo
             var product = await _productRepository.GetByIdAsync( productId );
 
             // 更新试验台状态
-            station.Status = StationStatus.Idle;
+            station.Status = StationStatus.空闲;
             station.CurrentProductId = null;
             station.LastUpdate = DateTime.Now;
 
@@ -222,7 +222,7 @@ namespace RW.VAC.Application.Services.TasksDo
             var stations = await _stationRepository.GetByTypeAsync( stationType );
 
             // 过滤出空闲的试验台
-            return stations.Where( s => s.Status == StationStatus.Idle );
+            return stations.Where( s => s.Status == StationStatus.空闲 );
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace RW.VAC.Application.Services.TasksDo
         private string GenerateStationId( StationType stationType )
         {
             // 生成规则：类型前缀 + 年月日 + 3位随机数
-            string prefix = stationType == StationType.BrakeDevice ? "BDS" : "ADS";
+            string prefix = stationType == StationType.制动装置 ? "BDS" : "ADS";
             string dateStr = DateTime.Now.ToString( "yyMMdd" );
             string randomStr = new Random().Next( 100 , 999 ).ToString();
 

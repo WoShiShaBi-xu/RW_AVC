@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeSql.DataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,26 +7,31 @@ using System.Threading.Tasks;
 
 namespace RW.VAC.Domain.TestStation
 {
+    [Table( Name = "TestStations" )]
     public class TestStation
     {
         /// <summary>
         /// 试验台ID
         /// </summary>
+        [Column( IsPrimary = true , StringLength = 20 )]
         public string StationId { get; set; }
 
         /// <summary>
         /// 试验台类型(制动装置/辅助装置)
         /// </summary>
+        [Column( MapType = typeof( string ) )]
         public StationType StationType { get; set; }
 
         /// <summary>
         /// 试验台状态(空闲/试验中/故障)
         /// </summary>
+        [Column( MapType = typeof( string ) )]
         public StationStatus Status { get; set; }
 
         /// <summary>
         /// 当前产品ID
         /// </summary>
+        [Column( StringLength = 20 )]
         public string CurrentProductId { get; set; }
 
         /// <summary>
@@ -42,13 +48,14 @@ namespace RW.VAC.Domain.TestStation
         /// <summary>
         /// 制动装置
         /// </summary>
-        BrakeDevice,
+        制动装置,
 
         /// <summary>
         /// 辅助装置
         /// </summary>
-        AuxiliaryDevice
+        辅助装置
     }
+
 
     /// <summary>
     /// 试验台状态枚举
@@ -58,16 +65,16 @@ namespace RW.VAC.Domain.TestStation
         /// <summary>
         /// 空闲
         /// </summary>
-        Idle,
+        空闲,
 
         /// <summary>
         /// 试验中
         /// </summary>
-        Testing,
+        试验中,
 
         /// <summary>
         /// 故障
         /// </summary>
-        Fault
+        故障
     }
 }

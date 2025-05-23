@@ -189,7 +189,7 @@ namespace RW.VAC.Application.Services.Pallets
         private string GeneratePalletId( PalletType palletType )
         {
             // 生成规则：类型前缀 + 年月日 + 6位随机数
-            string prefix = palletType == PalletType.BrakeDevicePallet ? "BDP" : "ADP";
+            string prefix = palletType == PalletType.制动装置托盘 ? "BDP" : "ADP";
             string dateStr = DateTime.Now.ToString( "yyyyMMdd" );
             string randomStr = new Random().Next( 100000 , 999999 ).ToString();
 
