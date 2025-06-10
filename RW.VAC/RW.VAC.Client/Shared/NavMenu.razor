@@ -5,7 +5,13 @@
             控制台
         </MenuItem>
     </AuthorizeView>
-
+    <AuthorizeView >
+        <Authorized>
+            <SubMenu TitleTemplate="@_settingTilte">
+                <MenuItem RouterLink="/setting/opc">OPC点位</MenuItem>
+            </SubMenu>
+        </Authorized>
+    </AuthorizeView>
   
 </Menu>
 

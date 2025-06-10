@@ -35,7 +35,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 	private void InitializeViewModel()
 	{
-		ApplicationTitle = "蝶阀自动装配线中控";
+		ApplicationTitle = "制动控制装置智能装配线";
 		HeadAction.Add(new DropDownMenuItem("注销", "\xe62a", new RelayCommand(OnQuit)));
 		_isInitialized = true;
 	}

@@ -9,12 +9,14 @@ namespace RW.VAC.Client.Models
 {
     public class LocationEditModel
     {
+        public string LocationId { get; set; } = string.Empty;
         public string LocationName { get; set; } = string.Empty;
         public LocationType LocationType { get; set; } = LocationType.缓存区_待试验;
     }
 
     public class DockingPositionEditModel
     {
+        public string PositionId { get; set; } = string.Empty;
         public string PositionType { get; set; } = string.Empty;
         public string StationId { get; set; } = string.Empty;
     }

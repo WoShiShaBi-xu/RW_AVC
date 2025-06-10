@@ -27,6 +27,8 @@
 @code {
     private Form<LocationEditModel> _form;
     private LocationEditModel _model = new();
+    private bool _isEdit = false;
+    private string _originalLocationId = string.Empty;
 
     private List<LocationTypeItem> LocationTypes { get; set; } = new();
 
@@ -34,6 +36,13 @@
     {
         // 初始化模型
         _model = base.Options ?? new LocationEditModel();
+
+        // 检查是否为编辑模式
+        _isEdit = !string.IsNullOrEmpty( _model.LocationId );
+        if (_isEdit)
+        {
+            _originalLocationId = _model.LocationId;
+        }
 
         // 初始化库位类型列表
         LocationTypes = Enum.GetValues( typeof( LocationType ) )
@@ -63,16 +72,24 @@
                 throw new Exception( "请输入库位名称" );
             }
 
-            // 调用服务创建新库位
-            await LocationService.CreateLocationAsync( _model.LocationType , _model.LocationName );
-
-            await NotificationService.Success( new NotificationConfig { Message = "库位创建成功" } );
+            if (_isEdit)
+            {
+                // 更新库位
+                await LocationService.UpdateLocationAsync( _originalLocationId , _model.LocationType , _model.LocationName );
+                await NotificationService.Success( new NotificationConfig { Message = "库位更新成功" } );
+            }
+            else
+            {
+                // 创建新库位
+                await LocationService.CreateLocationAsync( _model.LocationType , _model.LocationName );
+                await NotificationService.Success( new NotificationConfig { Message = "库位创建成功" } );
+            }
         }
         catch (Exception ex)
         {
             await NotificationService.Error( new NotificationConfig
                 {
-                    Message = "库位创建失败" ,
+                    Message = _isEdit ? "库位更新失败" : "库位创建失败" ,
                     Description = ex.Message
                 } );
             e.Cancel = true;

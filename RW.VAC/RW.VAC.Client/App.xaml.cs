@@ -40,6 +40,13 @@ using RW.VAC.Domain.Pallet;
 using RW.VAC.Domain.TestStation;
 using RW.VAC.Infrastructure.Repositories;
 using RW.VAC.Domain.Products;
+using RW.VAC.Application.Hardwares.Opc;
+using RW.VAC.Domain.Parameters;
+using RW.VAC.Application.Contracts.Opcs;
+using RW.VAC.Application.Contracts.Parameters;
+using RW.VAC.Application.Services.Parameters;
+using RW.VAC.Application.Services.Opcs;
+using RW.VAC.Infrastructure.Repositories.Parameters;
 
 [assembly: ComponentException]
 namespace RW.VAC.Client;
@@ -121,14 +128,15 @@ public partial class App
 				//TODO:领域服务统一注册
 				builder.RegisterType<OpcGroupManager>().InstancePerLifetimeScope();
 				builder.RegisterType<OpcItemManager>().InstancePerLifetimeScope();
+                builder.RegisterType<ParameterRepository>().As<IParameterRepository>().InstancePerLifetimeScope();
+                builder.RegisterType<ParameterManager>().InstancePerLifetimeScope();
+                builder.RegisterType<ParameterService>().As<IParameterService>().InstancePerLifetimeScope();
+                builder.RegisterType<OpcGroupService>().As<IOpcGroupService>().InstancePerLifetimeScope();
+                #region 读码器相关
 
-				#region 读码器相关
-
-				builder.RegisterType<TcpServer>().As<ITcpServer>().SingleInstance();
+                builder.RegisterType<TcpServer>().As<ITcpServer>().SingleInstance();
 				builder.RegisterType<CodeReaderState>().SingleInstance();
 				builder.RegisterType<CodeQueue>().SingleInstance();
-				
-
 				#endregion
 
 				#region OPC相关
@@ -137,6 +145,10 @@ public partial class App
 				builder.RegisterType<UaClient>().As<IUaClient>().SingleInstance();
                 builder.RegisterType<PLCState>().SingleInstance();
 
+
+                builder.RegisterType<GeneralControl>();
+                builder.RegisterType<TrussControl>();
+                builder.RegisterType<Bedstand>();
 
                 #endregion
                 #region API服务注册

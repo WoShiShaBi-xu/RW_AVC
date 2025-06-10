@@ -28,7 +28,12 @@ namespace RW.VAC.Domain.DockingPosition
         /// <param name="status">新状态</param>
         /// <returns>更新结果</returns>
         Task<bool> UpdatePositionStatusAsync( string positionId , DockingPositionStatus status );
-
+        /// <summary>
+        /// 删除接驳位
+        /// </summary>
+        /// <param name="positionId">接驳位ID</param>
+        /// <returns>删除结果</returns>
+        Task<bool> DeleteDockingPositionAsync( string positionId );
         /// <summary>
         /// 分配托盘到接驳位
         /// </summary>
@@ -36,7 +41,14 @@ namespace RW.VAC.Domain.DockingPosition
         /// <param name="palletId">托盘ID</param>
         /// <returns>分配结果</returns>
         Task<bool> AssignPalletToPositionAsync( string positionId , string palletId );
-
+        /// <summary>
+        /// 更新接驳位信息
+        /// </summary>
+        /// <param name="positionId">接驳位ID</param>
+        /// <param name="positionType">接驳位类型</param>
+        /// <param name="stationId">关联的试验台ID</param>
+        /// <returns>更新结果</returns>
+        Task<bool> UpdateDockingPositionAsync( string positionId , string positionType , string stationId );
         /// <summary>
         /// 从接驳位移除托盘
         /// </summary>

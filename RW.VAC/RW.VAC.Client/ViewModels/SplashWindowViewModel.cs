@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using RW.Framework.Extensions;
 using RW.VAC.Application.Contracts.CodeReaders;
 using RW.VAC.Application.Contracts.Opcs;
+using RW.VAC.Application.Contracts.Parameters;
 using RW.VAC.Client.Storage;
 using RW.VAC.Infrastructure.Devices.State;
 using RW.VAC.Infrastructure.Opc;
@@ -43,9 +44,9 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 				await LoadOpcTag();
 				Progress = 30;
 
-				//Tooltip = "初始化OPC";
-				//await InitOpc();
-				//Progress = 60;
+				Tooltip = "初始化OPC";
+				await InitOpc();
+				Progress = 60;
 
 				//Tooltip = "初始化TCP服务";
 				//await InitTcpServer();
@@ -74,12 +75,11 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 
 	private async Task LoadParameter()
 	{
-        //var parameterService = serviceProvider.GetRequiredService<IParameterService>();
-        //var parameterList = await parameterService.GetListAsync();
-        //await parameterService.SetParameterAsync( "CurrentProduct" , "0" );
-        //await parameterService.SetParameterAsyncStatisticType( "StatisticType" , "0" );
-        //foreach ( var param in parameterList ) global.Parameter.TryAdd( param.Code , param.Value );
-    }
+		var parameterService = serviceProvider.GetRequiredService<IParameterService>();
+		var parameterList = await parameterService.GetListAsync();
+		foreach (var param in parameterList)
+			global.Parameter.TryAdd( param.Code , param.Value );
+	}
 
 	private void LoadLogBuffer()
 	{
@@ -90,43 +90,44 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 
 	private async Task LoadCodeReader()
 	{
-		//var codeReaderService = serviceProvider.GetRequiredService<ICodeReaderService>();
-		//var codeReaderList = await codeReaderService.GetListAsync();
-		//foreach (var codeReader in codeReaderList)
-		//	global.CodeReader.TryAdd(codeReader.IP, (codeReader.ProcessName, codeReader.ProcessType));
+		var codeReaderService = serviceProvider.GetRequiredService<ICodeReaderService>();
+		var codeReaderList = await codeReaderService.GetListAsync();
+		foreach (var codeReader in codeReaderList)
+			global.CodeReader.TryAdd( codeReader.IP , (codeReader.ProcessName, codeReader.ProcessType) );
 	}
 
 	private async Task LoadOpcTag()
 	{
-		//var tag = serviceProvider.GetRequiredService<TagStorage>();
-		//var uaClient = serviceProvider.GetRequiredService<IUaClient>();
-		//var plcState = serviceProvider.GetRequiredService<PLCState>();
+		var tag = serviceProvider.GetRequiredService<TagStorage>();
+		var uaClient = serviceProvider.GetRequiredService<IUaClient>();
+		var plcState = serviceProvider.GetRequiredService<PLCState>();
 
-		//var opcGroupService = serviceProvider.GetRequiredService<IOpcGroupService>();
-		//var opcItemService = serviceProvider.GetRequiredService<IOpcItemService>();
-		//var groupList = await opcGroupService.GetListAsync();
-		//var itemList = await opcItemService.GetListAsync();
-		//foreach (var group in groupList)
-		//{
-		//	var prefix = group.Group.NotNullOrWhiteSpace()
-		//		? string.Concat(group.Device, ".", group.Group)
-		//		: group.Device;
-		//	var items = itemList.Where(t => t.GroupId == group.Id).ToList();
-		//	foreach (var i in items)
-		//	{
-		//		var nodeName = string.Concat(prefix, ".", i.Name);
-		//		tag.AddTag(group.Code, i.Code, nodeName, uaClient);
-		//	}
+		var opcGroupService = serviceProvider.GetRequiredService<IOpcGroupService>();
+		var opcItemService = serviceProvider.GetRequiredService<IOpcItemService>();
+		var groupList = await opcGroupService.GetListAsync();
+		var itemList = await opcItemService.GetListAsync();
+		foreach (var group in groupList)
+		{
+			var prefix = group.Group.NotNullOrWhiteSpace()
+				? string.Concat( group.Device , "." , group.Group )
+				: group.Device;
+			var items = itemList.Where( t => t.GroupId == group.Id ).ToList();
+			foreach (var i in items)
+			{
+				var nodeName = string.Concat( prefix , "." , i.Name );
+				tag.AddTag( group.Code , i.Code , nodeName , uaClient );
+			}
 
-		//	plcState[string.Concat(group.Device, "._System._NoError")] = false;
-		//}
-		//tag.Initialize();
+			plcState [ string.Concat( group.Device , "._System._NoError" ) ] = false;
+		}
+		tag.Initialize();
 	}
 
 	private async Task InitOpc()
 	{
-		var uaClient = serviceProvider.GetRequiredService<IUaClient>();
-		var tags = serviceProvider.GetRequiredService<TagStorage>();
+        var uaClient = serviceProvider.GetRequiredService<IUaClient>();
+        await uaClient.Connect( global.Parameter [ "OpcUrl" ] );
+        var tags = serviceProvider.GetRequiredService<TagStorage>();
         var plcState = serviceProvider.GetRequiredService<PLCState>();
 
 
@@ -135,20 +136,12 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 
         #endregion
 
-        #region 上料桁架相关
+      
 
-
-
-        #endregion
-
-        #region 试验台数据导出
-
-        #endregion
-
-        uaClient.Subscribe(plcState.Tags, "PLCState", false, args =>
-		{
-			plcState[args.MonitoredItem.StartNodeId.ToString()] = (bool)args.Value;
-		});
+  //      uaClient.Subscribe(plcState.Tags, "PLCState", false, args =>
+		//{
+		//	plcState[args.MonitoredItem.StartNodeId.ToString()] = (bool)args.Value;
+		//});
 	}
 
 	private async Task InitTcpServer()

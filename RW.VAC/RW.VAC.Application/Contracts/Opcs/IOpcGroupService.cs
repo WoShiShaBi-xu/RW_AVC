@@ -9,5 +9,4 @@ public interface IOpcGroupService : ICrudAppService<OpcGroup, Guid, OpcGroupDto,
 {
 	Task DeleteWithItemAsync(Guid id);
 
-	Task<List<ProcessDto>> GetOPCProcessAsync();
 }

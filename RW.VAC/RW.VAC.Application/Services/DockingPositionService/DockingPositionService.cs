@@ -1,4 +1,5 @@
 ﻿using RW.VAC.Domain.DockingPosition;
+using RW.VAC.Domain.Pallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,17 @@ namespace RW.VAC.Application.Services.DockingPositionService
     public class DockingPositionService : IDockingPositionService
     {
         private readonly IDockingPositionRepository _dockingPositionRepository;
+        private readonly IPalletRepository _palletRepository;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="dockingPositionRepository">接驳位仓储</param>
-        public DockingPositionService( IDockingPositionRepository dockingPositionRepository )
+        /// <param name="palletRepository">托盘仓储</param>
+        public DockingPositionService( IDockingPositionRepository dockingPositionRepository , IPalletRepository palletRepository )
         {
             _dockingPositionRepository = dockingPositionRepository ?? throw new ArgumentNullException( nameof( dockingPositionRepository ) );
+            _palletRepository = palletRepository ?? throw new ArgumentNullException( nameof( palletRepository ) );
         }
 
         /// <summary>
@@ -59,6 +63,140 @@ namespace RW.VAC.Application.Services.DockingPositionService
             await _dockingPositionRepository.AddAsync( dockingPosition );
 
             return dockingPosition;
+        }
+
+        /// <summary>
+        /// 更新接驳位信息
+        /// </summary>
+        /// <param name="positionId">接驳位ID</param>
+        /// <param name="positionType">接驳位类型</param>
+        /// <param name="stationId">关联的试验台ID</param>
+        /// <returns>更新结果</returns>
+        public async Task<bool> UpdateDockingPositionAsync( string positionId , string positionType , string stationId )
+        {
+            // 验证参数
+            if (string.IsNullOrWhiteSpace( positionId ))
+            {
+                throw new ArgumentException( "接驳位ID不能为空" , nameof( positionId ) );
+            }
+
+            if (string.IsNullOrWhiteSpace( positionType ))
+            {
+                throw new ArgumentException( "接驳位类型不能为空" , nameof( positionType ) );
+            }
+
+            // 获取接驳位
+            var position = await _dockingPositionRepository.GetByIdAsync( positionId );
+            if (position == null)
+            {
+                throw new KeyNotFoundException( $"找不到ID为{positionId}的接驳位" );
+            }
+
+            // 更新接驳位信息
+            position.PositionType = positionType;
+            position.StationId = stationId;
+            position.LastUpdate = DateTime.Now;
+
+            // 保存到数据库
+            return await _dockingPositionRepository.UpdateAsync( position );
+        }
+
+        /// <summary>
+        /// 删除接驳位
+        /// </summary>
+        /// <param name="positionId">接驳位ID</param>
+        /// <returns>删除结果</returns>
+        public async Task<bool> DeleteDockingPositionAsync( string positionId )
+        {
+            // 验证参数
+            if (string.IsNullOrWhiteSpace( positionId ))
+            {
+                throw new ArgumentException( "接驳位ID不能为空" , nameof( positionId ) );
+            }
+
+            // 获取接驳位
+            var position = await _dockingPositionRepository.GetByIdAsync( positionId );
+            if (position == null)
+            {
+                throw new KeyNotFoundException( $"找不到ID为{positionId}的接驳位" );
+            }
+
+            // 检查是否可以删除
+            if (!await CanDeletePositionAsync( positionId ))
+            {
+                throw new InvalidOperationException( "接驳位当前被占用，无法删除" );
+            }
+
+            // 删除接驳位
+            return await _dockingPositionRepository.DeleteAsync( positionId );
+        }
+
+        /// <summary>
+        /// 检查接驳位是否可以删除
+        /// </summary>
+        /// <param name="positionId">接驳位ID</param>
+        /// <returns>是否可以删除</returns>
+        public async Task<bool> CanDeletePositionAsync( string positionId )
+        {
+            if (string.IsNullOrWhiteSpace( positionId ))
+            {
+                return false;
+            }
+
+            var position = await _dockingPositionRepository.GetByIdAsync( positionId );
+            if (position == null)
+            {
+                return false;
+            }
+
+            // 只有空闲状态的接驳位才能删除
+            return position.Status == DockingPositionStatus.空闲 && string.IsNullOrEmpty( position.CurrentPalletId );
+        }
+
+        /// <summary>
+        /// 根据试验台ID获取关联的接驳位
+        /// </summary>
+        /// <param name="stationId">试验台ID</param>
+        /// <returns>关联的接驳位列表</returns>
+        public async Task<IEnumerable<DockingPosition>> GetPositionsByStationIdAsync( string stationId )
+        {
+            if (string.IsNullOrWhiteSpace( stationId ))
+            {
+                return Enumerable.Empty<DockingPosition>();
+            }
+
+            var allPositions = await _dockingPositionRepository.GetAllAsync();
+            return allPositions.Where( p => p.StationId == stationId );
+        }
+
+        /// <summary>
+        /// 批量更新接驳位状态
+        /// </summary>
+        /// <param name="positionIds">接驳位ID列表</param>
+        /// <param name="status">新状态</param>
+        /// <returns>更新结果</returns>
+        public async Task<bool> BatchUpdatePositionStatusAsync( IEnumerable<string> positionIds , DockingPositionStatus status )
+        {
+            if (positionIds == null || !positionIds.Any())
+            {
+                return true;
+            }
+
+            var results = new List<bool>();
+            foreach (var positionId in positionIds)
+            {
+                try
+                {
+                    var result = await UpdatePositionStatusAsync( positionId , status );
+                    results.Add( result );
+                }
+                catch
+                {
+                    results.Add( false );
+                }
+            }
+
+            return results.All( r => r );
         }
 
         /// <summary>
@@ -134,15 +272,32 @@ namespace RW.VAC.Application.Services.DockingPositionService
             }
 
             // 检查接驳位是否已被占用
-            if (position.Status == DockingPositionStatus.有料)
+            if (position.Status == DockingPositionStatus.有料 && position.CurrentPalletId != palletId)
             {
-                throw new InvalidOperationException( $"接驳位{positionId}已被占用" );
+                throw new InvalidOperationException( $"接驳位{positionId}已被托盘{position.CurrentPalletId}占用" );
+            }
+
+            // 获取托盘
+            var pallet = await _palletRepository.GetByIdAsync( palletId );
+            if (pallet == null)
+            {
+                throw new KeyNotFoundException( $"找不到ID为{palletId}的托盘" );
             }
 
             // 更新接驳位状态
             position.Status = DockingPositionStatus.有料;
             position.CurrentPalletId = palletId;
             position.LastUpdate = DateTime.Now;
+
+            // 更新托盘位置信息（如果托盘有LocationId属性来标识位置）
+            // 注意：这里假设托盘使用LocationId来标识当前位置，包括接驳位
+            // 如果你的设计不同，请根据实际情况调整
+            if (pallet.LocationId != positionId)
+            {
+                pallet.LocationId = positionId; // 将接驳位ID作为托盘的位置
+                pallet.LastUpdate = DateTime.Now;
+                await _palletRepository.UpdateAsync( pallet );
+            }
 
             // 保存到数据库
             return await _dockingPositionRepository.UpdateAsync( position );
@@ -174,10 +329,22 @@ namespace RW.VAC.Application.Services.DockingPositionService
                 return true;
             }
 
+            // 获取托盘
+            var palletId = position.CurrentPalletId;
+            var pallet = await _palletRepository.GetByIdAsync( palletId );
+
             // 更新接驳位状态
             position.Status = DockingPositionStatus.空闲;
             position.CurrentPalletId = null;
             position.LastUpdate = DateTime.Now;
+
+            // 如果找到托盘，清除托盘的位置信息
+            if (pallet != null && pallet.LocationId == positionId)
+            {
+                pallet.LocationId = null;
+                pallet.LastUpdate = DateTime.Now;
+                await _palletRepository.UpdateAsync( pallet );
+            }
 
             // 保存到数据库
             return await _dockingPositionRepository.UpdateAsync( position );

@@ -56,49 +56,90 @@
             }
             else
             {
-                <div class="location-grid">
-                    @foreach (var location in _filteredLocations)
+                <div class="location-groups">
+                    @foreach (var locationGroup in _groupedLocations.OrderBy( g => g.Key ))
                     {
-                        <Card Bordered Class="@($"location-card {(location.IsOccupied == true ? "location-occupied" : "location-free")}")">
-                            <div class="location-header">
-                                <div class="location-code">@location.LocationId</div>
-                                <div class="location-status">
-                                    @if (location.IsOccupied == true)
-                                    {
-                                        <Tag Color="red">占用</Tag>
-                                    }
-                                    else
-                                    {
-                                        <Tag Color="green">空闲</Tag>
-                                    }
+                        var stats = GetLocationTypeStats( locationGroup.Key );
+                        var typeClass = GetLocationTypeClass( locationGroup.Key );
+
+                        <div class="location-group @typeClass">
+                            <div class="group-header">
+                                <div class="group-title">@GetLocationTypeName( locationGroup.Key )</div>
+                                <div class="group-stats">
+                                    <div class="stat-item stat-occupied">
+                                        <Icon Type="exclamation-circle" /> 占用: @stats.occupied
+                                    </div>
+                                    <div class="stat-item stat-free">
+                                        <Icon Type="check-circle" /> 空闲: @stats.free
+                                    </div>
+                                    <div class="stat-item">
+                                        <Icon Type="database" /> 总计: @stats.total
+                                    </div>
                                 </div>
                             </div>
-                            <div class="location-name">@location.LocationName</div>
-                            <div class="location-type">类型: @GetLocationTypeName( location.LocationType )</div>
+                            <div class="location-grid">
+                                @foreach (var location in locationGroup.Value.OrderBy( l => l.LocationId ))
+                                {
+                                    <Card Bordered Class="@($"location-card {(location.IsOccupied == true ? "location-occupied" : "location-free")}")">
+                                        <div class="location-header">
+                                            <div class="location-code">@location.LocationId</div>
+                                            <div class="location-status">
+                                                @if (location.IsOccupied == true)
+                                                {
+                                                    <Tag Color="red">占用</Tag>
+                                                }
+                                                else
+                                                {
+                                                    <Tag Color="green">空闲</Tag>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="location-name">@location.LocationName</div>
+                                        <div class="location-type">类型: @GetLocationTypeName( location.LocationType )</div>
 
-                            @if (!string.IsNullOrEmpty( location.CurrentPalletId ))
+                                        @if (!string.IsNullOrEmpty( location.CurrentPalletId ))
+                                        {
+                                            <div class="location-pallet">
+                                                <span>当前托盘: </span>
+                                                <Tag Color="blue">@location.CurrentPalletId</Tag>
+                                            </div>
+                                        }
+
+                                        <div class="location-update">
+                                            <Icon Type="clock-circle" /> 更新时间: @(location.LastUpdate?.ToString( "yyyy-MM-dd HH:mm:ss" ) ?? "-")
+                                        </div>
+
+                                        <div class="location-actions">
+                                            <Button Type="primary" Size="small" OnClick="() => ViewLocationDetails(location)">
+                                                <Icon Type="eye" /> 详情
+                                            </Button>
+                                            <Button Type="default" Size="small" OnClick="() => EditLocation(location)">
+                                                <Icon Type="edit" /> 编辑
+                                            </Button>
+                                            <Button Type="@(location.IsOccupied == true ? "danger" : "default")" Size="small" OnClick="() => ManagePallet(location)">
+                                                <Icon Type="@(location.IsOccupied == true ? "minus-circle" : "plus-circle")" />
+                                                @(location.IsOccupied == true ? "移除托盘" : "分配托盘")
+                                            </Button>
+                                            <Button Danger Size="small" OnClick="() => DeleteLocation(location)" Disabled="@(location.IsOccupied == true)">
+                                                <Icon Type="delete" /> 删除
+                                            </Button>
+                                        </div>
+                                    </Card>
+                                }
+                            </div>
+
+                            @if (!locationGroup.Value.Any())
                             {
-                                <div class="location-pallet">
-                                    <span>当前托盘: </span>
-                                    <Tag Color="blue">@location.CurrentPalletId</Tag>
+                                <div class="empty-state">
+                                    <Icon Type="inbox" />
+                                    <span>该类型暂无库位</span>
                                 </div>
                             }
-
-                            <div class="location-update">
-                                更新时间: @(location.LastUpdate?.ToString( "yyyy-MM-dd HH:mm:ss" ) ?? "-")
-                            </div>
-
-                            <div class="location-actions">
-                                <Button Type="primary" Size="small" OnClick="() => ViewLocationDetails(location)">详情</Button>
-                                <Button Type="@(location.IsOccupied == true ? "danger" : "default")" Size="small" OnClick="() => ManagePallet(location)">
-                                    @(location.IsOccupied == true ? "移除托盘" : "分配托盘")
-                                </Button>
-                            </div>
-                        </Card>
+                        </div>
                     }
                 </div>
 
-                @if (!_filteredLocations.Any())
+                @if (!_groupedLocations.Any())
                 {
                     <Empty>
                         <DescriptionTemplate>暂无库位数据</DescriptionTemplate>
@@ -134,56 +175,101 @@
             }
             else
             {
-                <div class="docking-grid">
-                    @foreach (var position in _filteredDockingPositions)
+                <div class="docking-groups">
+                    @foreach (var positionGroup in _groupedDockingPositions.OrderBy( g => g.Key ))
                     {
-                        <Card Bordered Class="@($"docking-card {(position.Status == DockingPositionStatus.有料 ? "docking-occupied" : "docking-free")}")">
-                            <div class="docking-header">
-                                <div class="docking-code">@position.PositionId</div>
-                                <div class="docking-status">
-                                    @if (position.Status == DockingPositionStatus.有料)
-                                    {
-                                        <Tag Color="red">占用</Tag>
-                                    }
-                                    else
-                                    {
-                                        <Tag Color="green">空闲</Tag>
-                                    }
+                        var stats = GetDockingPositionTypeStats( positionGroup.Key );
+                        var typeClass = GetDockingPositionTypeClass( positionGroup.Key );
+                        var displayName = GetDockingPositionTypeDisplayName( positionGroup.Key );
+
+                        <div class="docking-group @typeClass">
+                            <div class="group-header">
+                                <div class="group-title">@displayName</div>
+                                <div class="group-stats">
+                                    <div class="stat-item stat-occupied">
+                                        <Icon Type="exclamation-circle" /> 占用: @stats.occupied
+                                    </div>
+                                    <div class="stat-item stat-free">
+                                        <Icon Type="check-circle" /> 空闲: @stats.free
+                                    </div>
+                                    <div class="stat-item">
+                                        <Icon Type="database" /> 总计: @stats.total
+                                    </div>
                                 </div>
                             </div>
-                            <div class="docking-type">类型: @position.PositionType</div>
 
-                            @if (!string.IsNullOrEmpty( position.StationId ))
+                            <div class="docking-grid">
+                                @foreach (var position in positionGroup.Value.OrderBy( p => p.PositionId ))
+                                {
+                                    <Card Bordered Class="@($"docking-card {(position.Status == DockingPositionStatus.有料 ? "docking-occupied" : "docking-free")}")">
+                                        <div class="docking-header">
+                                            <div class="docking-code">@position.PositionId</div>
+                                            <div class="docking-status">
+                                                @if (position.Status == DockingPositionStatus.有料)
+                                                {
+                                                    <Tag Color="red">占用</Tag>
+                                                }
+                                                else
+                                                {
+                                                    <Tag Color="green">空闲</Tag>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="docking-type">类型: @position.PositionType</div>
+
+                                        @if (!string.IsNullOrEmpty( position.StationId ))
+                                        {
+                                            <div class="docking-station">
+                                                <Icon Type="desktop" />
+                                                <span>关联试验台: </span>
+                                                <Tag Color="blue">@position.StationId</Tag>
+                                            </div>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty( position.CurrentPalletId ))
+                                        {
+                                            <div class="docking-pallet">
+                                                <Icon Type="container" />
+                                                <span>当前托盘: </span>
+                                                <Tag Color="blue">@position.CurrentPalletId</Tag>
+                                            </div>
+                                        }
+
+                                        <div class="docking-update">
+                                            <Icon Type="clock-circle" /> 更新时间: @(position.LastUpdate?.ToString( "yyyy-MM-dd HH:mm:ss" ) ?? "-")
+                                        </div>
+
+                                        <div class="docking-actions">
+                                            <Button Type="primary" Size="small" OnClick="() => ViewDockingDetails(position)">
+                                                <Icon Type="eye" /> 详情
+                                            </Button>
+                                            <Button Type="default" Size="small" OnClick="() => EditDockingPosition(position)">
+                                                <Icon Type="edit" /> 编辑
+                                            </Button>
+                                            <Button Type="@(position.Status == DockingPositionStatus.有料 ? "danger" : "default")" Size="small" OnClick="() => ManageDockingPallet(position)">
+                                                <Icon Type="@(position.Status == DockingPositionStatus.有料 ? "minus-circle" : "plus-circle")" />
+                                                @(position.Status == DockingPositionStatus.有料 ? "移除托盘" : "分配托盘")
+                                            </Button>
+                                            <Button Danger Size="small" OnClick="() => DeleteDockingPosition(position)" Disabled="@(position.Status == DockingPositionStatus.有料)">
+                                                <Icon Type="delete" /> 删除
+                                            </Button>
+                                        </div>
+                                    </Card>
+                                }
+                            </div>
+
+                            @if (!positionGroup.Value.Any())
                             {
-                                <div class="docking-station">
-                                    <span>关联试验台: </span>
-                                    <Tag Color="blue">@position.StationId</Tag>
+                                <div class="empty-state">
+                                    <Icon Type="inbox" />
+                                    <span>该类型暂无接驳位</span>
                                 </div>
                             }
-
-                            @if (!string.IsNullOrEmpty( position.CurrentPalletId ))
-                            {
-                                <div class="docking-pallet">
-                                    <span>当前托盘: </span>
-                                    <Tag Color="blue">@position.CurrentPalletId</Tag>
-                                </div>
-                            }
-
-                            <div class="docking-update">
-                                更新时间: @(position.LastUpdate?.ToString( "yyyy-MM-dd HH:mm:ss" ) ?? "-")
-                            </div>
-
-                            <div class="docking-actions">
-                                <Button Type="primary" Size="small" OnClick="() => ViewDockingDetails(position)">详情</Button>
-                                <Button Type="@(position.Status == DockingPositionStatus.有料 ? "danger" : "default")" Size="small" OnClick="() => ManageDockingPallet(position)">
-                                    @(position.Status == DockingPositionStatus.有料 ? "移除托盘" : "分配托盘")
-                                </Button>
-                            </div>
-                        </Card>
+                        </div>
                     }
                 </div>
 
-                @if (!_filteredDockingPositions.Any())
+                @if (!_groupedDockingPositions.Any())
                 {
                     <Empty>
                         <DescriptionTemplate>暂无接驳位数据</DescriptionTemplate>
@@ -198,13 +284,15 @@
     // 依赖注入服务
     [Inject] private ILocationService LocationService { get; set; }
     [Inject] private IDockingPositionService DockingPositionService { get; set; }
+    
     // 库位数据
     private List<Location> _locations = new();
     private List<Location> _filteredLocations = new();
     private bool _loadingLocations = true;
     private string _locationSearchText = string.Empty;
     private LocationType? _selectedLocationType;
-
+    private Dictionary<LocationType , List<Location>> _groupedLocations = new();
+    private Dictionary<string , List<DockingPosition>> _groupedDockingPositions = new();
     // 接驳位数据
     private List<DockingPosition> _dockingPositions = new();
     private List<DockingPosition> _filteredDockingPositions = new();
@@ -214,28 +302,28 @@
     // 库位类型选项
     private List<LocationTypeItem> LocationTypes { get; set; } = new();
 
-    protected override async Task OnInitializedAsync( )
+    protected override async Task OnInitializedAsync()
     {
         // 初始化库位类型列表
-        LocationTypes = Enum.GetValues( typeof( LocationType ) )
+        LocationTypes = Enum.GetValues(typeof(LocationType))
             .Cast<LocationType>()
-            .Select( t => new LocationTypeItem
-                {
-                    Value = t ,
-                    Label = GetLocationTypeName( t )
-                } )
+            .Select(t => new LocationTypeItem
+            {
+                Value = t,
+                Label = GetLocationTypeName(t)
+            })
             .ToList();
 
         // 加载数据
         await LoadData();
     }
 
-    private async Task LoadData( )
+    private async Task LoadData()
     {
-        await Task.WhenAll( LoadLocations() , LoadDockingPositions() );
+        await Task.WhenAll(LoadLocations(), LoadDockingPositions());
     }
 
-    private async Task LoadLocations( )
+    private async Task LoadLocations()
     {
         _loadingLocations = true;
         try
@@ -247,11 +335,11 @@
         }
         catch (Exception ex)
         {
-            await NotificationService.Error( new NotificationConfig
-                {
-                    Message = "加载库位数据失败" ,
-                    Description = ex.Message
-                } );
+            await NotificationService.Error(new NotificationConfig
+            {
+                Message = "加载库位数据失败",
+                Description = ex.Message
+            });
         }
         finally
         {
@@ -260,7 +348,7 @@
         }
     }
 
-    private async Task LoadDockingPositions( )
+    private async Task LoadDockingPositions()
     {
         _loadingDockingPositions = true;
         try
@@ -272,11 +360,11 @@
         }
         catch (Exception ex)
         {
-            await NotificationService.Error( new NotificationConfig
-                {
-                    Message = "加载接驳位数据失败" ,
-                    Description = ex.Message
-                } );
+            await NotificationService.Error(new NotificationConfig
+            {
+                Message = "加载接驳位数据失败",
+                Description = ex.Message
+            });
         }
         finally
         {
@@ -285,26 +373,59 @@
         }
     }
 
-    private void FilterLocations( )
+    private void FilterLocations()
     {
         _filteredLocations = _locations;
 
         // 按类型筛选
         if (_selectedLocationType.HasValue)
         {
-            _filteredLocations = _filteredLocations.Where( l => l.LocationType == _selectedLocationType.Value ).ToList();
+            _filteredLocations = _filteredLocations.Where(l => l.LocationType == _selectedLocationType.Value).ToList();
         }
 
         // 按搜索文本筛选
-        if (!string.IsNullOrWhiteSpace( _locationSearchText ))
+        if (!string.IsNullOrWhiteSpace(_locationSearchText))
         {
-            _filteredLocations = _filteredLocations.Where( l =>
-                l.LocationId.Contains( _locationSearchText , StringComparison.OrdinalIgnoreCase ) ||
-                l.LocationName.Contains( _locationSearchText , StringComparison.OrdinalIgnoreCase )
+            _filteredLocations = _filteredLocations.Where(l =>
+                l.LocationId.Contains(_locationSearchText, StringComparison.OrdinalIgnoreCase) ||
+                l.LocationName.Contains(_locationSearchText, StringComparison.OrdinalIgnoreCase)
             ).ToList();
         }
+        GroupLocationsByType();
+    }
+    // 新增方法
+    private void GroupLocationsByType( )
+    {
+        _groupedLocations = _filteredLocations
+            .GroupBy( l => l.LocationType )
+            .ToDictionary( g => g.Key , g => g.ToList() );
+    }
+    private (int occupied, int free, int total) GetLocationTypeStats( LocationType type )
+    {
+        if (!_groupedLocations.ContainsKey( type ))
+            return (0, 0, 0);
+
+        var locations = _groupedLocations [ type ];
+        var occupied = locations.Count( l => l.IsOccupied == true );
+        var free = locations.Count( l => l.IsOccupied != true );
+        var total = locations.Count;
+
+        return (occupied, free, total);
     }
 
+    private string GetLocationTypeClass( LocationType type )
+    {
+        return type switch
+        {
+            LocationType.缓存区_待试验 => "type-cache-pending",
+            LocationType.缓存区_已试验 => "type-cache-tested",
+            LocationType.试验区接驳位 => "type-test-dock",
+            LocationType.成品检测接驳位 => "type-quality-dock",
+            LocationType.护箱备料区 => "type-case-prep",
+            LocationType.产线接驳位 => "type-production-dock",
+            _ => "type-default"
+        };
+    }
     private void FilterDockingPositions( )
     {
         _filteredDockingPositions = _dockingPositions;
@@ -318,202 +439,389 @@
                 (p.StationId != null && p.StationId.Contains( _dockingSearchText , StringComparison.OrdinalIgnoreCase ))
             ).ToList();
         }
+
+        // 分组处理
+        GroupDockingPositionsByType();
+    }
+    private void GroupDockingPositionsByType( )
+    {
+        _groupedDockingPositions = _filteredDockingPositions
+            .GroupBy( p => p.PositionType ?? "未分类" )
+            .ToDictionary( g => g.Key , g => g.ToList() );
+    }
+    // 新增：获取接驳位类型统计信息
+    private (int occupied, int free, int total) GetDockingPositionTypeStats( string positionType )
+    {
+        if (!_groupedDockingPositions.ContainsKey( positionType ))
+            return (0, 0, 0);
+
+        var positions = _groupedDockingPositions [ positionType ];
+        var occupied = positions.Count( p => p.Status == DockingPositionStatus.有料 );
+        var free = positions.Count( p => p.Status != DockingPositionStatus.有料 );
+        var total = positions.Count;
+
+        return (occupied, free, total);
     }
 
-    private async Task OnLocationTypeChanged( LocationType? value )
+    // 新增：获取接驳位类型的CSS类名
+    private string GetDockingPositionTypeClass( string positionType )
+    {
+        return positionType?.ToLower() switch
+        {
+            var type when type.Contains( "试验" ) => "type-test-dock",
+            var type when type.Contains( "检测" ) || type.Contains( "质检" ) => "type-quality-dock",
+            var type when type.Contains( "产线" ) || type.Contains( "生产" ) => "type-production-dock",
+            var type when type.Contains( "缓存" ) || type.Contains( "待料" ) => "type-cache-dock",
+            var type when type.Contains( "备料" ) || type.Contains( "准备" ) => "type-prep-dock",
+            var type when type.Contains( "转运" ) || type.Contains( "中转" ) => "type-transfer-dock",
+            _ => "type-default-dock"
+        };
+    }
+
+    // 新增：获取接驳位类型显示名称
+    private string GetDockingPositionTypeDisplayName( string positionType )
+    {
+        return positionType switch
+        {
+            "试验台接驳位" => "试验台接驳位",
+            "成品检测接驳位" => "成品检测接驳位",
+            "产线接驳位" => "产线接驳位",
+            "缓存接驳位" => "缓存接驳位",
+            "备料接驳位" => "备料接驳位",
+            "转运接驳位" => "转运接驳位",
+            _ => positionType ?? "其他类型"
+        };
+    }
+    private async Task OnLocationTypeChanged(LocationType? value)
     {
         _selectedLocationType = value;
         FilterLocations();
     }
 
-    private void SearchLocations( )
+    private void SearchLocations()
     {
         FilterLocations();
     }
 
-    private void SearchDockingPositions( )
+    private void SearchDockingPositions()
     {
         FilterDockingPositions();
     }
 
-    private async Task RefreshLocations( )
+    private async Task RefreshLocations()
     {
         await LoadLocations();
     }
-    private async Task OnLocationTypeChanged( LocationTypeItem item )
+
+    private async Task OnLocationTypeChanged(LocationTypeItem item)
     {
         _selectedLocationType = item?.Value;
         FilterLocations();
     }
-    private async Task RefreshDockingPositions( )
+
+    private async Task RefreshDockingPositions()
     {
         await LoadDockingPositions();
     }
 
-    private async Task AddNewLocation( )
+    // 新增库位
+    private async Task AddNewLocation()
     {
         var options = new ModalOptions
+        {
+            Title = "新增库位",
+            Width = 500,
+            DestroyOnClose = true,
+            OnOk = async _ =>
             {
-                Title = "新增库位" ,
-                Width = 500 ,
-                DestroyOnClose = true ,
-                OnOk = async _ =>
-                {
-                    await LoadLocations();
-                }
-            };
+                await LoadLocations();
+            }
+        };
 
-        await ModalService.CreateModalAsync<LocationEdit , LocationEditModel>(
-            options ,
+        await ModalService.CreateModalAsync<LocationEdit, LocationEditModel>(
+            options,
             new LocationEditModel()
         );
     }
 
-    private async Task AddNewDockingPosition( )
+    // 编辑库位
+    private async Task EditLocation(Location location)
     {
         var options = new ModalOptions
+        {
+            Title = $"编辑库位 - {location.LocationId}",
+            Width = 500,
+            DestroyOnClose = true,
+            OnOk = async _ =>
             {
-                Title = "新增接驳位" ,
-                Width = 1000 ,
-                DestroyOnClose = true ,
-                OnOk = async _ =>
-                {
-                    await LoadDockingPositions();
-                }
-            };
+                await LoadLocations();
+            }
+        };
 
-        await ModalService.CreateModalAsync<DockingPositionEdit , DockingPositionEditModel>(
-            options ,
+        var editModel = new LocationEditModel
+        {
+            LocationId = location.LocationId,
+            LocationName = location.LocationName,
+            LocationType = location.LocationType
+        };
+
+        await ModalService.CreateModalAsync<LocationEdit, LocationEditModel>(
+            options,
+            editModel
+        );
+    }
+
+    // 删除库位
+    private async Task DeleteLocation(Location location)
+    {
+        if (location.IsOccupied == true)
+        {
+            await NotificationService.Warning(new NotificationConfig
+            {
+                Message = "无法删除",
+                Description = "该库位当前有托盘占用，无法删除"
+            });
+            return;
+        }
+
+        if (await ModalService.ConfirmAsync(new ConfirmOptions
+        {
+            Title = "确认删除库位",
+            Content = $"确定要删除库位 {location.LocationId} ({location.LocationName}) 吗？\n此操作不可逆！",
+            OkText = "确定删除",
+            CancelText = "取消",
+            OkType = "danger"
+        }))
+        {
+            try
+            {
+                await LocationService.DeleteLocationAsync( location.LocationId );
+                await NotificationService.Success(new NotificationConfig { Message = "库位删除成功" });
+                await LoadLocations();
+            }
+            catch (Exception ex)
+            {
+                await NotificationService.Error(new NotificationConfig
+                {
+                    Message = "库位删除失败",
+                    Description = ex.Message
+                });
+            }
+        }
+    }
+
+    // 新增接驳位
+    private async Task AddNewDockingPosition()
+    {
+        var options = new ModalOptions
+        {
+            Title = "新增接驳位",
+            Width = 1000,
+            DestroyOnClose = true,
+            OnOk = async _ =>
+            {
+                await LoadDockingPositions();
+            }
+        };
+
+        await ModalService.CreateModalAsync<DockingPositionEdit, DockingPositionEditModel>(
+            options,
             new DockingPositionEditModel()
         );
     }
 
-    private async Task ViewLocationDetails( Location location )
-    {
-        var modalRef = await ModalService.CreateModalAsync( new ModalOptions
-            {
-                Title = $"库位详情 - {location.LocationId}" ,
-                Width = 1000 ,
-                Content = builder =>
-                {
-                    builder.OpenComponent<LocationDetail>( 0 );
-                    builder.AddAttribute( 1 , nameof( LocationDetail.Location ) , location );
-                    builder.CloseComponent();
-                }
-            } );
-    }
-
-    private async Task ViewDockingDetails( DockingPosition position )
+    // 编辑接驳位
+    private async Task EditDockingPosition(DockingPosition position)
     {
         var options = new ModalOptions
+        {
+            Title = $"编辑接驳位 - {position.PositionId}",
+            Width = 1000,
+            DestroyOnClose = true,
+            OnOk = async _ =>
             {
-                Title = $"接驳位详情 - {position.PositionId}" ,
-                Width = 1000 ,
-            };
+                await LoadDockingPositions();
+            }
+        };
 
-        await ModalService.CreateModalAsync<DockingPositionDetail , DockingPosition>(
-            options ,
+        var editModel = new DockingPositionEditModel
+        {
+            PositionId = position.PositionId,
+            PositionType = position.PositionType,
+            StationId = position.StationId
+        };
+
+        await ModalService.CreateModalAsync<DockingPositionEdit, DockingPositionEditModel>(
+            options,
+            editModel
+        );
+    }
+
+    // 删除接驳位
+    private async Task DeleteDockingPosition(DockingPosition position)
+    {
+        if (position.Status == DockingPositionStatus.有料)
+        {
+            await NotificationService.Warning(new NotificationConfig
+            {
+                Message = "无法删除",
+                Description = "该接驳位当前有托盘占用，无法删除"
+            });
+            return;
+        }
+
+        if (await ModalService.ConfirmAsync(new ConfirmOptions
+        {
+            Title = "确认删除接驳位",
+            Content = $"确定要删除接驳位 {position.PositionId} ({position.PositionType}) 吗？\n此操作不可逆！",
+            OkText = "确定删除",
+            CancelText = "取消",
+            OkType = "danger"
+        }))
+        {
+            try
+            {
+                await DockingPositionService.DeleteDockingPositionAsync(position.PositionId);
+                await NotificationService.Success(new NotificationConfig { Message = "接驳位删除成功" });
+                await LoadDockingPositions();
+            }
+            catch (Exception ex)
+            {
+                await NotificationService.Error(new NotificationConfig
+                {
+                    Message = "接驳位删除失败",
+                    Description = ex.Message
+                });
+            }
+        }
+    }
+
+    private async Task ViewLocationDetails(Location location)
+    {
+        var modalRef = await ModalService.CreateModalAsync(new ModalOptions
+        {
+            Title = $"库位详情 - {location.LocationId}",
+            Width = 1000,
+            Content = builder =>
+            {
+                builder.OpenComponent<LocationDetail>(0);
+                builder.AddAttribute(1, nameof(LocationDetail.Location), location);
+                builder.CloseComponent();
+            }
+        });
+    }
+
+    private async Task ViewDockingDetails(DockingPosition position)
+    {
+        var options = new ModalOptions
+        {
+            Title = $"接驳位详情 - {position.PositionId}",
+            Width = 1000,
+        };
+
+        await ModalService.CreateModalAsync<DockingPositionDetail, DockingPosition>(
+            options,
             position
         );
     }
 
-    private async Task ManagePallet( Location location )
+    private async Task ManagePallet(Location location)
     {
         if (location.IsOccupied == true)
         {
             // 移除托盘
-            if (await ModalService.ConfirmAsync( new ConfirmOptions
-                {
-                    Title = "确认移除托盘" ,
-                    Content = $"确定要从库位 {location.LocationId} 移除托盘吗?" ,
-                    OkText = "确定" ,
-                    CancelText = "取消"
-                } ))
+            if (await ModalService.ConfirmAsync(new ConfirmOptions
+            {
+                Title = "确认移除托盘",
+                Content = $"确定要从库位 {location.LocationId} 移除托盘吗?",
+                OkText = "确定",
+                CancelText = "取消"
+            }))
             {
                 try
                 {
-                    await LocationService.RemovePalletFromLocationAsync( location.LocationId );
-                    await NotificationService.Success( new NotificationConfig { Message = "托盘移除成功" } );
+                    await LocationService.RemovePalletFromLocationAsync(location.LocationId);
+                    await NotificationService.Success(new NotificationConfig { Message = "托盘移除成功" });
                     await LoadLocations();
                 }
                 catch (Exception ex)
                 {
-                    await NotificationService.Error( new NotificationConfig
-                        {
-                            Message = "托盘移除失败" ,
-                            Description = ex.Message
-                        } );
+                    await NotificationService.Error(new NotificationConfig
+                    {
+                        Message = "托盘移除失败",
+                        Description = ex.Message
+                    });
                 }
             }
         }
         else
         {
             var options = new ModalOptions
+            {
+                Title = $"分配托盘到库位 - {location.LocationId}",
+                Width = 500,
+                OnOk = async _ =>
                 {
-                    Title = $"分配托盘到库位 - {location.LocationId}" ,
-                    Width = 500 ,
-                    OnOk = async _ =>
-                    {
-                        await LoadLocations();
-                    }
-                };
+                    await LoadLocations();
+                }
+            };
 
-            await ModalService.CreateModalAsync<AssignPalletModal , AssignPalletModalModel>(
-                options ,
+            await ModalService.CreateModalAsync<AssignPalletModal, AssignPalletModalModel>(
+                options,
                 new AssignPalletModalModel { LocationId = location.LocationId }
             );
         }
     }
 
-    private async Task ManageDockingPallet( DockingPosition position )
+    private async Task ManageDockingPallet(DockingPosition position)
     {
         if (position.Status == DockingPositionStatus.有料)
         {
             // 移除托盘
-            if (await ModalService.ConfirmAsync( new ConfirmOptions
-                {
-                    Title = "确认移除托盘" ,
-                    Content = $"确定要从接驳位 {position.PositionId} 移除托盘吗?" ,
-                    OkText = "确定" ,
-                    CancelText = "取消"
-                } ))
+            if (await ModalService.ConfirmAsync(new ConfirmOptions
+            {
+                Title = "确认移除托盘",
+                Content = $"确定要从接驳位 {position.PositionId} 移除托盘吗?",
+                OkText = "确定",
+                CancelText = "取消"
+            }))
             {
                 try
                 {
-                    await DockingPositionService.RemovePalletFromPositionAsync( position.PositionId );
-                    await NotificationService.Success( new NotificationConfig { Message = "托盘移除成功" } );
+                    await DockingPositionService.RemovePalletFromPositionAsync(position.PositionId);
+                    await NotificationService.Success(new NotificationConfig { Message = "托盘移除成功" });
                     await LoadDockingPositions();
                 }
                 catch (Exception ex)
                 {
-                    await NotificationService.Error( new NotificationConfig
-                        {
-                            Message = "托盘移除失败" ,
-                            Description = ex.Message
-                        } );
+                    await NotificationService.Error(new NotificationConfig
+                    {
+                        Message = "托盘移除失败",
+                        Description = ex.Message
+                    });
                 }
             }
         }
         else
         {
             var options = new ModalOptions
+            {
+                Title = $"分配托盘到接驳位 - {position.PositionId}",
+                Width = 500,
+                OnOk = async _ =>
                 {
-                    Title = $"分配托盘到接驳位 - {position.PositionId}" ,
-                    Width = 500 ,
-                    OnOk = async _ =>
-                    {
-                        await LoadDockingPositions();
-                    }
-                };
+                    await LoadDockingPositions();
+                }
+            };
 
-            await ModalService.CreateModalAsync<AssignDockingPalletModal , AssignDockingPalletModalModel>(
-                options ,
+            await ModalService.CreateModalAsync<AssignDockingPalletModal, AssignDockingPalletModalModel>(
+                options,
                 new AssignDockingPalletModalModel { PositionId = position.PositionId }
             );
         }
     }
 
-    private string GetLocationTypeName( LocationType type )
+    private string GetLocationTypeName(LocationType type)
     {
         return type switch
         {
@@ -533,6 +841,4 @@
         public LocationType Value { get; set; }
         public string Label { get; set; }
     }
-
-    
-}
+    }

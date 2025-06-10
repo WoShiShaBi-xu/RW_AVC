@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\RW.VAC.Dashboard.API.props" />
-</Project>

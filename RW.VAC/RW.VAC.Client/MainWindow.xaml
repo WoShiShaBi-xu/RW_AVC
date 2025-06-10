@@ -25,7 +25,7 @@
                     <ControlTemplate TargetType="Button">
                         <Image Margin="5"
                                RenderOptions.BitmapScalingMode="HighQuality"
-                               Source="pack://application:,,,/Assets/logo-128.png" />
+                               Source="/Assets/Fonts/logo-128.png" />
                     </ControlTemplate>
                 </Button.Template>
             </Button>

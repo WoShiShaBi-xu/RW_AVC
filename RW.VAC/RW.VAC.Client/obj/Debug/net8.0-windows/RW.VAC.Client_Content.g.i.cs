@@ -46,6 +46,5 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/nulllayout.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/redirecttologin.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("_imports.razor")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logo.ico")]
 
 

@@ -21,14 +21,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Assets\Fonts\iconfont.ttf" />
-	  <None Remove="Assets\logo-128.png" />
-	  <None Remove="Assets\logo-32.png" />
-	  <None Remove="Assets\logo-64.png" />
+	  <None Remove="Assets\Fonts\logo-128.png" />
+	  <None Remove="Assets\Fonts\logo-32.png" />
+	  <None Remove="Assets\Fonts\logo-64.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="logo.ico" />
+	  <Resource Include="Assets\Fonts\logo-32.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -53,10 +52,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Assets\Fonts\iconfont.ttf" />
-	  <Resource Include="Assets\logo-128.png" />
-	  <Resource Include="Assets\logo-32.png" />
-	  <Resource Include="Assets\logo-64.png" />
+	  <Resource Include="Assets\Fonts\logo-128.png" />
+	  <Resource Include="Assets\Fonts\logo-64.png" />
 	</ItemGroup>
 
 </Project>

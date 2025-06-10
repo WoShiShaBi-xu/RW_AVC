@@ -19,3 +19,10 @@
     <NavBread></NavBread>
 </SectionContent>
 
+@code {
+    protected override void OnInitialized( )
+    {
+        // 启动时自动导航到 /location
+        Navigation.NavigateTo( "/location" , replace: true );
+    }
+}

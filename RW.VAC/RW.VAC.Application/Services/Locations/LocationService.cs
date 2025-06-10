@@ -23,6 +23,7 @@ namespace RW.VAC.Application.Services.Locations
             _locationRepository = locationRepository ?? throw new ArgumentNullException( nameof( locationRepository ) );
             _palletRepository = palletRepository ?? throw new ArgumentNullException( nameof( palletRepository ) );
         }
+
         /// <summary>
         /// 获取所有库位
         /// </summary>
@@ -32,6 +33,7 @@ namespace RW.VAC.Application.Services.Locations
             // 调用仓储接口获取所有库位
             return await _locationRepository.GetAllAsync();
         }
+
         /// <summary>
         /// 创建新库位
         /// </summary>
@@ -62,6 +64,157 @@ namespace RW.VAC.Application.Services.Locations
 
             return location;
         }
+
+        /// <summary>
+        /// 更新库位信息
+        /// </summary>
+        /// <param name="locationId">库位ID</param>
+        /// <param name="locationType">库位类型</param>
+        /// <param name="locationName">库位名称</param>
+        /// <returns>更新结果</returns>
+        public async Task<bool> UpdateLocationAsync( string locationId , LocationType locationType , string locationName )
+        {
+            // 验证参数
+            if (string.IsNullOrWhiteSpace( locationId ))
+            {
+                throw new ArgumentException( "库位ID不能为空" , nameof( locationId ) );
+            }
+
+            if (string.IsNullOrWhiteSpace( locationName ))
+            {
+                throw new ArgumentException( "库位名称不能为空" , nameof( locationName ) );
+            }
+
+            // 获取库位
+            var location = await _locationRepository.GetByIdAsync( locationId );
+            if (location == null)
+            {
+                throw new KeyNotFoundException( $"找不到ID为{locationId}的库位" );
+            }
+
+            // 更新库位信息
+            location.LocationType = locationType;
+            location.LocationName = locationName;
+            location.LastUpdate = DateTime.Now;
+
+            // 保存到数据库
+            return await _locationRepository.UpdateAsync( location );
+        }
+       
+        /// <summary>
+        /// 删除库位
+        /// </summary>
+        /// <param name="locationId">库位ID</param>
+        /// <returns>删除结果</returns>
+        public async Task<bool> DeleteLocationAsync( string locationId )
+        {
+            // 验证参数
+            if (string.IsNullOrWhiteSpace( locationId ))
+            {
+                throw new ArgumentException( "库位ID不能为空" , nameof( locationId ) );
+            }
+
+            // 获取库位
+            var location = await _locationRepository.GetByIdAsync( locationId );
+            if (location == null)
+            {
+                throw new KeyNotFoundException( $"找不到ID为{locationId}的库位" );
+            }
+
+            // 检查是否可以删除
+            if (!await CanDeleteLocationAsync( locationId ))
+            {
+                throw new InvalidOperationException( "库位当前被占用，无法删除" );
+            }
+
+            // 删除库位
+            return await _locationRepository.DeleteAsync( locationId );
+        }
+
+        /// <summary>
+        /// 检查库位是否可以删除
+        /// </summary>
+        /// <param name="locationId">库位ID</param>
+        /// <returns>是否可以删除</returns>
+        public async Task<bool> CanDeleteLocationAsync( string locationId )
+        {
+            if (string.IsNullOrWhiteSpace( locationId ))
+            {
+                return false;
+            }
+
+            var location = await _locationRepository.GetByIdAsync( locationId );
+            if (location == null)
+            {
+                return false;
+            }
+
+            // 只有空闲状态的库位才能删除
+            return location.IsOccupied != true && string.IsNullOrEmpty( location.CurrentPalletId );
+        }
+
+        /// <summary>
+        /// 更新库位占用状态
+        /// </summary>
+        /// <param name="locationId">库位ID</param>
+        /// <param name="isOccupied">是否占用</param>
+        /// <returns>更新结果</returns>
+        public async Task<bool> UpdateLocationOccupiedStatusAsync( string locationId , bool isOccupied )
+        {
+            return await UpdateLocationStatusAsync( locationId , isOccupied );
+        }
+
+        /// <summary>
+        /// 根据库位类型获取库位列表
+        /// </summary>
+        /// <param name="locationType">库位类型</param>
+        /// <returns>指定类型的库位列表</returns>
+        public async Task<IEnumerable<Location>> GetLocationsByTypeAsync( LocationType locationType )
+        {
+            return await _locationRepository.GetByTypeAsync( locationType );
+        }
+
+        /// <summary>
+        /// 根据类型查找可用库位
+        /// </summary>
+        /// <param name="locationType">库位类型</param>
+        /// <returns>可用库位列表</returns>
+        public async Task<IEnumerable<Location>> FindAvailableLocationsByTypeAsync( LocationType locationType )
+        {
+            return await FindAvailableLocationsAsync( locationType );
+        }
+
+        /// <summary>
+        /// 批量更新库位占用状态
+        /// </summary>
+        /// <param name="locationIds">库位ID列表</param>
+        /// <param name="isOccupied">是否占用</param>
+        /// <returns>更新结果</returns>
+        public async Task<bool> BatchUpdateLocationOccupiedStatusAsync( IEnumerable<string> locationIds , bool isOccupied )
+        {
+            if (locationIds == null || !locationIds.Any())
+            {
+                return true;
+            }
+
+            var results = new List<bool>();
+            foreach (var locationId in locationIds)
+            {
+                try
+                {
+                    var result = await UpdateLocationOccupiedStatusAsync( locationId , isOccupied );
+                    results.Add( result );
+                }
+                catch
+                {
+                    results.Add( false );
+                }
+            }
+
+            return results.All( r => r );
+        }
+
+       
 
         /// <summary>
         /// 更新库位状态
@@ -136,11 +289,11 @@ namespace RW.VAC.Application.Services.Locations
             }
 
             // 检查库位是否已被占用
-            if (location.IsOccupied != true && location.CurrentPalletId != palletId)
+            if (location.IsOccupied == true && location.CurrentPalletId != palletId)
             {
                 throw new InvalidOperationException( $"库位{locationId}已被托盘{location.CurrentPalletId}占用" );
             }
-            
+
             // 获取托盘
             var pallet = await _palletRepository.GetByIdAsync( palletId );
             if (pallet == null)
@@ -280,7 +433,7 @@ namespace RW.VAC.Application.Services.Locations
                 case LocationType.缓存区_已试验:
                     prefix = "BTD";
                     break;
-                case LocationType.试验区接驳位    :
+                case LocationType.试验区接驳位:
                     prefix = "TAD";
                     break;
                 case LocationType.成品检测接驳位:
@@ -302,5 +455,7 @@ namespace RW.VAC.Application.Services.Locations
 
             return $"{prefix}{dateStr}{randomStr}";
         }
+
+      
     }
 }

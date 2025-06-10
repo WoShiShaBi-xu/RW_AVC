@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Events\EventHandle\" />
+    <Folder Include="Hardwares\CodeReader\" />
     <Folder Include="Services\ProductPalletBinding\" />
     <Folder Include="Services\TaskLoadMapping\" />
     <Folder Include="Services\TestStation\" />

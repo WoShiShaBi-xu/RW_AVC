@@ -15,7 +15,12 @@ namespace RW.VAC.Domain.Location
         /// <param name="locationName">库位名称</param>
         /// <returns>创建的库位</returns>
         Task<Location> CreateLocationAsync( LocationType locationType , string locationName );
-
+        /// <summary>
+        /// 删除库位
+        /// </summary>
+        /// <param name="locationId">库位ID</param>
+        /// <returns>删除结果</returns>
+        Task<bool> DeleteLocationAsync( string locationId );
         /// <summary>
         /// 更新库位状态
         /// </summary>
@@ -31,7 +36,14 @@ namespace RW.VAC.Domain.Location
         /// <param name="palletId">托盘ID</param>
         /// <returns>分配结果</returns>
         Task<bool> AssignPalletToLocationAsync( string locationId , string palletId );
-
+        /// <summary>
+        /// 更新库位信息
+        /// </summary>
+        /// <param name="locationId">库位ID</param>
+        /// <param name="locationType">库位类型</param>
+        /// <param name="locationName">库位名称</param>
+        /// <returns>更新结果</returns>
+        Task<bool> UpdateLocationAsync( string locationId , LocationType locationType , string locationName );
         /// <summary>
         /// 从库位移除托盘
         /// </summary>

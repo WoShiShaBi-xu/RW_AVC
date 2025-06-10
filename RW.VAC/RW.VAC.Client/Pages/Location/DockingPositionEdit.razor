@@ -31,11 +31,20 @@
     private Form<DockingPositionEditModel> _form;
     private DockingPositionEditModel _model = new();
     private List<TestStation> _availableStations = new();
+    private bool _isEdit = false;
+    private string _originalPositionId = string.Empty;
 
     protected override async Task OnInitializedAsync( )
     {
         // 初始化模型
         _model = base.Options ?? new DockingPositionEditModel();
+
+        // 检查是否为编辑模式
+        _isEdit = !string.IsNullOrEmpty( _model.PositionId );
+        if (_isEdit)
+        {
+            _originalPositionId = _model.PositionId;
+        }
 
         await LoadTestStations();
         await base.OnInitializedAsync();
@@ -74,16 +83,24 @@
                 throw new Exception( "请输入接驳位类型" );
             }
 
-            // 调用服务创建新接驳位
-            await DockingPositionService.CreateDockingPositionAsync( _model.PositionType , _model.StationId );
-
-            await NotificationService.Success( new NotificationConfig { Message = "接驳位创建成功" } );
+            if (_isEdit)
+            {
+                // 更新接驳位
+                await DockingPositionService.UpdateDockingPositionAsync( _originalPositionId , _model.PositionType , _model.StationId );
+                await NotificationService.Success( new NotificationConfig { Message = "接驳位更新成功" } );
+            }
+            else
+            {
+                // 创建新接驳位
+                await DockingPositionService.CreateDockingPositionAsync( _model.PositionType , _model.StationId );
+                await NotificationService.Success( new NotificationConfig { Message = "接驳位创建成功" } );
+            }
         }
         catch (Exception ex)
         {
             await NotificationService.Error( new NotificationConfig
                     {
-                        Message = "接驳位创建失败" ,
+                        Message = _isEdit ? "接驳位更新失败" : "接驳位创建失败" ,
                         Description = ex.Message
                     } );
             e.Cancel = true;
