@@ -144,7 +144,7 @@ public partial class App
 				builder.RegisterType<TagStorage>().SingleInstance();
 				builder.RegisterType<UaClient>().As<IUaClient>().SingleInstance();
                 builder.RegisterType<PLCState>().SingleInstance();
-
+                builder.RegisterType<AgvButtonEventHandler>().SingleInstance();
 
                 builder.RegisterType<GeneralControl>();
                 builder.RegisterType<TrussControl>();
@@ -152,7 +152,7 @@ public partial class App
 
                 #endregion
                 #region API服务注册
-                builder.RegisterType<WMSClient>().As<IAutoAssemblyWorkClient>().SingleInstance();
+                builder.RegisterType<WMSClient>().As<IWMSClient>().SingleInstance();
                 #endregion
             } ).Build();
 	}

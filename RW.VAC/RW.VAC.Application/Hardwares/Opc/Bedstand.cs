@@ -15,7 +15,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace RW.VAC.Application.Hardwares.Opc
 {
     public class Bedstand(
-   IServiceProvider serviceProvider, IAutoAssemblyWorkClient autoAssemblyWorkClient ) 
+   IServiceProvider serviceProvider, IWMSClient wMSClient) 
     {
        
         public required TagStorage Tags { protected get; init; }

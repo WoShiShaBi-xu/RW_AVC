@@ -40,4 +40,12 @@ public static class TagTypeConsts
 
 	public const string OutboundTimeTag = "OutboundTime";//出站时间
 
+    public const string station1AgvLoadBtnTag = "station1AgvLoadBtn";//1工位AGV上料按钮
+
+    public const string station6AgvUnloadBtnTag = "station6AgvUnloadBtn";//6工位AGV下料按钮
+
+    public const string station7AgvLoadBtnTag = "station7AgvLoadBtn";//7工位AGV上料按钮
+
+    public const string station8AgvUnloadBtnTag = "station8AgvUnloadBtn";//8工位AGV下料按钮
+
 }

@@ -1,31 +1,27 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using RW.VAC.Domain.API;
-using RW.VAC.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using Polly;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
-using System.Web;
-using static System.Collections.Specialized.BitVector32;
+using RW.VAC.Domain.API;
 
 namespace RW.VAC.Application.Contracts.API
 {
-
-    public class WMSClient : IAutoAssemblyWorkClient
+    public class WMSClient : IWMSClient
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<WMSClient> _logger;
         private readonly AsyncPolicy<HttpResponseMessage> _retryPolicy;
+        private readonly string _baseUrl;
 
-        public WMSClient( HttpClient httpClient , ILogger<WMSClient> logger )
+        public WMSClient( HttpClient httpClient , ILogger<WMSClient> logger , string baseUrl = "http://10.132.128.22:10020" )
         {
             _httpClient = httpClient;
             _logger = logger;
+            _baseUrl = baseUrl;
 
             // 使用 Polly 设置重试策略
             _retryPolicy = Policy.Handle<HttpRequestException>()
@@ -37,252 +33,126 @@ namespace RW.VAC.Application.Contracts.API
                                  } );
         }
 
-        public async Task<(bool HasError, string Message, string Value1)> ReportWorkAsync( string lineCode , string lotSN , string processCode , string workDate , string userCode , bool isProduction = true )
+        /// <summary>
+        /// 根据任务Id获取任务详情
+        /// </summary>
+        /// <param name="taskId">任务Id</param>
+        /// <param name="sectionId">区域Id，默认为1</param>
+        /// <param name="authToken">认证Token</param>
+        /// <returns>任务详情查询结果</returns>
+        public async Task<TaskDetailResponse> GetTaskDetailByTaskIdAsync( string taskId , string sectionId = "1" , string authToken = "" )
         {
             try
             {
-                // 设置请求地址，选择正式还是测试环境
-                string url = "http://10.132.128.22:10020/WMSCommon/WMS/Auto_Assembly_AutoWork";
+                // 构建请求URL
+                string url = $"{_baseUrl}/platform/interface/V2/getTaskDetailByTaskId?taskId={Uri.EscapeDataString( taskId )}";
 
-                // 构建请求参数
-                var requestData = new
+                // 设置请求头
+                var request = new HttpRequestMessage( HttpMethod.Get , url );
+                request.Headers.Add( "sectionId" , sectionId );
+
+                if (!string.IsNullOrEmpty( authToken ))
                 {
-                    LineCode = lineCode ,
-                    LotSN = lotSN ,
-                    ProcessCode = processCode ,
-                    WorkDate = workDate ,
-                    UserCode = userCode
-                };
-                //abbb
-                // 将参数序列化为 JSON 字符串
-                string jsonContent = JsonConvert.SerializeObject( requestData );
-
-                // 创建 HttpContent 对象
-                var content = new StringContent( jsonContent , Encoding.UTF8 , "application/json" );
-
-                // 发送 POST 请求
-                HttpResponseMessage response = await _httpClient.PostAsync( url , content );
-
-                // 确保请求成功
-                response.EnsureSuccessStatusCode();
-
-                // 读取响应内容
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                // 解析响应内容
-                var result = JsonConvert.DeserializeObject<ResponseData>( responseContent );
-
-                // 返回处理后的结果
-                return (result.HasError, result.Message, result.Value1);
-            }
-            catch ( Exception )
-            {
-
-                return (false,"","");
-            }
-            
-
-        }
-        public async Task TorqueDataAPI( TorqueData torque)
-        {
-            try
-            {
-                string url = "http://10.132.128.22:10020/WMSCommon/WMS/TorqueTestData";
-                var torque_1 = new
-                {
-                    SN = torque.SN ,
-                    TorqueSet = torque.TorqueSet ,
-                    TorqueValue = torque.TorqueValue ,
-                    Displacement = torque.Displacement ,
-                    CheckDate = torque.CheckDate ,
-                    Station = torque.Station ,
-                };
-                string jsonContent = JsonConvert.SerializeObject( torque_1 );
-
-                // 创建 HttpContent 对象
-                var content = new StringContent( jsonContent , Encoding.UTF8 , "application/json" );
-
-                // 发送 POST 请求
-                HttpResponseMessage response = await _httpClient.PostAsync( url , content );
-
-                // 确保请求成功
-                response.EnsureSuccessStatusCode();
-
-                // 读取响应内容
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                // 解析响应内容
-                var result = JsonConvert.DeserializeObject<ResponseData>( responseContent );
-
-                _logger.LogWarning( result.ToString() ?? "" );
-            }
-            catch ( Exception ex)
-            {
-                _logger.LogWarning(ex.ToString());
-
-
-            }
-        }
-
-
-        public async Task OilPressureDataAPI( OilPressureData  oilPressureData )
-        {
-            try
-            { // 设置请求地址，选择正式还是测试环境
-                string url = "http://10.132.128.22:10020/WMSCommon/WMS/OilPressureTestData";
-                // 构建请求参数
-                var oilPressureData_1 = new
-                {
-                    SN = oilPressureData.SN ,
-                    SetPressure = oilPressureData.SetPressure ,
-                    RealTimePressure = oilPressureData.RealTimePressure ,
-                    StdLeakage = oilPressureData.StdLeakage ,
-                    LeakageFlow = oilPressureData.LeakageFlow ,
-                    HoldingTime = oilPressureData.HoldingTime ,
-                    CheckDate = oilPressureData.CheckDate ,
-                    Station = oilPressureData.Station ,
-                };
-                string jsonContent = JsonConvert.SerializeObject( oilPressureData_1 );
-
-                // 创建 HttpContent 对象
-                var content = new StringContent( jsonContent , Encoding.UTF8 , "application/json" );
-
-                // 发送 POST 请求
-                HttpResponseMessage response = await _httpClient.PostAsync( url , content );
-
-                // 确保请求成功
-                response.EnsureSuccessStatusCode();
-
-                // 读取响应内容
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                // 解析响应内容
-                var result = JsonConvert.DeserializeObject<ResponseData>( responseContent );
-                _logger.LogWarning( result.ToString()??"" );
-            }
-            catch ( Exception ex )
-            {
-
-                _logger.LogWarning( ex.ToString() );
-
-            }
-        }
-        public async Task AirtightDataAPI( AirtightData airtightData)
-        {
-            try
-            { // 设置请求地址，选择正式还是测试环境
-                string url = "http://10.132.128.22:10020/WMSCommon/WMS/AirtightTestData";
-                // 构建请求参数
-                var airtightData_1 = new
-                {
-                    SN = airtightData.SN,
-                    Result_A= airtightData.Result_A,
-                    Divulge_A= airtightData.Divulge_A ,
-                    Result_B = airtightData.Result_B ,
-                    Divulge_B = airtightData.Divulge_B ,
-                    Pressure= airtightData.Pressure ,
-                    CheckDate = airtightData.CheckDate ,
-                    Station = airtightData.Station ,
-                };
-                string jsonContent = JsonConvert.SerializeObject( airtightData_1 );
-
-                // 创建 HttpContent 对象
-                var content = new StringContent( jsonContent , Encoding.UTF8 , "application/json" );
-
-                // 发送 POST 请求
-                HttpResponseMessage response = await _httpClient.PostAsync( url , content );
-
-                // 确保请求成功
-                response.EnsureSuccessStatusCode();
-
-                // 读取响应内容
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                // 解析响应内容
-                var result = JsonConvert.DeserializeObject<ResponseData>( responseContent );
-                _logger.LogWarning( result.ToString() ?? "" );
-            }
-            catch ( Exception ex)
-            {
-                _logger.LogWarning( ex.ToString() );
-
-
-            }
-        }
-
-        public async Task<bool> QuerySNInfo( string sN ,string ProductName)
-        {
-            try
-            {
-                string url = "http://10.132.128.22:10020/WMSCommon/WMS/FMQuerySNInfo_RUNWEI";
-                var requestData = new
-                {
-                    SN = sN
-                };
-
-                // 将参数序列化为 JSON 字符串
-                string jsonContent = JsonConvert.SerializeObject( requestData );
-
-                // 创建 HttpContent 对象
-                var content = new StringContent( jsonContent , Encoding.UTF8 , "application/json" );
-
-                // 发送 POST 请求
-                HttpResponseMessage response = await _httpClient.PostAsync( url , content );
-
-                // 确保请求成功
-                response.EnsureSuccessStatusCode();
-
-                // 读取响应内容
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                // 解析响应内容
-                var result = JsonConvert.DeserializeObject<SNInfoResponse>( responseContent );
-                if ( result.Message == "" )
-                {
-                    if ( result.ProductName == ProductName )
-                    {
-                        return true;
-                    }
+                    request.Headers.Add( "Authorization" , $"Bearer {authToken}" );
                 }
 
-                return false;
+                // 发送 GET 请求
+                HttpResponseMessage response = await _retryPolicy.ExecuteAsync( async ( ) =>
+                {
+                    return await _httpClient.SendAsync( request );
+                } );
+
+                // 确保请求成功
+                response.EnsureSuccessStatusCode();
+
+                // 读取响应内容
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                // 解析响应内容
+                var result = JsonConvert.DeserializeObject<TaskDetailResponse>( responseContent );
+
+                _logger.LogInformation( $"任务查询成功，任务ID: {taskId}" );
+                return result;
             }
             catch (Exception ex)
             {
-                _logger.LogWarning( ex.ToString() );
-                return false;
+                _logger.LogError( ex , $"查询任务详情失败，任务ID: {taskId}" );
+
+                // 返回错误响应
+                return new TaskDetailResponse
+                {
+                    Code = "-1" ,
+                    Message = $"查询任务详情失败: {ex.Message}" ,
+                    Data = null
+                };
             }
-           
-        }
-        public class SNInfoResponse
-        {
-            public int Code { get; set; }
-            public string Message { get; set; }
-            public string SN { get; set; }
-            public string MoCode { get; set; }
-            public string ProductRootCode { get; set; }
-            public string ProductName { get; set; }
-        }
-
-        public class ResponseData
-        {
-            public bool HasError { get; set; }
-            public string Message { get; set; }
-            public string Value1 { get; set; }
         }
 
         /// <summary>
-        /// 气密测试数据
+        /// 发送订单任务到iRMS系统
         /// </summary>
-        
-        /// <summary>
-		/// 油压测试数据 
-		/// </summary>
-		
-       
+        /// <param name="orderTasks">订单任务列表</param>
+        /// <param name="sectionId">区域Id，默认为1</param>
+        /// <param name="authToken">认证Token</param>
+        /// <returns>发送订单任务结果</returns>
+        public async Task<SendOrderTasksResponse> SendOrderTasksAsync( List<OrderTask> orderTasks , string sectionId = "1" , string authToken = "" )
+        {
+            try
+            {
+                // 构建请求URL
+                string url = $"{_baseUrl}/platform/interface/V2/sendOrderTasks";
 
+                // 将参数序列化为 JSON 字符串
+                string jsonContent = JsonConvert.SerializeObject( orderTasks , Formatting.None , new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                } );
+
+                // 创建 HttpContent 对象
+                var content = new StringContent( jsonContent , Encoding.UTF8 , "application/json" );
+
+                // 设置请求头
+                var request = new HttpRequestMessage( HttpMethod.Post , url )
+                {
+                    Content = content
+                };
+                request.Headers.Add( "sectionId" , sectionId );
+
+                if (!string.IsNullOrEmpty( authToken ))
+                {
+                    request.Headers.Add( "Authorization" , $"Bearer {authToken}" );
+                }
+
+                // 发送 POST 请求
+                HttpResponseMessage response = await _retryPolicy.ExecuteAsync( async ( ) =>
+                {
+                    return await _httpClient.SendAsync( request );
+                } );
+
+                // 确保请求成功
+                response.EnsureSuccessStatusCode();
+
+                // 读取响应内容
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                // 解析响应内容
+                var result = JsonConvert.DeserializeObject<SendOrderTasksResponse>( responseContent );
+
+                _logger.LogInformation( $"发送订单任务成功，共 {orderTasks.Count} 个任务" );
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError( ex , $"发送订单任务失败，任务数量: {orderTasks.Count}" );
+
+                // 返回错误响应
+                return new SendOrderTasksResponse
+                {
+                    Code = "-1" ,
+                    Message = $"发送订单任务失败: {ex.Message}" ,
+                    Data = null
+                };
+            }
+        }
     }
-
-   
-
 }

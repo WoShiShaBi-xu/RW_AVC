@@ -6,15 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 namespace RW.VAC.Domain.API
 {
-    public interface IAutoAssemblyWorkClient
+    public interface IWMSClient
     {
-        Task<(bool HasError, string Message, string Value1)> ReportWorkAsync( string lineCode , string lotSN , string stationCode , string workDate , string userCode , bool isProduction = true );
+        /// <summary>
+        /// 根据任务Id获取任务详情
+        /// </summary>
+        /// <param name="taskId">任务Id</param>
+        /// <param name="sectionId">区域Id，默认为1</param>
+        /// <param name="authToken">认证Token</param>
+        /// <returns>任务详情查询结果</returns>
+        Task<TaskDetailResponse> GetTaskDetailByTaskIdAsync( string taskId , string sectionId = "1" , string authToken = "" );
 
-        Task<bool> QuerySNInfo( string sN , string ProductName );
-
-        Task AirtightDataAPI( AirtightData airtightData );
-        Task OilPressureDataAPI( OilPressureData airtightData );
-
-        Task TorqueDataAPI(TorqueData torque );
+        /// <summary>
+        /// 发送订单任务到iRMS系统
+        /// </summary>
+        /// <param name="orderTasks">订单任务列表</param>
+        /// <param name="sectionId">区域Id，默认为1</param>
+        /// <param name="authToken">认证Token</param>
+        /// <returns>发送订单任务结果</returns>
+        Task<SendOrderTasksResponse> SendOrderTasksAsync( List<OrderTask> orderTasks , string sectionId = "1" , string authToken = "" );
     }
 }

@@ -1,17 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ControlzEx.Standard;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RW.Framework.Extensions;
 using RW.VAC.Application.Contracts.CodeReaders;
 using RW.VAC.Application.Contracts.Opcs;
 using RW.VAC.Application.Contracts.Parameters;
+using RW.VAC.Application.Hardwares.Opc;
 using RW.VAC.Client.Storage;
 using RW.VAC.Infrastructure.Devices.State;
 using RW.VAC.Infrastructure.Opc;
-using RW.VAC.Infrastructure.Tcp;
-using System.Linq;
 using AppClient = System.Windows.Application;
 
 namespace RW.VAC.Client.ViewModels;
@@ -121,7 +119,7 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
 			plcState [ string.Concat( group.Device , "._System._NoError" ) ] = false;
 		}
 		tag.Initialize();
-	}
+	}				
 
 	private async Task InitOpc()
 	{
@@ -129,19 +127,26 @@ public partial class SplashWindowViewModel(IServiceProvider serviceProvider, Glo
         await uaClient.Connect( global.Parameter [ "OpcUrl" ] );
         var tags = serviceProvider.GetRequiredService<TagStorage>();
         var plcState = serviceProvider.GetRequiredService<PLCState>();
-
-
+        var generalControl = serviceProvider.GetRequiredService<AgvButtonEventHandler>();
+        uaClient.Subscribe( tags [ "M01" , TagTypeConsts.station1AgvLoadBtnTag ]!.TagName , TagTypeConsts.station1AgvLoadBtnTag , true ,
+           generalControl.OnStation1AgvLoadButtonPressed );
+        uaClient.Subscribe( tags [ "M01" , TagTypeConsts.station6AgvUnloadBtnTag ]!.TagName , TagTypeConsts.station6AgvUnloadBtnTag , true ,
+           generalControl.OnStation6AgvUnloadButtonPressed );
+        uaClient.Subscribe( tags [ "M01" , TagTypeConsts.station7AgvLoadBtnTag ]!.TagName , TagTypeConsts.station7AgvLoadBtnTag , true ,
+           generalControl.OnStation7AgvLoadButtonPressed );
+        uaClient.Subscribe( tags [ "M01" , TagTypeConsts.station8AgvUnloadBtnTag ]!.TagName , TagTypeConsts.station8AgvUnloadBtnTag , true ,
+           generalControl.OnStation8AgvUnloadButtonPressed );
         #region 总控相关订阅事件
 
 
         #endregion
 
-      
 
-  //      uaClient.Subscribe(plcState.Tags, "PLCState", false, args =>
-		//{
-		//	plcState[args.MonitoredItem.StartNodeId.ToString()] = (bool)args.Value;
-		//});
+
+        uaClient.Subscribe( plcState.Tags , "PLCState" , false , args =>
+		{
+			plcState [ args.MonitoredItem.StartNodeId.ToString() ] = (bool) args.Value;
+		} );
 	}
 
 	private async Task InitTcpServer()

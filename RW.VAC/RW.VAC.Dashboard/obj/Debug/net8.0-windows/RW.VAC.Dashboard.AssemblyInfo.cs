@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RW.VAC.Dashboard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f9f18e3ebbf70c5d9e992bdbfba295d4679babe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+669d81a47b0ebda86399361276409f1f42b0ed49")]
 [assembly: System.Reflection.AssemblyProductAttribute("RW.VAC.Dashboard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RW.VAC.Dashboard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

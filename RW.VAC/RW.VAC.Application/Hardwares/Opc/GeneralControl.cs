@@ -56,7 +56,7 @@ public class GeneralControl
 
 	/// <summary>
 	///     切换模式（远程\本地）
-	/// </summary>
+	/// </summary>	
 	/// <param name="e"></param>
 	public void RemoteMode(TagChangedEventArgs e)
 	{
