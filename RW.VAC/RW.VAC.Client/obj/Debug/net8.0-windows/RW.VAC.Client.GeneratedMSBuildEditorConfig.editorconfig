@@ -29,8 +29,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cQXNzaWduRG9ja2luZ1BhbGxldE1vZGFsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/AssignDockingProductModal.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cQXNzaWduRG9ja2luZ1Byb2R1Y3RNb2RhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/AssignPalletModal.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cQXNzaWduUGFsbGV0TW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/AssignProductModal.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cQXNzaWduUHJvZHVjdE1vZGFsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/DockingPositionDetail.razor]

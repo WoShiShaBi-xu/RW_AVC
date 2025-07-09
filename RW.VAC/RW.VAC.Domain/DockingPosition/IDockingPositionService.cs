@@ -55,6 +55,12 @@ namespace RW.VAC.Domain.DockingPosition
         /// <param name="positionId">接驳位ID</param>
         /// <returns>移除结果</returns>
         Task<bool> RemovePalletFromPositionAsync( string positionId );
+        /// <summary>
+        /// 从接驳位移除产品
+        /// </summary>
+        /// <param name="positionId">接驳位ID</param>
+        /// <returns>移除结果</returns>
+        Task<bool> RemoveProductFromPositionAsync( string positionId );
 
         /// <summary>
         /// 查找可用的接驳位

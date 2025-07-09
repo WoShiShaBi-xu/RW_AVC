@@ -18,12 +18,14 @@ namespace RW.VAC.Domain.API
         Task<TaskDetailResponse> GetTaskDetailByTaskIdAsync( string taskId , string sectionId = "1" , string authToken = "" );
 
         /// <summary>
-        /// 发送订单任务到iRMS系统
+        /// 发送并执行自定义任务
         /// </summary>
-        /// <param name="orderTasks">订单任务列表</param>
+        /// <param name="customCode">自定义任务编码</param>
+        /// <param name="customTaskCode">客户运单号（可选）</param>
+        /// <param name="taskParams">任务参数</param>
         /// <param name="sectionId">区域Id，默认为1</param>
         /// <param name="authToken">认证Token</param>
-        /// <returns>发送订单任务结果</returns>
-        Task<SendOrderTasksResponse> SendOrderTasksAsync( List<OrderTask> orderTasks , string sectionId = "1" , string authToken = "" );
+        /// <returns>自定义任务执行结果</returns>
+        Task<CustomTaskResponse> RunCustomTaskAsync( string customCode , string customTaskCode = null , object taskParams = null , string sectionId = "1" , string authToken = "" );
     }
 }

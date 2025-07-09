@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -365,4 +366,105 @@ namespace RW.VAC.Domain.API
     }
 
     #endregion
+    /// <summary>
+    /// 自定义任务响应模型
+    /// </summary>
+    public class CustomTaskResponse
+    {
+        /// <summary>
+        /// 返回码 0 成功 -1 失败
+        /// </summary>
+        [JsonProperty( "code" )]
+        public string Code { get; set; }
+
+        /// <summary>
+        /// 返回成功或者失败的信息
+        /// </summary>
+        [JsonProperty( "message" )]
+        public string Message { get; set; }
+
+        /// <summary>
+        /// 接口返回数据
+        /// </summary>
+        [JsonProperty( "data" )]
+        public CustomTaskData Data { get; set; }
+    }
+
+    /// <summary>
+    /// 自定义任务数据模型
+    /// </summary>
+    public class CustomTaskData
+    {
+        /// <summary>
+        /// 任务id
+        /// </summary>
+        [JsonProperty( "taskId" )]
+        public string TaskId { get; set; }
+
+        /// <summary>
+        /// 自定义任务编码
+        /// </summary>
+        [JsonProperty( "customCode" )]
+        public string CustomCode { get; set; }
+
+        /// <summary>
+        /// 运单号
+        /// </summary>
+        [JsonProperty( "customTaskCode" )]
+        public string CustomTaskCode { get; set; }
+
+        /// <summary>
+        /// 创建用户
+        /// </summary>
+        [JsonProperty( "createUser" )]
+        public string CreateUser { get; set; }
+    }
+
+    /// <summary>
+    /// AGV任务参数模型
+    /// </summary>
+    public class AgvTaskParams
+    {
+        /// <summary>
+        /// AGV编号列表
+        /// </summary>
+        [JsonProperty( "agv_id" )]
+        public string [ ] AgvId { get; set; }
+    }
+
+    /// <summary>
+    /// 通用任务参数模型（可根据实际需求扩展）
+    /// </summary>
+    public class CommonTaskParams
+    {
+        /// <summary>
+        /// AGV编号列表
+        /// </summary>
+        [JsonProperty( "agv_id" )]
+        public string [ ] AgvId { get; set; }
+
+        /// <summary>
+        /// 起始位置
+        /// </summary>
+        [JsonProperty( "start_position" )]
+        public string StartPosition { get; set; }
+
+        /// <summary>
+        /// 目标位置
+        /// </summary>
+        [JsonProperty( "target_position" )]
+        public string TargetPosition { get; set; }
+
+        /// <summary>
+        /// 优先级
+        /// </summary>
+        [JsonProperty( "priority" )]
+        public int? Priority { get; set; }
+
+        /// <summary>
+        /// 其他扩展参数
+        /// </summary>
+        [JsonProperty( "extra_params" )]
+        public object ExtraParams { get; set; }
+    }
 }

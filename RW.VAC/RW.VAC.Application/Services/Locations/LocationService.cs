@@ -1,5 +1,6 @@
 ﻿using RW.VAC.Domain.Location;
 using RW.VAC.Domain.Pallet;
+using RW.VAC.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,23 @@ namespace RW.VAC.Application.Services.Locations
     {
         private readonly ILocationRepository _locationRepository;
         private readonly IPalletRepository _palletRepository;
+        private readonly IProductRepository _productRepository; // 新增产品仓储
 
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="locationRepository">库位仓储</param>
         /// <param name="palletRepository">托盘仓储</param>
-        public LocationService( ILocationRepository locationRepository , IPalletRepository palletRepository )
+        public LocationService(
+            ILocationRepository locationRepository ,
+            IPalletRepository palletRepository ,
+            IProductRepository productRepository )
         {
             _locationRepository = locationRepository ?? throw new ArgumentNullException( nameof( locationRepository ) );
             _palletRepository = palletRepository ?? throw new ArgumentNullException( nameof( palletRepository ) );
+            _productRepository = productRepository ?? throw new ArgumentNullException( nameof( productRepository ) );
         }
+        
 
         /// <summary>
         /// 获取所有库位
@@ -100,7 +107,51 @@ namespace RW.VAC.Application.Services.Locations
             // 保存到数据库
             return await _locationRepository.UpdateAsync( location );
         }
-       
+        // <summary>
+        /// 从库位移除产品
+        /// </summary>
+        /// <param name="locationId">库位ID</param>
+        /// <returns>移除结果</returns>
+        public async Task<bool> RemoveProductFromLocationAsync( string locationId )
+        {
+            // 验证参数
+            if (string.IsNullOrWhiteSpace( locationId ))
+            {
+                throw new ArgumentException( "库位ID不能为空" , nameof( locationId ) );
+            }
+
+            // 获取库位
+            var location = await _locationRepository.GetByIdAsync( locationId );
+            if (location == null)
+            {
+                throw new KeyNotFoundException( $"找不到ID为{locationId}的库位" );
+            }
+
+            // 如果库位没有产品，不需要处理
+            if (string.IsNullOrEmpty( location.CurrentProductId ))
+            {
+                return true;
+            }
+
+            // 获取产品
+            var productId = location.CurrentProductId;
+            var product = await _productRepository.GetByIdAsync( productId );
+
+            // 更新库位状态
+            location.CurrentProductId = null;
+            location.LastUpdate = DateTime.Now;
+
+            // 如果找到产品，更新产品位置
+            if (product != null && product is ILocationTrackable trackableProduct && trackableProduct.LocationId == locationId)
+            {
+                trackableProduct.LocationId = null;
+                trackableProduct.LastUpdate = DateTime.Now;
+                await _productRepository.UpdateAsync( product );
+            }
+
+            // 保存到数据库
+            return await _locationRepository.UpdateAsync( location );
+        }
         /// <summary>
         /// 删除库位
         /// </summary>

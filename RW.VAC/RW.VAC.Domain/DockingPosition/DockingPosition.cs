@@ -39,7 +39,11 @@ namespace RW.VAC.Domain.DockingPosition
         /// </summary>
         [Column( StringLength = 20 )]
         public string CurrentPalletId { get; set; }
-
+        /// <summary>
+        /// 当前产品ID
+        /// </summary>
+        [Column( StringLength = 20 )]
+        public string CurrentProductld { get; set; }
         /// <summary>
         /// 最后更新时间
         /// </summary>

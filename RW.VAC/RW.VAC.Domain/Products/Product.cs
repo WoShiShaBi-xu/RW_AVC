@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace RW.VAC.Domain.Products
 {
     [Table( Name = "Products" )]
-    public class Product
+    public class Product : ILocationTrackable
     {
         /// <summary>
         /// 产品ID
@@ -51,9 +51,14 @@ namespace RW.VAC.Domain.Products
         public DateTime? UpdateTime { get; set; }
 
         // 导航属性
-       
+        public string LocationId { get; set; }
+        public DateTime? LastUpdate { get; set; }
     }
-
+    public interface ILocationTrackable
+    {
+        string LocationId { get; set; }
+        DateTime? LastUpdate { get; set; }
+    }
     /// <summary>
     /// 产品类型枚举
     /// </summary>

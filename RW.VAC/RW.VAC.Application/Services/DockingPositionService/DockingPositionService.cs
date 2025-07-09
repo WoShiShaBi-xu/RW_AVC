@@ -1,5 +1,6 @@
 ﻿using RW.VAC.Domain.DockingPosition;
 using RW.VAC.Domain.Pallet;
+using RW.VAC.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,22 @@ namespace RW.VAC.Application.Services.DockingPositionService
     {
         private readonly IDockingPositionRepository _dockingPositionRepository;
         private readonly IPalletRepository _palletRepository;
-
+        private readonly IProductRepository _productRepository;
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="dockingPositionRepository">接驳位仓储</param>
         /// <param name="palletRepository">托盘仓储</param>
-        public DockingPositionService( IDockingPositionRepository dockingPositionRepository , IPalletRepository palletRepository )
+        public DockingPositionService(
+            IDockingPositionRepository dockingPositionRepository ,
+            IPalletRepository palletRepository ,
+            IProductRepository productRepository )
         {
             _dockingPositionRepository = dockingPositionRepository ?? throw new ArgumentNullException( nameof( dockingPositionRepository ) );
             _palletRepository = palletRepository ?? throw new ArgumentNullException( nameof( palletRepository ) );
+            _productRepository = productRepository ?? throw new ArgumentNullException( nameof( productRepository ) );
         }
+
 
         /// <summary>
         /// 获取所有接驳位
@@ -64,7 +70,51 @@ namespace RW.VAC.Application.Services.DockingPositionService
 
             return dockingPosition;
         }
+        /// <summary>
+        /// 从接驳位移除产品
+        /// </summary>
+        /// <param name="positionId">接驳位ID</param>
+        /// <returns>移除结果</returns>
+        public async Task<bool> RemoveProductFromPositionAsync( string positionId )
+        {
+            // 验证参数
+            if (string.IsNullOrWhiteSpace( positionId ))
+            {
+                throw new ArgumentException( "接驳位ID不能为空" , nameof( positionId ) );
+            }
 
+            // 获取接驳位
+            var position = await _dockingPositionRepository.GetByIdAsync( positionId );
+            if (position == null)
+            {
+                throw new KeyNotFoundException( $"找不到ID为{positionId}的接驳位" );
+            }
+
+            // 如果接驳位没有产品，不需要处理
+            if (string.IsNullOrEmpty( position.CurrentProductld ))
+            {
+                return true;
+            }
+
+            // 获取产品
+            var productId = position.CurrentProductld;
+            var product = await _productRepository.GetByIdAsync( productId );
+
+            // 更新接驳位状态
+            position.CurrentProductld = null;
+            position.LastUpdate = DateTime.Now;
+
+            // 如果找到产品，更新产品位置
+            if (product != null && product is ILocationTrackable trackableProduct && trackableProduct.LocationId == positionId)
+            {
+                trackableProduct.LocationId = null;
+                trackableProduct.LastUpdate = DateTime.Now;
+                await _productRepository.UpdateAsync( product );
+            }
+
+            // 保存到数据库
+            return await _dockingPositionRepository.UpdateAsync( position );
+        }
         /// <summary>
         /// 更新接驳位信息
         /// </summary>
