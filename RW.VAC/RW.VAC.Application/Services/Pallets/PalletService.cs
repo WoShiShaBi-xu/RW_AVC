@@ -124,7 +124,7 @@ namespace RW.VAC.Application.Services.Pallets
             }
 
             // 检查库位是否被占用
-            if (location.IsOccupied == true && location.CurrentPalletId != palletId)
+            if (location.IsOccupied == true && location.CurrentBindingld.PalletId != palletId)
             {
                 throw new InvalidOperationException( $"库位{locationId}已被占用" );
             }
@@ -136,7 +136,7 @@ namespace RW.VAC.Application.Services.Pallets
                 if (oldLocation != null)
                 {
                     oldLocation.IsOccupied = false;
-                    oldLocation.CurrentPalletId = null;
+                    oldLocation.CurrentBindingld.PalletId = null;
                     oldLocation.LastUpdate = DateTime.Now;
                     await _locationRepository.UpdateAsync( oldLocation );
                 }
@@ -148,7 +148,7 @@ namespace RW.VAC.Application.Services.Pallets
 
             // 更新库位状态
             location.IsOccupied = true;
-            location.CurrentPalletId = palletId;
+            location.CurrentBindingld.PalletId = palletId;
             location.LastUpdate = DateTime.Now;
 
             // 保存到数据库

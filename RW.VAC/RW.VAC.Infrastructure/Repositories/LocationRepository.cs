@@ -36,7 +36,7 @@ namespace RW.VAC.Infrastructure.Repositories
 
         public async Task<Location> GetByPalletIdAsync( string palletId )
         {
-            return await Select.Where( x => x.CurrentPalletId == palletId ).FirstAsync();
+            return await Select.Where( x => x.CurrentBindingld.PalletId == palletId ).FirstAsync();
         }
 
         public async Task<bool> AddAsync( Location location )

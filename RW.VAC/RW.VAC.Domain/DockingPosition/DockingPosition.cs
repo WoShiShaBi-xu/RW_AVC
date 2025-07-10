@@ -37,8 +37,7 @@ namespace RW.VAC.Domain.DockingPosition
         /// <summary>
         /// 当前托盘ID
         /// </summary>
-        [Column( StringLength = 20 )]
-        public string CurrentPalletId { get; set; }
+        public RW.VAC.Domain.ProductPalletBinding.ProductPalletBinding CurrentBindingld { get; set; }
 
         /// <summary>
         /// 最后更新时间

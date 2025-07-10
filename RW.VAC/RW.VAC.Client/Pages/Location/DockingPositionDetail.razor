@@ -26,9 +26,9 @@
             }
         </DescriptionsItem>
         <DescriptionsItem Title="当前托盘">
-            @if (!string.IsNullOrEmpty( _position.CurrentPalletId ))
+            @if (!string.IsNullOrEmpty( _position.CurrentBindingld.PalletId ))
             {
-                <Tag Color="blue">@_position.CurrentPalletId</Tag>
+                <Tag Color="blue">@_position.CurrentBindingld.PalletId</Tag>
             }
             else
             {

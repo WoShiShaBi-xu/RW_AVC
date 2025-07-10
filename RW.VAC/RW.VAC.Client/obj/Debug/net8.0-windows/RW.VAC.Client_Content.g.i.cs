@@ -46,12 +46,5 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/nulllayout.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/redirecttologin.razor")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("_imports.razor")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/location/list.razor.css")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/record/detail.razor.css")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/setting/opc/groupedit.razor.css")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/setting/opc/list.razor.css")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/components/footer/equipmentstatistics.razor.css")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/components/statusindicator.razor.css")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("shared/mainlayout.razor.css")]
 
 

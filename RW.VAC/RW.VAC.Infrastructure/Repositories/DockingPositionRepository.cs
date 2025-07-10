@@ -41,7 +41,7 @@ namespace RW.VAC.Infrastructure.Repositories
 
         public async Task<DockingPosition> GetByPalletIdAsync( string palletId )
         {
-            return await Select.Where( x => x.CurrentPalletId == palletId ).FirstAsync();
+            return await Select.Where( x => x.CurrentBindingld.PalletId == palletId ).FirstAsync();
         }
 
         public async Task<bool> AddAsync( DockingPosition position )

@@ -97,11 +97,11 @@
                                         <div class="location-name">@location.LocationName</div>
                                         <div class="location-type">类型: @GetLocationTypeName( location.LocationType )</div>
 
-                                        @if (!string.IsNullOrEmpty( location.CurrentPalletId ))
+                                        @if (!string.IsNullOrEmpty( location.CurrentBindingld.PalletId ))
                                         {
                                             <div class="location-pallet">
                                                 <span>当前托盘: </span>
-                                                <Tag Color="blue">@location.CurrentPalletId</Tag>
+                                                <Tag Color="blue">@location.CurrentBindingld.PalletId</Tag>
                                             </div>
                                         }
 
@@ -226,12 +226,12 @@
                                             </div>
                                         }
 
-                                        @if (!string.IsNullOrEmpty( position.CurrentPalletId ))
+                                        @if (!string.IsNullOrEmpty( position.CurrentBindingld.PalletId ))
                                         {
                                             <div class="docking-pallet">
                                                 <Icon Type="container" />
                                                 <span>当前托盘: </span>
-                                                <Tag Color="blue">@position.CurrentPalletId</Tag>
+                                                <Tag Color="blue">@position.CurrentBindingld.PalletId</Tag>
                                             </div>
                                         }
 
