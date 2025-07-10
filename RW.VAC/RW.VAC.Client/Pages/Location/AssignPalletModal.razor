@@ -1,203 +1,67 @@
-﻿@using RW.VAC.Client.Models
-@using RW.VAC.Domain.Pallet
+﻿@using RW.VAC.Domain.Pallet
 @using RW.VAC.Domain.Location
+@using RW.VAC.Client.Models
+@inherits FeedbackComponent<AssignPalletModalModel>
 
-@inherits ComponentBase
 @inject IPalletService PalletService
 @inject ILocationService LocationService
-@inject INotificationService NotificationService
 
-<Form Model="@Model" OnFinish="OnFinish" OnFinishFailed="OnFinishFailed">
-    <FormItem Label="库位ID">
-        <Input @bind-Value="@Model.LocationId" Disabled="true" />
-    </FormItem>
-
-    <FormItem Label="选择托盘" Required>
-        <Select @bind-Value="@Model.PalletId"
-                DataSource="@_availablePallets"
-                ValueName="@nameof(PalletSelectItem.PalletId)"
-                LabelName="@nameof(PalletSelectItem.DisplayName)"
-                Placeholder="请选择托盘"
-                Loading="@_loadingPallets"
-                NotFoundContent="@(_loadingPallets ? "加载中..." : "暂无可用托盘")"
-                OnSelectedItemChanged="OnPalletSelected">
-            <SelectOptions>
-                @if (_availablePallets != null)
-                {
-                    @foreach (var pallet in _availablePallets)
-                    {
-                        <SelectOption Value="@pallet.PalletId" Label="@pallet.DisplayName">
-                            <div class="pallet-option">
-                                <div class="pallet-name">@pallet.PalletId</div>
-                                <div class="pallet-info">
-                                    <Tag Color="@GetPalletTypeColor(pallet.PalletType)">@pallet.PalletType</Tag>
-                                    <span class="pallet-status">@pallet.Status</span>
-                                </div>
-                            </div>
-                        </SelectOption>
-                    }
-                }
-            </SelectOptions>
-        </Select>
-    </FormItem>
-
-    @if (_selectedPallet != null)
-    {
-        <FormItem Label="托盘详情">
-            <div class="pallet-details">
-                <div class="detail-row">
-                    <span class="label">托盘ID:</span>
-                    <span class="value">@_selectedPallet.PalletId</span>
-                </div>
-                <div class="detail-row">
-                    <span class="label">托盘类型:</span>
-                    <span class="value">
-                        <Tag Color="@GetPalletTypeColor(_selectedPallet.PalletType)">@_selectedPallet.PalletType</Tag>
-                    </span>
-                </div>
-                <div class="detail-row">
-                    <span class="label">托盘状态:</span>
-                    <span class="value">@_selectedPallet.Status</span>
-                </div>
-                <div class="detail-row">
-                    <span class="label">创建时间:</span>
-                    <span class="value">@_selectedPallet.CreateTime?.ToString( "yyyy-MM-dd HH:mm:ss" )</span>
-                </div>
-            </div>
+<div class="assign-pallet-modal">
+    <Form @ref="_form" Model="@_model" Layout="FormLayout.Vertical">
+        <FormItem Label="托盘ID" Required>
+            <Input @bind-Value="@_model.PalletId" Placeholder="请输入托盘ID" />
+            <Text Type="Secondary">请输入要分配的托盘ID</Text>
         </FormItem>
-    }
 
-
-
-    <FormItem>
-        <Button Type="@ButtonType.Primary"
-                HtmlType="submit"
-                Loading="@_assigning"
-                Disabled="@(string.IsNullOrEmpty(Model.PalletId))">
-            <Icon Type="plus" /> 分配托盘
-        </Button>
-        <Button OnClick="OnCancel" Style="margin-left: 8px;">
-            取消
-        </Button>
-    </FormItem>
-</Form>
+        <FormItem Label="托盘类型">
+            <RadioGroup @bind-Value="@_model.PalletType">
+                <Radio Value="@PalletType.制动装置托盘">制动装置托盘</Radio>
+                <Radio Value="@PalletType.辅助装置托盘">辅助装置托盘</Radio>
+            </RadioGroup>
+        </FormItem>
+    </Form>
+</div>
 
 @code {
-    [Parameter] public AssignPalletModalModel Model { get; set; } = new();
-    [Parameter] public EventCallback OnSuccess { get; set; }
-    [Parameter] public EventCallback OnCancel { get; set; }
+    private Form<AssignPalletModalModel> _form;
+    private AssignPalletModalModel _model = new();
 
-    private List<PalletSelectItem> _availablePallets = new();
-    private bool _loadingPallets = false;
-    private bool _assigning = false;
-    private Pallet _selectedPallet;
-
-    protected override async Task OnInitializedAsync( )
+    protected override void OnInitialized( )
     {
-        await LoadAvailablePallets();
+        _model = base.Options ?? new AssignPalletModalModel();
+        base.OnInitialized();
     }
 
-    private async Task LoadAvailablePallets( )
+    public override async Task OnFeedbackOkAsync( ModalClosingEventArgs e )
     {
-        _loadingPallets = true;
-        try
+        if (!_form.Validate())
         {
-            // 获取所有可用托盘（空闲状态且没有分配位置的托盘）
-            var allPallets = await PalletService.GetAllPalletsAsync();
-            var availablePallets = allPallets.Where( p => p.Status == "空闲" && string.IsNullOrEmpty( p.LocationId ) );
-
-            _availablePallets = availablePallets.Select( p => new PalletSelectItem
-                {
-                    PalletId = p.PalletId ,
-                    PalletType = p.PalletType ,
-                    Status = p.Status ,
-                    CreateTime = p.CreateTime ,
-                    DisplayName = $"{p.PalletId} ({p.PalletType})"
-                } ).ToList();
-        }
-        catch (Exception ex)
-        {
-            await NotificationService.Error( new NotificationConfig
-                {
-                    Message = "加载托盘列表失败" ,
-                    Description = ex.Message
-                } );
-        }
-        finally
-        {
-            _loadingPallets = false;
-            StateHasChanged();
-        }
-    }
-
-    private void OnPalletSelected( PalletSelectItem item )
-    {
-        if (item != null)
-        {
-            _selectedPallet = new Pallet
-                {
-                    PalletId = item.PalletId ,
-                    PalletType = item.PalletType ,
-                    Status = item.Status ,
-                    CreateTime = item.CreateTime
-                };
-        }
-        else
-        {
-            _selectedPallet = null;
-        }
-        StateHasChanged();
-    }
-
-    private string GetPalletTypeColor( string palletType )
-    {
-        return palletType switch
-        {
-            "制动装置托盘" => "blue",
-            "辅助装置托盘" => "green",
-            _ => "default"
-        };
-    }
-
-    private async Task OnFinish( )
-    {
-        if (string.IsNullOrEmpty( Model.PalletId ))
-        {
-            await NotificationService.Warning( new NotificationConfig
-                {
-                    Message = "请选择托盘" ,
-                    Description = "必须选择一个托盘才能进行分配"
-                } );
+            e.Cancel = true;
             return;
         }
 
-        _assigning = true;
         try
         {
-            // 调用服务分配托盘
-            var result = await LocationService.AssignPalletToLocationAsync( Model.LocationId , Model.PalletId );
-
-            if (result)
+            if (string.IsNullOrEmpty( _model.PalletId ))
             {
-                await NotificationService.Success( new NotificationConfig
-                    {
-                        Message = "托盘分配成功" ,
-                        Description = $"托盘 {Model.PalletId} 已成功分配到库位 {Model.LocationId}"
-                    } );
+                throw new Exception( "请输入托盘ID" );
+            }
 
-                if (OnSuccess.HasDelegate)
-                {
-                    await OnSuccess.InvokeAsync();
-                }
-            }
-            else
+            // 验证托盘是否存在，如果不存在则创建
+            try
             {
-                await NotificationService.Error( new NotificationConfig
-                    {
-                        Message = "托盘分配失败" ,
-                        Description = "分配操作未成功完成"
-                    } );
+                await PalletService.GetPalletDetailsAsync( _model.PalletId );
             }
+            catch (KeyNotFoundException)
+            {
+                // 如果托盘不存在，创建一个新托盘
+                await PalletService.CreatePalletAsync( _model.PalletType );
+            }
+
+            // 调用服务分配托盘到库位
+            await LocationService.AssignPalletToLocationAsync( _model.LocationId , _model.PalletId );
+
+            await NotificationService.Success( new NotificationConfig { Message = "托盘分配成功" } );
         }
         catch (Exception ex)
         {
@@ -206,30 +70,9 @@
                     Message = "托盘分配失败" ,
                     Description = ex.Message
                 } );
+            e.Cancel = true;
         }
-        finally
-        {
-            _assigning = false;
-            StateHasChanged();
-        }
-    }
 
-    private async Task OnFinishFailed( EditContext editContext )
-    {
-        await NotificationService.Warning( new NotificationConfig
-            {
-                Message = "表单验证失败" ,
-                Description = "请检查并修正表单中的错误"
-            } );
-    }
-
-    // 托盘选择项
-    public class PalletSelectItem
-    {
-        public string PalletId { get; set; }
-        public string PalletType { get; set; }
-        public string Status { get; set; }
-        public DateTime? CreateTime { get; set; }
-        public string DisplayName { get; set; }
+        await base.OnFeedbackOkAsync( e );
     }
 }

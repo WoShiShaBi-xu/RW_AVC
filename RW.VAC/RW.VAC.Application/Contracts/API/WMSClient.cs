@@ -88,32 +88,22 @@ namespace RW.VAC.Application.Contracts.API
             }
         }
 
-        // <summary>
-        /// 发送并执行自定义任务
+        /// <summary>
+        /// 发送订单任务到iRMS系统
         /// </summary>
-        /// <param name="customCode">自定义任务编码</param>
-        /// <param name="customTaskCode">客户运单号（可选）</param>
-        /// <param name="taskParams">任务参数</param>
+        /// <param name="orderTasks">订单任务列表</param>
         /// <param name="sectionId">区域Id，默认为1</param>
         /// <param name="authToken">认证Token</param>
-        /// <returns>自定义任务执行结果</returns>
-        public async Task<CustomTaskResponse> RunCustomTaskAsync( string customCode , string customTaskCode = null , object taskParams = null , string sectionId = "1" , string authToken = "" )
+        /// <returns>发送订单任务结果</returns>
+        public async Task<SendOrderTasksResponse> SendOrderTasksAsync( List<OrderTask> orderTasks , string sectionId = "1" , string authToken = "" )
         {
             try
             {
                 // 构建请求URL
-                string url = $"{_baseUrl}/platform/interface/V2/runCustomTask";
-
-                // 构建请求参数
-                var requestData = new
-                {
-                    customCode = customCode ,
-                    customTaskCode = customTaskCode ,
-                    @params = taskParams
-                };
+                string url = $"{_baseUrl}/platform/interface/V2/sendOrderTasks";
 
                 // 将参数序列化为 JSON 字符串
-                string jsonContent = JsonConvert.SerializeObject( requestData , Formatting.None , new JsonSerializerSettings
+                string jsonContent = JsonConvert.SerializeObject( orderTasks , Formatting.None , new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore
                 } );
@@ -132,6 +122,7 @@ namespace RW.VAC.Application.Contracts.API
                 {
                     request.Headers.Add( "Authorization" , $"Bearer {authToken}" );
                 }
+
                 // 发送 POST 请求
                 HttpResponseMessage response = await _retryPolicy.ExecuteAsync( async ( ) =>
                 {
@@ -145,23 +136,23 @@ namespace RW.VAC.Application.Contracts.API
                 string responseContent = await response.Content.ReadAsStringAsync();
 
                 // 解析响应内容
-                var result = JsonConvert.DeserializeObject<CustomTaskResponse>( responseContent );
+                var result = JsonConvert.DeserializeObject<SendOrderTasksResponse>( responseContent );
 
-                _logger.LogInformation( $"自定义任务执行成功，任务编码: {customCode}" );
+                _logger.LogInformation( $"发送订单任务成功，共 {orderTasks.Count} 个任务" );
                 return result;
             }
             catch (Exception ex)
             {
-                _logger.LogError( ex , $"自定义任务执行失败，任务编码: {customCode}" );
+                _logger.LogError( ex , $"发送订单任务失败，任务数量: {orderTasks.Count}" );
 
                 // 返回错误响应
-                return new CustomTaskResponse
+                return new SendOrderTasksResponse
                 {
                     Code = "-1" ,
-                    Message = $"自定义任务执行失败: {ex.Message}" ,
+                    Message = $"发送订单任务失败: {ex.Message}" ,
                     Data = null
                 };
             }
         }
-      
-    } }
+    }
+}

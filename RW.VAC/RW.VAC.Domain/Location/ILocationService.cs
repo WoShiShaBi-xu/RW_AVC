@@ -50,12 +50,7 @@ namespace RW.VAC.Domain.Location
         /// <param name="locationId">库位ID</param>
         /// <returns>移除结果</returns>
         Task<bool> RemovePalletFromLocationAsync( string locationId );
-        /// <summary>
-        /// 从库位移除产品
-        /// </summary>
-        /// <param name="locationId">库位ID</param>
-        /// <returns>移除结果</returns>
-        Task<bool> RemoveProductFromLocationAsync( string locationId );
+
         /// <summary>
         /// 查找可用的库位
         /// </summary>

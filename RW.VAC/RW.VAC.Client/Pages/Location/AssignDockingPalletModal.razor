@@ -1,171 +1,78 @@
-﻿@using Microsoft.AspNetCore.Components.Forms
-@using RW.VAC.Client.Models
-@using RW.VAC.Domain.Pallet
+﻿@using RW.VAC.Domain.Pallet
 @using RW.VAC.Domain.DockingPosition
+@using RW.VAC.Client.Models
+@inherits FeedbackComponent<AssignDockingPalletModalModel>
 
-@inherits ComponentBase
 @inject IPalletService PalletService
 @inject IDockingPositionService DockingPositionService
-@inject INotificationService NotificationService
 
-<Form Model="@Model" OnFinish="OnFinish" OnFinishFailed="OnFinishFailed">
-    <FormItem Label="接驳位ID">
-        <Input @bind-Value="@Model.PositionId" Disabled="true" />
-    </FormItem>
+<div class="assign-docking-pallet-modal">
+    <Form @ref="_form" Model="@_model" Layout="FormLayout.Vertical">
+        <FormItem Label="托盘ID" Required>
+            <Input @bind-Value="@_model.PalletId" Placeholder="请输入托盘ID" />
+            <Text Type="Secondary">请输入要分配的托盘ID</Text>
+        </FormItem>
 
-    <FormItem Label="选择托盘" Required>
-        <Select @bind-Value="@Model.PalletId"
-                DataSource="@_availablePallets"
-                ValueName="@nameof(PalletSelectItem.PalletId)"
-                LabelName="@nameof(PalletSelectItem.DisplayName)"
-                Placeholder="请选择托盘"
-                Loading="@_loadingPallets"
-                NotFoundContent="@(_loadingPallets ? "加载中..." : "暂无可用托盘")">
-        </Select>
-    </FormItem>
-
-   
-    <FormItem>
-        <Button Type="@ButtonType.Primary" 
-                HtmlType="submit" 
-                Loading="@_assigning"
-                Disabled="@(string.IsNullOrEmpty(Model.PalletId))">
-            <Icon Type="plus" /> 分配托盘
-        </Button>
-        <Button OnClick="OnCancel" Style="margin-left: 8px;">
-            取消
-        </Button>
-    </FormItem>
-</Form>
+        <FormItem Label="托盘类型">
+            <RadioGroup @bind-Value="@_model.PalletType">
+                <Radio Value="@PalletType.制动装置托盘">制动装置托盘</Radio>
+                <Radio Value="@PalletType.辅助装置托盘">辅助装置托盘</Radio>
+            </RadioGroup>
+        </FormItem>
+    </Form>
+</div>
 
 @code {
-    [Parameter] public AssignDockingPalletModalModel Model { get; set; } = new();
-    [Parameter] public EventCallback OnSuccess { get; set; }
-    [Parameter] public EventCallback OnCancel { get; set; }
+    private Form<AssignDockingPalletModalModel> _form;
+    private AssignDockingPalletModalModel _model = new();
 
-    private List<PalletSelectItem> _availablePallets = new();
-    private bool _loadingPallets = false;
-    private bool _assigning = false;
-
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized( )
     {
-        await LoadAvailablePallets();
+        _model = base.Options ?? new AssignDockingPalletModalModel();
+        base.OnInitialized();
     }
 
-    private async Task LoadAvailablePallets()
+    public override async Task OnFeedbackOkAsync( ModalClosingEventArgs e )
     {
-        _loadingPallets = true;
+        if (!_form.Validate())
+        {
+            e.Cancel = true;
+            return;
+        }
+
         try
         {
-            var allPallets = await PalletService.GetAllAsync();
-            var availablePallets = allPallets.Where(p => p.Status == "空闲" && string.IsNullOrEmpty(p.LocationId));
-            
-            _availablePallets = availablePallets.Select(p => new PalletSelectItem
+            if (string.IsNullOrEmpty( _model.PalletId ))
             {
-                PalletId = p.PalletId,
-                PalletType = p.PalletType.ToString(),
-                Status = p.Status,
-                CreateTime = p.CreateTime,
-                DisplayName = $"{p.PalletId} ({p.PalletType})"
-            }).ToList();
-        }
-        catch (Exception ex)
-        {
-            await NotificationService.Error(new NotificationConfig
-            {
-                Message = "加载托盘列表失败",
-                Description = ex.Message
-            });
-        }
-        finally
-        {
-            _loadingPallets = false;
-            StateHasChanged();
-        }
-    }
-
-    private async Task OnFinish()
-    {
-        _assigning = true;
-        try
-        {
-            var result = await DockingPositionService.AssignPalletToPositionAsync(Model.PositionId, Model.PalletId);
-            
-            if (result)
-            {
-                await NotificationService.Success(new NotificationConfig
-                {
-                    Message = "托盘分配成功",
-                    Description = $"托盘 {Model.PalletId} 已成功分配到接驳位 {Model.PositionId}"
-                });
-
-                if (OnSuccess.HasDelegate)
-                {
-                    await OnSuccess.InvokeAsync();
-                }
+                throw new Exception( "请输入托盘ID" );
             }
+
+            // 验证托盘是否存在，如果不存在则创建
+            try
+            {
+                await PalletService.GetPalletDetailsAsync( _model.PalletId );
+            }
+            catch (KeyNotFoundException)
+            {
+                // 如果托盘不存在，创建一个新托盘
+                await PalletService.CreatePalletAsync( _model.PalletType );
+            }
+
+            // 调用服务分配托盘到接驳位
+            await DockingPositionService.AssignPalletToPositionAsync( _model.PositionId , _model.PalletId );
+
+            await NotificationService.Success( new NotificationConfig { Message = "托盘分配成功" } );
         }
         catch (Exception ex)
         {
-            await NotificationService.Error(new NotificationConfig
-            {
-                Message = "托盘分配失败",
-                Description = ex.Message
-            });
+            await NotificationService.Error( new NotificationConfig
+                {
+                    Message = "托盘分配失败" ,
+                    Description = ex.Message
+                } );
+            e.Cancel = true;
         }
-        finally
-        {
-            _assigning = false;
-            StateHasChanged();
-        }
-    }
 
-    private async Task OnFinishFailed(EditContext editContext)
-    {
-        await NotificationService.Warning(new NotificationConfig
-        {
-            Message = "表单验证失败",
-            Description = "请检查并修正表单中的错误"
-        });
+        await base.OnFeedbackOkAsync( e );
     }
-
-    public class PalletSelectItem
-    {
-        public string PalletId { get; set; }
-        public string PalletType { get; set; }
-        public string Status { get; set; }
-        public DateTime? CreateTime { get; set; }
-        public string DisplayName { get; set; }
-    }
-}
-
-<style>
-    .pallet-option {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    .pallet-name {
-        font-weight: 500;
-        color: #1890ff;
-    }
-
-    .pallet-info {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 12px;
-    }
-
-    .pallet-status {
-        color: #666;
-    }
-
-    .pallet-details {
-        background: #f5f5f5;
-        padding: 12px;
-        border-radius: 4px;
-    }
-</style>
 }

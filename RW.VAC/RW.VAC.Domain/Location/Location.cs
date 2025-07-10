@@ -38,11 +38,7 @@ namespace RW.VAC.Domain.Location
         /// </summary>
         [Column( StringLength = 20 )]
         public string CurrentPalletId { get; set; }
-        /// <summary>
-        /// 当前产品ID
-        /// </summary>
-        [Column( StringLength = 20 )]
-        public string CurrentProductId { get; set; }
+
         /// <summary>
         /// 最后更新时间
         /// </summary>
