@@ -1,5 +1,6 @@
 ﻿using RW.VAC.Domain.DockingPosition;
 using RW.VAC.Domain.Pallet;
+using RW.VAC.Domain.ProductPalletBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,8 +55,7 @@ namespace RW.VAC.Application.Services.DockingPositionService
                 PositionId = GeneratePositionId( positionType ) ,
                 PositionType = positionType ,
                 StationId = stationId ,
-                Status = DockingPositionStatus.空闲 ,
-                 CurrentBindingld=new Domain.ProductPalletBinding.ProductPalletBinding(),
+                CurrentBinding = null,
                 LastUpdate = DateTime.Now
             };
 
@@ -150,7 +150,7 @@ namespace RW.VAC.Application.Services.DockingPositionService
             }
 
             // 只有空闲状态的接驳位才能删除
-            return position.Status == DockingPositionStatus.空闲 && string.IsNullOrEmpty( position.CurrentBindingld.PalletId );
+            return position.CurrentBinding == null ;
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace RW.VAC.Application.Services.DockingPositionService
         /// <param name="positionIds">接驳位ID列表</param>
         /// <param name="status">新状态</param>
         /// <returns>更新结果</returns>
-        public async Task<bool> BatchUpdatePositionStatusAsync( IEnumerable<string> positionIds , DockingPositionStatus status )
+        public async Task<bool> BatchUpdatePositionStatusAsync( IEnumerable<string> positionIds , ProductPalletBinding binding )
         {
             if (positionIds == null || !positionIds.Any())
             {
@@ -187,7 +187,7 @@ namespace RW.VAC.Application.Services.DockingPositionService
             {
                 try
                 {
-                    var result = await UpdatePositionStatusAsync( positionId , status );
+                    var result = await UpdatePositionStatusAsync( positionId , binding );
                     results.Add( result );
                 }
                 catch
@@ -205,7 +205,7 @@ namespace RW.VAC.Application.Services.DockingPositionService
         /// <param name="positionId">接驳位ID</param>
         /// <param name="status">新状态</param>
         /// <returns>更新结果</returns>
-        public async Task<bool> UpdatePositionStatusAsync( string positionId , DockingPositionStatus status )
+        public async Task<bool> UpdatePositionStatusAsync( string positionId , ProductPalletBinding binding )
         {
             // 验证参数
             if (string.IsNullOrWhiteSpace( positionId ))
@@ -221,24 +221,20 @@ namespace RW.VAC.Application.Services.DockingPositionService
             }
 
             // 如果状态相同，不需要更新
-            if (position.Status == status)
+            if (position.CurrentBinding == binding)
             {
                 return true;
             }
 
-            // 如果设置为空闲，需要清除当前托盘ID
-            if (status == DockingPositionStatus.空闲)
-            {
-                position.CurrentBindingld.PalletId = null;
-            }
-            else if (status == DockingPositionStatus.有料 && string.IsNullOrEmpty( position.CurrentBindingld.PalletId ))
+            
+            else if (binding !=null && string.IsNullOrEmpty( binding.PalletId ))
             {
                 // 如果设置为占用但没有托盘ID，抛出异常
                 throw new InvalidOperationException( "设置接驳位为占用状态时，必须分配托盘" );
             }
 
             // 更新状态
-            position.Status = status;
+            position.CurrentBinding = binding;
             position.LastUpdate = DateTime.Now;
 
             // 保存到数据库
@@ -251,7 +247,7 @@ namespace RW.VAC.Application.Services.DockingPositionService
         /// <param name="positionId">接驳位ID</param>
         /// <param name="palletId">托盘ID</param>
         /// <returns>分配结果</returns>
-        public async Task<bool> AssignPalletToPositionAsync( string positionId , string palletId )
+        public async Task<bool> AssignPalletToPositionAsync( string positionId , ProductPalletBinding palletId )
         {
             // 验证参数
             if (string.IsNullOrWhiteSpace( positionId ))
@@ -259,7 +255,7 @@ namespace RW.VAC.Application.Services.DockingPositionService
                 throw new ArgumentException( "接驳位ID不能为空" , nameof( positionId ) );
             }
 
-            if (string.IsNullOrWhiteSpace( palletId ))
+            if (string.IsNullOrWhiteSpace( palletId.PalletId ))
             {
                 throw new ArgumentException( "托盘ID不能为空" , nameof( palletId ) );
             }
@@ -272,21 +268,20 @@ namespace RW.VAC.Application.Services.DockingPositionService
             }
 
             // 检查接驳位是否已被占用
-            if (position.Status == DockingPositionStatus.有料 && position.CurrentBindingld.PalletId != palletId)
+            if (position.CurrentBinding != null && position.CurrentBinding.PalletId != palletId.PalletId)
             {
-                throw new InvalidOperationException( $"接驳位{positionId}已被托盘{position.CurrentBindingld.PalletId}占用" );
+                throw new InvalidOperationException( $"接驳位{positionId}已被托盘{position.CurrentBinding.PalletId}占用" );
             }
 
             // 获取托盘
-            var pallet = await _palletRepository.GetByIdAsync( palletId );
+            var pallet = await _palletRepository.GetByIdAsync( palletId.PalletId );
             if (pallet == null)
             {
                 throw new KeyNotFoundException( $"找不到ID为{palletId}的托盘" );
             }
 
             // 更新接驳位状态
-            position.Status = DockingPositionStatus.有料;
-            position.CurrentBindingld.PalletId = palletId;
+            position.CurrentBinding = palletId;
             position.LastUpdate = DateTime.Now;
 
             // 更新托盘位置信息（如果托盘有LocationId属性来标识位置）
@@ -324,18 +319,17 @@ namespace RW.VAC.Application.Services.DockingPositionService
             }
 
             // 如果接驳位没有托盘，不需要处理
-            if (position.Status != DockingPositionStatus.有料 || string.IsNullOrEmpty( position.CurrentBindingld.PalletId ))
+            if (position.CurrentBinding != null || string.IsNullOrEmpty( position.CurrentBinding.PalletId ))
             {
                 return true;
             }
 
             // 获取托盘
-            var palletId = position.CurrentBindingld.PalletId;
+            var palletId = position.CurrentBinding.PalletId;
             var pallet = await _palletRepository.GetByIdAsync( palletId );
 
             // 更新接驳位状态
-            position.Status = DockingPositionStatus.空闲;
-            position.CurrentBindingld.PalletId = null;
+            position.CurrentBinding = null;
             position.LastUpdate = DateTime.Now;
 
             // 如果找到托盘，清除托盘的位置信息
@@ -361,7 +355,7 @@ namespace RW.VAC.Application.Services.DockingPositionService
             var positions = await _dockingPositionRepository.GetByTypeAsync( positionType );
 
             // 过滤出空闲的接驳位
-            return positions.Where( p => p.Status == DockingPositionStatus.空闲 );
+            return positions.Where( p => p.CurrentBinding == null );
         }
 
         /// <summary>

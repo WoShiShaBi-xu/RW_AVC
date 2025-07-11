@@ -27,17 +27,13 @@ namespace RW.VAC.Domain.DockingPosition
         /// </summary>
         [Column( StringLength = 20 )]
         public string StationId { get; set; }
-
-        /// <summary>
-        /// 接驳位状态(空闲/有料)
-        /// </summary>
-        [Column( MapType = typeof( string ) )]
-        public DockingPositionStatus Status { get; set; }
-
         /// <summary>
         /// 当前托盘ID
         /// </summary>
-        public RW.VAC.Domain.ProductPalletBinding.ProductPalletBinding CurrentBindingld { get; set; }
+        public int? CurrentBindingId { get; set; }
+
+        // 导航属性
+        public virtual ProductPalletBinding.ProductPalletBinding CurrentBinding { get; set; }
 
         /// <summary>
         /// 最后更新时间

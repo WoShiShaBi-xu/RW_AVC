@@ -16,7 +16,9 @@ namespace RW.VAC.Infrastructure.Repositories
 
         public async Task<IEnumerable<Location>> GetAllAsync( )
         {
-            return await Select.ToListAsync();
+            return await Select
+                .Include( x => x.CurrentBinding )
+                .ToListAsync();
         }
 
         public async Task<Location> GetByIdAsync( string locationId )
@@ -36,7 +38,7 @@ namespace RW.VAC.Infrastructure.Repositories
 
         public async Task<Location> GetByPalletIdAsync( string palletId )
         {
-            return await Select.Where( x => x.CurrentBindingld.PalletId == palletId ).FirstAsync();
+            return await Select.Where( x => x.CurrentBinding.PalletId == palletId ).FirstAsync();
         }
 
         public async Task<bool> AddAsync( Location location )

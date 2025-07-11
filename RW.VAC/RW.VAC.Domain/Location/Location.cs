@@ -1,31 +1,32 @@
 ﻿using FreeSql.DataAnnotations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RW.VAC.Domain.Location
 {
-    [Table( Name = "Locations" )]
+    [FreeSql.DataAnnotations.Table( Name = "Locations" )]
     public class Location
     {
         /// <summary>
         /// 库位ID
         /// </summary>
-        [Column( IsPrimary = true , StringLength = 20 )]
+        [FreeSql.DataAnnotations.Column( IsPrimary = true , StringLength = 20 )]
         public string LocationId { get; set; }
 
         /// <summary>
         /// 库位类型(缓存区-待试验/缓存区-已试验/试验区接驳位/成品检测接驳位/护箱备料区/产线接驳位)
         /// </summary>
-        [Column( MapType = typeof( string ) )]
+        [FreeSql.DataAnnotations.Column( MapType = typeof( string ) )]
         public LocationType LocationType { get; set; }
 
         /// <summary>
         /// 库位名称
         /// </summary>
-        [Column( StringLength = 100 )]
+        [FreeSql.DataAnnotations.Column( StringLength = 100 )]
         public string LocationName { get; set; }
 
         /// <summary>
@@ -36,7 +37,11 @@ namespace RW.VAC.Domain.Location
         /// <summary>
         /// 当前托盘ID
         /// </summary>
-        public RW.VAC.Domain.ProductPalletBinding.ProductPalletBinding CurrentBindingld { get; set; }
+        public int? CurrentBindingId { get; set; }
+
+        // 导航属性
+        [Navigate(nameof(CurrentBindingId))]
+        public virtual ProductPalletBinding.ProductPalletBinding CurrentBinding { get; set; }
 
         /// <summary>
         /// 最后更新时间

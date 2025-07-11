@@ -16,7 +16,7 @@
             }
         </DescriptionsItem>
         <DescriptionsItem Title="占用状态">
-            @if (_position.Status == DockingPositionStatus.有料)
+            @if (_position.CurrentBinding != null)
             {
                 <Tag Color="red">已占用</Tag>
             }
@@ -26,9 +26,19 @@
             }
         </DescriptionsItem>
         <DescriptionsItem Title="当前托盘">
-            @if (!string.IsNullOrEmpty( _position.CurrentBindingld.PalletId ))
+            @if (!string.IsNullOrEmpty( _position.CurrentBinding.PalletId ))
             {
-                <Tag Color="blue">@_position.CurrentBindingld.PalletId</Tag>
+                <Tag Color="blue">@_position.CurrentBinding.PalletId</Tag>
+            }
+            else
+            {
+                <span>无</span>
+            }
+        </DescriptionsItem>
+        <DescriptionsItem Title="当前产品">
+            @if (!string.IsNullOrEmpty( _position.CurrentBinding.ProductId ))
+            {
+                <Tag Color="blue">@_position.CurrentBinding.ProductId</Tag>
             }
             else
             {

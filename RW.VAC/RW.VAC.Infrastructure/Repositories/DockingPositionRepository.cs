@@ -16,7 +16,9 @@ namespace RW.VAC.Infrastructure.Repositories
 
         public async Task<IEnumerable<DockingPosition>> GetAllAsync( )
         {
-            return await Select.ToListAsync();
+            return await Select
+               .Include( x => x.CurrentBinding )
+               .ToListAsync();
         }
 
         public async Task<DockingPosition> GetByIdAsync( string positionId )
@@ -29,11 +31,7 @@ namespace RW.VAC.Infrastructure.Repositories
             return await Select.Where( x => x.PositionType == positionType ).ToListAsync();
         }
 
-        public async Task<IEnumerable<DockingPosition>> GetByStatusAsync( DockingPositionStatus status )
-        {
-            return await Select.Where( x => x.Status == status ).ToListAsync();
-        }
-
+       
         public async Task<IEnumerable<DockingPosition>> GetByStationIdAsync( string stationId )
         {
             return await Select.Where( x => x.StationId == stationId ).ToListAsync();
@@ -41,7 +39,7 @@ namespace RW.VAC.Infrastructure.Repositories
 
         public async Task<DockingPosition> GetByPalletIdAsync( string palletId )
         {
-            return await Select.Where( x => x.CurrentBindingld.PalletId == palletId ).FirstAsync();
+            return await Select.Where( x => x.CurrentBinding.PalletId == palletId ).FirstAsync();
         }
 
         public async Task<bool> AddAsync( DockingPosition position )

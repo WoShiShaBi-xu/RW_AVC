@@ -34,45 +34,45 @@
 
     public override async Task OnFeedbackOkAsync( ModalClosingEventArgs e )
     {
-        if (!_form.Validate())
-        {
-            e.Cancel = true;
-            return;
-        }
+    //     if (!_form.Validate())
+    //     {
+    //         e.Cancel = true;
+    //         return;
+    //     }
 
-        try
-        {
-            if (string.IsNullOrEmpty( _model.PalletId ))
-            {
-                throw new Exception( "请输入托盘ID" );
-            }
+    //     try
+    //     {
+    //         if (string.IsNullOrEmpty( _model.PalletId ))
+    //         {
+    //             throw new Exception( "请输入托盘ID" );
+    //         }
 
-            // 验证托盘是否存在，如果不存在则创建
-            try
-            {
-                await PalletService.GetPalletDetailsAsync( _model.PalletId );
-            }
-            catch (KeyNotFoundException)
-            {
-                // 如果托盘不存在，创建一个新托盘
-                await PalletService.CreatePalletAsync( _model.PalletType );
-            }
+    //         // 验证托盘是否存在，如果不存在则创建
+    //         try
+    //         {
+    //             await PalletService.GetPalletDetailsAsync( _model.PalletId );
+    //         }
+    //         catch (KeyNotFoundException)
+    //         {
+    //             // 如果托盘不存在，创建一个新托盘
+    //             await PalletService.CreatePalletAsync( _model.PalletType );
+    //         }
 
-            // 调用服务分配托盘到接驳位
-            await DockingPositionService.AssignPalletToPositionAsync( _model.PositionId , _model.PalletId );
+    //         // 调用服务分配托盘到接驳位
+    //         await DockingPositionService.AssignPalletToPositionAsync( _model.PositionId , _model.PalletId );
 
-            await NotificationService.Success( new NotificationConfig { Message = "托盘分配成功" } );
-        }
-        catch (Exception ex)
-        {
-            await NotificationService.Error( new NotificationConfig
-                {
-                    Message = "托盘分配失败" ,
-                    Description = ex.Message
-                } );
-            e.Cancel = true;
-        }
+    //         await NotificationService.Success( new NotificationConfig { Message = "托盘分配成功" } );
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         await NotificationService.Error( new NotificationConfig
+    //             {
+    //                 Message = "托盘分配失败" ,
+    //                 Description = ex.Message
+    //             } );
+    //         e.Cancel = true;
+    //     }
 
-        await base.OnFeedbackOkAsync( e );
-    }
+    //     await base.OnFeedbackOkAsync( e );
+     }
 }

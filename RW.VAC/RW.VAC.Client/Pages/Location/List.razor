@@ -80,11 +80,11 @@
                             <div class="location-grid">
                                 @foreach (var location in locationGroup.Value.OrderBy( l => l.LocationId ))
                                 {
-                                    <Card Bordered Class="@($"location-card {(location.IsOccupied == true ? "location-occupied" : "location-free")}")">
+                                    <Card Bordered Class="@($"location-card {(location.IsOccupied() ? "location-occupied" : "location-free")}")">
                                         <div class="location-header">
                                             <div class="location-code">@location.LocationId</div>
                                             <div class="location-status">
-                                                @if (location.IsOccupied == true)
+                                                @if (location.IsOccupied())
                                                 {
                                                     <Tag Color="red">占用</Tag>
                                                 }
@@ -97,12 +97,20 @@
                                         <div class="location-name">@location.LocationName</div>
                                         <div class="location-type">类型: @GetLocationTypeName( location.LocationType )</div>
 
-                                        @if (!string.IsNullOrEmpty( location.CurrentBindingld.PalletId ))
-                                        {
-                                            <div class="location-pallet">
-                                                <span>当前托盘: </span>
-                                                <Tag Color="blue">@location.CurrentBindingld.PalletId</Tag>
-                                            </div>
+                                        @{
+                                            var palletId = location.GetPalletId();
+                                            var productld = location.GetProductld();
+                                            if (!string.IsNullOrEmpty( palletId ))
+                                            {
+                                                <div class="location-pallet">
+                                                    <span>当前托盘: </span>
+                                                    <Tag Color="blue">@palletId</Tag>
+                                                </div>
+                                                <div class="location-pallet">
+                                                    <span>当前产品: </span>
+                                                    <Tag Color="blue">@productld</Tag>
+                                                </div>
+                                            }
                                         }
 
                                         <div class="location-update">
@@ -116,11 +124,15 @@
                                             <Button Type="default" Size="small" OnClick="() => EditLocation(location)">
                                                 <Icon Type="edit" /> 编辑
                                             </Button>
-                                            <Button Type="@(location.IsOccupied == true ? "danger" : "default")" Size="small" OnClick="() => ManagePallet(location)">
-                                                <Icon Type="@(location.IsOccupied == true ? "minus-circle" : "plus-circle")" />
-                                                @(location.IsOccupied == true ? "移除托盘" : "分配托盘")
+                                            <Button Type="@(location.IsOccupied() ? "danger" : "default")"
+                                                    Size="small"
+                                                    OnClick="() => ManagePallet(location)">
+                                                <Icon Type="@(location.IsOccupied() ? "minus-circle" : "plus-circle")" />
+                                                @(location.IsOccupied() ? "移除托盘" : "分配托盘")
                                             </Button>
-                                            <Button Danger Size="small" OnClick="() => DeleteLocation(location)" Disabled="@(location.IsOccupied == true)">
+                                            <Button Danger Size="small"
+                                                    OnClick="() => DeleteLocation(location)"
+                                                    Disabled="@location.IsOccupied()">
                                                 <Icon Type="delete" /> 删除
                                             </Button>
                                         </div>
@@ -201,11 +213,13 @@
                             <div class="docking-grid">
                                 @foreach (var position in positionGroup.Value.OrderBy( p => p.PositionId ))
                                 {
-                                    <Card Bordered Class="@($"docking-card {(position.Status == DockingPositionStatus.有料 ? "docking-occupied" : "docking-free")}")">
+                                    var isOccupied = position.IsBindingActive();
+
+                                    <Card Bordered Class="@($"docking-card {(isOccupied ? "docking-occupied" : "docking-free")}")">
                                         <div class="docking-header">
                                             <div class="docking-code">@position.PositionId</div>
                                             <div class="docking-status">
-                                                @if (position.Status == DockingPositionStatus.有料)
+                                                @if (isOccupied)
                                                 {
                                                     <Tag Color="red">占用</Tag>
                                                 }
@@ -225,16 +239,17 @@
                                                 <Tag Color="blue">@position.StationId</Tag>
                                             </div>
                                         }
-
-                                        @if (!string.IsNullOrEmpty( position.CurrentBindingld.PalletId ))
-                                        {
-                                            <div class="docking-pallet">
-                                                <Icon Type="container" />
-                                                <span>当前托盘: </span>
-                                                <Tag Color="blue">@position.CurrentBindingld.PalletId</Tag>
-                                            </div>
+                                        @{
+                                            var palletId = position.GetPalletId();
+                                            if (!string.IsNullOrEmpty( palletId ))
+                                            {
+                                                <div class="docking-pallet">
+                                                    <Icon Type="container" />
+                                                    <span>当前托盘: </span>
+                                                    <Tag Color="blue">@palletId</Tag>
+                                                </div>
+                                            }
                                         }
-
                                         <div class="docking-update">
                                             <Icon Type="clock-circle" /> 更新时间: @(position.LastUpdate?.ToString( "yyyy-MM-dd HH:mm:ss" ) ?? "-")
                                         </div>
@@ -246,11 +261,15 @@
                                             <Button Type="default" Size="small" OnClick="() => EditDockingPosition(position)">
                                                 <Icon Type="edit" /> 编辑
                                             </Button>
-                                            <Button Type="@(position.Status == DockingPositionStatus.有料 ? "danger" : "default")" Size="small" OnClick="() => ManageDockingPallet(position)">
-                                                <Icon Type="@(position.Status == DockingPositionStatus.有料 ? "minus-circle" : "plus-circle")" />
-                                                @(position.Status == DockingPositionStatus.有料 ? "移除托盘" : "分配托盘")
+                                            <Button Type="@(isOccupied ? "danger" : "default")"
+                                                    Size="small"
+                                                    OnClick="() => ManageDockingPallet(position)">
+                                                <Icon Type="@(isOccupied ? "minus-circle" : "plus-circle")" />
+                                                @(isOccupied ? "移除托盘" : "分配托盘")
                                             </Button>
-                                            <Button Danger Size="small" OnClick="() => DeleteDockingPosition(position)" Disabled="@(position.Status == DockingPositionStatus.有料)">
+                                            <Button Danger Size="small"
+                                                    OnClick="() => DeleteDockingPosition(position)"
+                                                    Disabled="@isOccupied">
                                                 <Icon Type="delete" /> 删除
                                             </Button>
                                         </div>
@@ -329,7 +348,7 @@
         try
         {
             // 获取所有库位
-            var locations = await LocationService.GetAllLocationsAsync();
+           var locations = await LocationService.GetAllLocationsAsync();
             _locations = locations.ToList();
             FilterLocations();
         }
@@ -406,8 +425,8 @@
             return (0, 0, 0);
 
         var locations = _groupedLocations [ type ];
-        var occupied = locations.Count( l => l.IsOccupied == true );
-        var free = locations.Count( l => l.IsOccupied != true );
+        var occupied = locations.Count( l => l.IsOccupied() );
+        var free = locations.Count( l => !l.IsOccupied() );
         var total = locations.Count;
 
         return (occupied, free, total);
@@ -456,12 +475,13 @@
             return (0, 0, 0);
 
         var positions = _groupedDockingPositions [ positionType ];
-        var occupied = positions.Count( p => p.Status == DockingPositionStatus.有料 );
-        var free = positions.Count( p => p.Status != DockingPositionStatus.有料 );
+        var occupied = positions.Count( p => p.IsBindingActive() );
+        var free = positions.Count( p => !p.IsBindingActive() );
         var total = positions.Count;
 
         return (occupied, free, total);
     }
+
 
     // 新增：获取接驳位类型的CSS类名
     private string GetDockingPositionTypeClass( string positionType )
@@ -574,13 +594,13 @@
     // 删除库位
     private async Task DeleteLocation(Location location)
     {
-        if (location.IsOccupied == true)
+        if (location.IsOccupied())
         {
-            await NotificationService.Warning(new NotificationConfig
-            {
-                Message = "无法删除",
-                Description = "该库位当前有托盘占用，无法删除"
-            });
+            await NotificationService.Warning( new NotificationConfig
+                {
+                    Message = "无法删除" ,
+                    Description = "该库位当前有托盘占用，无法删除"
+                } );
             return;
         }
 
@@ -660,7 +680,7 @@
     // 删除接驳位
     private async Task DeleteDockingPosition(DockingPosition position)
     {
-        if (position.Status == DockingPositionStatus.有料)
+        if (position.CurrentBinding.BindingStatus == Domain.ProductPalletBinding.BindingStatus.绑定中)
         {
             await NotificationService.Warning(new NotificationConfig
             {
@@ -775,7 +795,7 @@
 
     private async Task ManageDockingPallet(DockingPosition position)
     {
-        if (position.Status == DockingPositionStatus.有料)
+        if (position.CurrentBinding != null)
         {
             // 移除托盘
             if (await ModalService.ConfirmAsync(new ConfirmOptions

@@ -27,7 +27,7 @@ namespace RW.VAC.Domain.DockingPosition
         /// <param name="positionId">接驳位ID</param>
         /// <param name="status">新状态</param>
         /// <returns>更新结果</returns>
-        Task<bool> UpdatePositionStatusAsync( string positionId , DockingPositionStatus status );
+        Task<bool> UpdatePositionStatusAsync( string positionId , RW.VAC.Domain.ProductPalletBinding.ProductPalletBinding status );
         /// <summary>
         /// 删除接驳位
         /// </summary>
@@ -40,7 +40,7 @@ namespace RW.VAC.Domain.DockingPosition
         /// <param name="positionId">接驳位ID</param>
         /// <param name="palletId">托盘ID</param>
         /// <returns>分配结果</returns>
-        Task<bool> AssignPalletToPositionAsync( string positionId , string palletId );
+        Task<bool> AssignPalletToPositionAsync( string positionId , RW.VAC.Domain.ProductPalletBinding.ProductPalletBinding palletId );
         /// <summary>
         /// 更新接驳位信息
         /// </summary>

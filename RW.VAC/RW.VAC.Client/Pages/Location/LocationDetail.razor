@@ -17,9 +17,19 @@
             }
         </DescriptionsItem>
         <DescriptionsItem Title="当前托盘">
-            @if (!string.IsNullOrEmpty( Location.CurrentBindingld.PalletId ))
+            @if (!string.IsNullOrEmpty( Location.CurrentBinding.PalletId ))
             {
-                <Tag Color="blue">@Location.CurrentBindingld.PalletId</Tag>
+                <Tag Color="blue">@Location.CurrentBinding.PalletId</Tag>
+            }
+            else
+            {
+                <span>无</span>
+            }
+        </DescriptionsItem>
+        <DescriptionsItem Title="当前产品">
+            @if (!string.IsNullOrEmpty( Location.CurrentBinding.ProductId ))
+            {
+                <Tag Color="blue">@Location.CurrentBinding.ProductId</Tag>
             }
             else
             {
