@@ -20,6 +20,11 @@ namespace RW.VAC.Application.Services.AGV
         /// 托盘ID
         /// </summary>
         public string PalletId { get; set; }
+
+        public string StationNumber
+        {
+            get; set;
+        }
     }
 
     /// <summary>

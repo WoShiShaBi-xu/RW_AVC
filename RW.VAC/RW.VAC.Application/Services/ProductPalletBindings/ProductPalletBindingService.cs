@@ -41,22 +41,14 @@ namespace RW.VAC.Application.Services.ProductPalletBindings
         public async Task<RW.VAC.Domain.ProductPalletBinding.ProductPalletBinding> BindProductToPalletAsync( string productId , string palletId )
         {
             // 验证参数
-            if (string.IsNullOrWhiteSpace( productId ))
-            {
-                throw new ArgumentException( "产品ID不能为空" , nameof( productId ) );
-            }
+            
 
             if (string.IsNullOrWhiteSpace( palletId ))
             {
                 throw new ArgumentException( "托盘ID不能为空" , nameof( palletId ) );
             }
 
-            // 检查产品是否存在
-            var product = await _productRepository.GetByIdAsync( productId );
-            if (product == null)
-            {
-                throw new KeyNotFoundException( $"找不到ID为{productId}的产品" );
-            }
+            
 
             // 检查托盘是否存在
             var pallet = await _palletRepository.GetByIdAsync( palletId );
@@ -72,12 +64,12 @@ namespace RW.VAC.Application.Services.ProductPalletBindings
                 throw new InvalidOperationException( $"产品{productId}已经绑定托盘{existingProductBinding.PalletId}" );
             }
 
-            // 检查托盘是否已经绑定其他产品
-            var existingPalletBinding = await _bindingRepository.GetActiveBindingByPalletIdAsync( palletId );
-            if (existingPalletBinding != null)
-            {
-                throw new InvalidOperationException( $"托盘{palletId}已经绑定产品{existingPalletBinding.ProductId}" );
-            }
+            //// 检查托盘是否已经绑定其他产品
+            //var existingPalletBinding = await _bindingRepository.GetActiveBindingByPalletIdAsync( palletId );
+            //if (existingPalletBinding != null)
+            //{
+            //    throw new InvalidOperationException( $"托盘{palletId}已经绑定产品{existingPalletBinding.ProductId}" );
+            //}
 
             // 检查托盘状态是否允许绑定
             if (pallet.Status != "空闲")
