@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ar4rbSMqDLQ=",
+  "dgSpecHash": "Bd1qAkctD6U=",
   "success": true,
   "projectFilePath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Dashboard\\RW.VAC.Dashboard.csproj",
   "expectedPackageFiles": [
@@ -66,6 +66,7 @@
     "C:\\Users\\言午许\\.nuget\\packages\\polly\\8.5.0\\polly.8.5.0.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\polly.core\\8.5.0\\polly.core.8.5.0.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\言午许\\.nuget\\packages\\restsharp\\112.1.0\\restsharp.112.1.0.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\system.collections.immutable\\1.7.1\\system.collections.immutable.1.7.1.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",

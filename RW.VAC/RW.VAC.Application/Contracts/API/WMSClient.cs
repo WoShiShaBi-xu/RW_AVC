@@ -7,6 +7,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using RW.VAC.Domain.API;
+using Org.BouncyCastle.Asn1.Ocsp;
+using MySql.Data.MySqlClient.Memcached;
+using RestSharp;
 
 namespace RW.VAC.Application.Contracts.API
 {
@@ -17,7 +20,7 @@ namespace RW.VAC.Application.Contracts.API
         private readonly AsyncPolicy<HttpResponseMessage> _retryPolicy;
         private readonly string _baseUrl;
 
-        public WMSClient( HttpClient httpClient , ILogger<WMSClient> logger , string baseUrl = "http://10.132.128.22:10020" )
+        public WMSClient( HttpClient httpClient , ILogger<WMSClient> logger , string baseUrl = "http://10.19.1.34:8000" )
         {
             _httpClient = httpClient;
             _logger = logger;
@@ -95,37 +98,43 @@ namespace RW.VAC.Application.Contracts.API
         /// <param name="sectionId">区域Id，默认为1</param>
         /// <param name="authToken">认证Token</param>
         /// <returns>发送订单任务结果</returns>
-        public async Task<SendOrderTasksResponse> SendOrderTasksAsync( List<OrderTask> orderTasks , string sectionId = "1" , string authToken = "" )
+        public async Task<SendOrderTasksResponse> SendOrderTasksAsync(
+string customCode ,
+Dictionary<string , int [ ]> parameters ,
+string sectionId = "2" ,
+string authToken = "eyJraWQiOiJhcHBUb2tlbiIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJhdWQiOlsiNjZhOWEzZGExNzkyMDIwNzU0NDFkOTJjIiwiV0VCIl19.GsSlxCBOEdPlALyzHgRnXW0ToEHLVCUbZYoFKYdE_zc" )
         {
             try
             {
                 // 构建请求URL
-                string url = $"{_baseUrl}/platform/interface/V2/sendOrderTasks";
+                string url = $"{_baseUrl}/platform/interface/V2/runCustomTask";
+
+                var requestBody = new
+                {
+                    customCode = customCode ,
+                    @params = parameters  // 使用 @params 因为 params 是 C# 关键字
+                };
 
                 // 将参数序列化为 JSON 字符串
-                string jsonContent = JsonConvert.SerializeObject( orderTasks , Formatting.None , new JsonSerializerSettings
+                string jsonContent = JsonConvert.SerializeObject( requestBody , Formatting.None , new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore
                 } );
+                _logger.LogInformation( $"请求体: {jsonContent}" );
 
-                // 创建 HttpContent 对象
-                var content = new StringContent( jsonContent , Encoding.UTF8 , "application/json" );
-
-                // 设置请求头
-                var request = new HttpRequestMessage( HttpMethod.Post , url )
-                {
-                    Content = content
-                };
-                request.Headers.Add( "sectionId" , sectionId );
-
-                if (!string.IsNullOrEmpty( authToken ))
-                {
-                    request.Headers.Add( "Authorization" , $"Bearer {authToken}" );
-                }
-
-                // 发送 POST 请求
+                // 发送 POST 请求 - 修改此处以确保每次重试创建新的请求
                 HttpResponseMessage response = await _retryPolicy.ExecuteAsync( async ( ) =>
                 {
+                    // 每次重试都创建新的 HttpRequestMessage
+                    var request = new HttpRequestMessage( HttpMethod.Post , url )
+                    {
+                        Content = new StringContent( jsonContent , Encoding.UTF8 , "application/json" )
+                    };
+
+                    // 设置请求头
+                    request.Headers.Add( "Authorization" , "Bearer eyJraWQiOiJhcHBUb2tlbiIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJhdWQiOlsiNjZhOWEzZGExNzkyMDIwNzU0NDFkOTJjIiwiV0VCIl19.GsSlxCBOEdPlALyzHgRnXW0ToEHLVCUbZYoFKYdE_zc" );
+                    request.Headers.Add( "sectionId" , "2" );
+
                     return await _httpClient.SendAsync( request );
                 } );
 
@@ -138,13 +147,12 @@ namespace RW.VAC.Application.Contracts.API
                 // 解析响应内容
                 var result = JsonConvert.DeserializeObject<SendOrderTasksResponse>( responseContent );
 
-                _logger.LogInformation( $"发送订单任务成功，共 {orderTasks.Count} 个任务" );
+                _logger.LogInformation( $"发送订单任务成功，customCode: {customCode}" );
                 return result;
             }
             catch (Exception ex)
             {
-                _logger.LogError( ex , $"发送订单任务失败，任务数量: {orderTasks.Count}" );
-
+                _logger.LogError( ex , $"发送订单任务失败，customCode: {customCode}" );
                 // 返回错误响应
                 return new SendOrderTasksResponse
                 {
@@ -154,5 +162,8 @@ namespace RW.VAC.Application.Contracts.API
                 };
             }
         }
+
+
+
     }
 }

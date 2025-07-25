@@ -27,7 +27,7 @@ namespace RW.VAC.Domain.Location
         /// <param name="locationId">库位ID</param>
         /// <param name="isOccupied">是否被占用</param>
         /// <returns>更新结果</returns>
-        Task<bool> UpdateLocationStatusAsync( string locationId , bool isOccupied );
+        Task<bool> UpdateLocationStatusAsync( string locationId , int? isOccupied );
 
         /// <summary>
         /// 分配托盘到库位
@@ -35,7 +35,7 @@ namespace RW.VAC.Domain.Location
         /// <param name="locationId">库位ID</param>
         /// <param name="palletId">托盘ID</param>
         /// <returns>分配结果</returns>
-        Task<bool> AssignPalletToLocationAsync( string locationId , string palletId );
+        Task<bool> AssignPalletToLocationAsync( string locationId , ProductPalletBinding.ProductPalletBinding palletId );
         /// <summary>
         /// 更新库位信息
         /// </summary>

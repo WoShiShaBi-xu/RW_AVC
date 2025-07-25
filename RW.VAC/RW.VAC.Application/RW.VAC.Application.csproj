@@ -7,19 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\ProductPalletBinding\**" />
+    <EmbeddedResource Remove="Services\ProductPalletBinding\**" />
+    <None Remove="Services\ProductPalletBinding\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RW.VAC.Infrastructure\RW.VAC.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Events\EventHandle\" />
     <Folder Include="Hardwares\CodeReader\" />
-    <Folder Include="Services\ProductPalletBinding\" />
     <Folder Include="Services\TaskLoadMapping\" />
     <Folder Include="Services\TestStation\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Polly" Version="8.5.0" />
+    <PackageReference Include="RestSharp" Version="112.1.0" />
   </ItemGroup>
 
 </Project>

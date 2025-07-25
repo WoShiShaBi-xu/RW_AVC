@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RW.Framework")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8660271d13ec37a75dd166783b380f443acb9e1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a92bf162d077751a94628416eee03a43b03fed04")]
 [assembly: System.Reflection.AssemblyProductAttribute("RW.Framework")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RW.Framework")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

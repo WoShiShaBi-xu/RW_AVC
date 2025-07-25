@@ -747,7 +747,7 @@
 
     private async Task ManagePallet(Location location)
     {
-        if (location.IsOccupied == true)
+        if (location.CurrentBindingId != null)
         {
             // 移除托盘
             if (await ModalService.ConfirmAsync(new ConfirmOptions

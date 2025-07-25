@@ -7,7 +7,7 @@
         <DescriptionsItem Title="库位名称">@Location.LocationName</DescriptionsItem>
         <DescriptionsItem Title="库位类型">@GetLocationTypeName( Location.LocationType )</DescriptionsItem>
         <DescriptionsItem Title="占用状态">
-            @if (Location.IsOccupied == true)
+            @if (Location.CurrentBindingId != null)
             {
                 <Tag Color="red">已占用</Tag>
             }

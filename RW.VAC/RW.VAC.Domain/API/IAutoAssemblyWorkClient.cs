@@ -24,6 +24,9 @@ namespace RW.VAC.Domain.API
         /// <param name="sectionId">区域Id，默认为1</param>
         /// <param name="authToken">认证Token</param>
         /// <returns>发送订单任务结果</returns>
-        Task<SendOrderTasksResponse> SendOrderTasksAsync( List<OrderTask> orderTasks , string sectionId = "1" , string authToken = "" );
+        Task<SendOrderTasksResponse> SendOrderTasksAsync( string customCode ,
+    Dictionary<string , int [ ]> parameters ,
+    string sectionId = "1" ,
+    string authToken = "eyJraWQiOiJhcHBUb2tlbiIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJhdWQiOlsiNjZhOWEzZGExNzkyMDIwNzU0NDFkOTJjIiwiV0VCIl19.GsSlxCBOEdPlALyzHgRnXW0ToEHLVCUbZYoFKYdE_zc" );
     }
 }

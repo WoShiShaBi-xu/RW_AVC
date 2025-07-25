@@ -17,36 +17,50 @@ namespace RW.VAC.Domain.ProductPalletBinding
         /// <summary>
         /// 绑定ID
         /// </summary>
-        [Column( IsPrimary = true , IsIdentity = true )]
+        [Column( IsIdentity = true , IsPrimary = true )]
         public int BindingId { get; set; }
 
         /// <summary>
         /// 产品ID
         /// </summary>
-        [Column( StringLength = 20 )]
+        [Column( StringLength = 20 , IsNullable = false )]
         public string ProductId { get; set; }
 
         /// <summary>
         /// 托盘ID
         /// </summary>
-        [Column( StringLength = 20 )]
+        [Column( StringLength = 20 , IsNullable = false )]
         public string PalletId { get; set; }
 
         /// <summary>
         /// 绑定时间
         /// </summary>
+        [Column( IsNullable = true )]
         public DateTime? BindTime { get; set; }
 
         /// <summary>
         /// 解绑时间
         /// </summary>
-        public DateTime? UnbindTime { get; set; }
+        [Column( IsNullable = true )]
+        public DateTime UnbindTime { get; set; }
 
         /// <summary>
-        /// 绑定状态(绑定中/已解绑)
+        /// 绑定状态
         /// </summary>
-        [Column( MapType = typeof( string ) )]
+        [Column( MapType = typeof( string ) , IsNullable = true )]
         public BindingStatus BindingStatus { get; set; }
+
+        /// <summary>
+        /// 关联的产品实体（导航属性）
+        /// </summary>
+        [Navigate( nameof( ProductId ) )]
+        public RW.VAC.Domain.Products.Product Product { get; set; }
+
+        /// <summary>
+        /// 关联的托盘实体（导航属性）
+        /// </summary>
+        [Navigate( nameof( PalletId ) )]
+        public RW.VAC.Domain.Pallet.Pallet Pallet { get; set; }
     }
 
     /// <summary>

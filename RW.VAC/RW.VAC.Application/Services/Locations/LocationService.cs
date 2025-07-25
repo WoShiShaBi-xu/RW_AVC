@@ -1,5 +1,6 @@
 ﻿using RW.VAC.Domain.Location;
 using RW.VAC.Domain.Pallet;
+using RW.VAC.Domain.ProductPalletBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,6 @@ namespace RW.VAC.Application.Services.Locations
         {
             // 调用仓储接口获取所有库位
             return await _locationRepository.GetAllAsync();
-
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace RW.VAC.Application.Services.Locations
                 LocationId = GenerateLocationId( locationType ) ,
                 LocationType = locationType ,
                 LocationName = locationName ,
-                IsOccupied = false ,
+                CurrentBindingId = null ,
                 LastUpdate = DateTime.Now
             };
 
@@ -150,7 +150,7 @@ namespace RW.VAC.Application.Services.Locations
             }
 
             // 只有空闲状态的库位才能删除
-            return location.IsOccupied != true && string.IsNullOrEmpty( location.CurrentBinding.PalletId );
+            return location.CurrentBindingId == null && string.IsNullOrEmpty( location.LocationId );
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace RW.VAC.Application.Services.Locations
         /// <param name="locationId">库位ID</param>
         /// <param name="isOccupied">是否占用</param>
         /// <returns>更新结果</returns>
-        public async Task<bool> UpdateLocationOccupiedStatusAsync( string locationId , bool isOccupied )
+        public async Task<bool> UpdateLocationOccupiedStatusAsync( string locationId , int? isOccupied )
         {
             return await UpdateLocationStatusAsync( locationId , isOccupied );
         }
@@ -190,7 +190,7 @@ namespace RW.VAC.Application.Services.Locations
         /// <param name="locationIds">库位ID列表</param>
         /// <param name="isOccupied">是否占用</param>
         /// <returns>更新结果</returns>
-        public async Task<bool> BatchUpdateLocationOccupiedStatusAsync( IEnumerable<string> locationIds , bool isOccupied )
+        public async Task<bool> BatchUpdateLocationOccupiedStatusAsync( IEnumerable<string> locationIds , int? isOccupied )
         {
             if (locationIds == null || !locationIds.Any())
             {
@@ -222,7 +222,7 @@ namespace RW.VAC.Application.Services.Locations
         /// <param name="locationId">库位ID</param>
         /// <param name="isOccupied">是否被占用</param>
         /// <returns>更新结果</returns>
-        public async Task<bool> UpdateLocationStatusAsync( string locationId , bool isOccupied )
+        public async Task<bool> UpdateLocationStatusAsync( string locationId , int? isOccupied )
         {
             // 验证参数
             if (string.IsNullOrWhiteSpace( locationId ))
@@ -238,24 +238,24 @@ namespace RW.VAC.Application.Services.Locations
             }
 
             // 如果状态相同，不需要更新
-            if (location.IsOccupied == isOccupied)
+            if (location.CurrentBindingId == isOccupied)
             {
                 return true;
             }
 
             // 如果设置为未占用，需要清除当前托盘ID
-            if (!isOccupied)
+            if (isOccupied==null)
             {
-                location.CurrentBinding.PalletId = null;
+                location.LocationId = null;
             }
-            else if (location.CurrentBinding.PalletId == null)
+            else if (location.LocationId == null)
             {
                 // 如果设置为占用但没有托盘ID，抛出异常
                 throw new InvalidOperationException( "设置库位为占用状态时，必须分配托盘" );
             }
 
             // 更新状态
-            location.IsOccupied = isOccupied;
+            location.CurrentBindingId = isOccupied;
             location.LastUpdate = DateTime.Now;
 
             // 保存到数据库
@@ -268,7 +268,7 @@ namespace RW.VAC.Application.Services.Locations
         /// <param name="locationId">库位ID</param>
         /// <param name="palletId">托盘ID</param>
         /// <returns>分配结果</returns>
-        public async Task<bool> AssignPalletToLocationAsync( string locationId , string palletId )
+        public async Task<bool> AssignPalletToLocationAsync( string locationId , ProductPalletBinding palletId )
         {
             // 验证参数
             if (string.IsNullOrWhiteSpace( locationId ))
@@ -276,7 +276,7 @@ namespace RW.VAC.Application.Services.Locations
                 throw new ArgumentException( "库位ID不能为空" , nameof( locationId ) );
             }
 
-            if (string.IsNullOrWhiteSpace( palletId ))
+            if (string.IsNullOrWhiteSpace( palletId.PalletId ))
             {
                 throw new ArgumentException( "托盘ID不能为空" , nameof( palletId ) );
             }
@@ -289,13 +289,13 @@ namespace RW.VAC.Application.Services.Locations
             }
 
             // 检查库位是否已被占用
-            if (location.IsOccupied == true && location.CurrentBinding.PalletId != palletId)
+            if (location.CurrentBindingId != null && location.CurrentBindingId!=palletId.BindingId)
             {
-                throw new InvalidOperationException( $"库位{locationId}已被托盘{location.CurrentBinding.PalletId}占用" );
+                throw new InvalidOperationException( $"库位{locationId}已被托盘{location.LocationId}占用" );
             }
 
             // 获取托盘
-            var pallet = await _palletRepository.GetByIdAsync( palletId );
+            var pallet = await _palletRepository.GetByIdAsync( palletId.PalletId );
             if (pallet == null)
             {
                 throw new KeyNotFoundException( $"找不到ID为{palletId}的托盘" );
@@ -308,16 +308,14 @@ namespace RW.VAC.Application.Services.Locations
                 var oldLocation = await _locationRepository.GetByIdAsync( pallet.LocationId );
                 if (oldLocation != null)
                 {
-                    oldLocation.IsOccupied = false;
-                    oldLocation.CurrentBinding.PalletId = null;
+                    oldLocation.LocationId = null;
                     oldLocation.LastUpdate = DateTime.Now;
                     await _locationRepository.UpdateAsync( oldLocation );
                 }
             }
 
             // 更新库位状态
-            location.IsOccupied = true;
-            location.CurrentBinding.PalletId = palletId;
+            location.CurrentBindingId = palletId.BindingId;
             location.LastUpdate = DateTime.Now;
 
             // 更新托盘位置
@@ -352,18 +350,17 @@ namespace RW.VAC.Application.Services.Locations
             }
 
             // 如果库位没有托盘，不需要处理
-            if (location.IsOccupied != true || string.IsNullOrEmpty( location.CurrentBinding.PalletId ))
+            if (location.CurrentBindingId == null || string.IsNullOrEmpty( location.LocationId ))
             {
                 return true;
             }
 
             // 获取托盘
-            var palletId = location.CurrentBinding.PalletId;
+            var palletId = location.LocationId;
             var pallet = await _palletRepository.GetByIdAsync( palletId );
 
             // 更新库位状态
-            location.IsOccupied = false;
-            location.CurrentBinding.PalletId = null;
+            location.LocationId = null;
             location.LastUpdate = DateTime.Now;
 
             // 如果找到托盘，更新托盘位置
@@ -389,7 +386,7 @@ namespace RW.VAC.Application.Services.Locations
             var locations = await _locationRepository.GetByTypeAsync( locationType );
 
             // 过滤出未被占用的库位
-            return locations.Where( l => l.IsOccupied != true );
+            return locations.Where( l => l.CurrentBindingId == null );
         }
 
         /// <summary>

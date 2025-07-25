@@ -29,10 +29,6 @@ namespace RW.VAC.Domain.Location
         [FreeSql.DataAnnotations.Column( StringLength = 100 )]
         public string LocationName { get; set; }
 
-        /// <summary>
-        /// 是否被占用
-        /// </summary>
-        public bool? IsOccupied { get; set; }
 
         /// <summary>
         /// 当前托盘ID

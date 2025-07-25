@@ -47,6 +47,7 @@ using RW.VAC.Application.Contracts.Parameters;
 using RW.VAC.Application.Services.Parameters;
 using RW.VAC.Application.Services.Opcs;
 using RW.VAC.Infrastructure.Repositories.Parameters;
+using RW.VAC.Application.Contracts.AGV;
 
 [assembly: ComponentException]
 namespace RW.VAC.Client;
@@ -83,7 +84,8 @@ public partial class App
 					services.AddConfig(configuration);
 
 					services.AddAuthorizationCore();
-				}
+ 
+                }
 				else
 				{
 					throw new ConfigurationErrorsException("应用服务层配置错误");
@@ -121,8 +123,7 @@ public partial class App
 
                 builder.RegisterType<SplashWindowViewModel>().SingleInstance();
 				builder.RegisterType<SplashWindow>().SingleInstance();
-
-				builder.RegisterType<MainWindowViewModel>().SingleInstance();
+                builder.RegisterType<MainWindowViewModel>().SingleInstance();
 				builder.RegisterType<MainWindow>().SingleInstance();
 
 				//TODO:领域服务统一注册
@@ -169,7 +170,8 @@ public partial class App
 
 		_host.Start();
 		IocManager.Instance.Initialize(_host.Services.GetAutofacRoot());
-	}
+      
+    }
 
 	private async void OnExit(object sender, ExitEventArgs e)
     {

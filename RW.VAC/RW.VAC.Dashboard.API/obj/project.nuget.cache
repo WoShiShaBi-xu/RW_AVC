@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uGsYFwppltI=",
+  "dgSpecHash": "D357HYSyCYo=",
   "success": true,
   "projectFilePath": "D:\\GJCX25001制动控制装置智能装配线\\GJCX25001制动控制装置智能装配线-main-web\\GJCX25001制动控制装置智能装配线-main\\GJCX25001-制动控制装置智能装配线\\RW.VAC\\RW.VAC.Dashboard.API\\RW.VAC.Dashboard.API.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,7 @@
     "C:\\Users\\言午许\\.nuget\\packages\\polly\\8.5.0\\polly.8.5.0.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\polly.core\\8.5.0\\polly.core.8.5.0.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\言午许\\.nuget\\packages\\restsharp\\112.1.0\\restsharp.112.1.0.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\言午许\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

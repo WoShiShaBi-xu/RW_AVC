@@ -168,6 +168,10 @@
             "Polly": {
               "target": "Package",
               "version": "[8.5.0, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[112.1.0, )"
             }
           },
           "imports": [
@@ -261,6 +265,10 @@
             "Microsoft.AspNetCore.Components.WebView.Wpf": {
               "target": "Package",
               "version": "[8.0.14, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
             },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",

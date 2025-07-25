@@ -33,7 +33,7 @@ namespace RW.VAC.Infrastructure.Repositories
 
         public async Task<IEnumerable<Location>> GetAvailableAsync( )
         {
-            return await Select.Where( x => x.IsOccupied != true ).ToListAsync();
+            return await Select.Where( x => x.CurrentBindingId == null ).ToListAsync();
         }
 
         public async Task<Location> GetByPalletIdAsync( string palletId )
