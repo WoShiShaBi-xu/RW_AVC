@@ -246,7 +246,7 @@ namespace RW.VAC.Application.Services.Locations
             // 如果设置为未占用，需要清除当前托盘ID
             if (isOccupied==null)
             {
-                location.LocationId = null;
+                //location.LocationId = null;
             }
             else if (location.LocationId == null)
             {

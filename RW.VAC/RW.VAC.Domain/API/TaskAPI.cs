@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,7 +75,62 @@ namespace RW.VAC.Domain.API
         /// </summary>
         public List<SubTaskInfo> SubTaskList { get; set; }
     }
+    public class GetVehicleResponse
+    {
+        [JsonProperty("code")]
+        public string Code { get; set; }
 
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [JsonProperty("data")]
+        public VehicleData Data { get; set; }
+    }
+
+    public class VehicleData
+    {
+        [JsonProperty("vehicleType")]
+        public string VehicleType { get; set; }
+
+        [JsonProperty("vehicleCode")]
+        public string VehicleCode { get; set; }
+
+        [JsonProperty("brand")]
+        public string Brand { get; set; }
+
+        [JsonProperty("vehicleStatus")]
+        public string VehicleStatus { get; set; }
+
+        [JsonProperty("onlineStatus")]
+        public string OnlineStatus { get; set; }
+
+        [JsonProperty("isMaintain")]
+        public bool IsMaintain { get; set; }
+
+        [JsonProperty("autoCharge")]
+        public bool AutoCharge { get; set; }
+
+        [JsonProperty("containers")]
+        public object[] Containers { get; set; }
+
+        [JsonProperty("locationCode")]
+        public string LocationCode { get; set; }
+
+        [JsonProperty("direction")]
+        public int Direction { get; set; }
+
+        [JsonProperty("battery")]
+        public double Battery { get; set; }
+
+        [JsonProperty("batteryVoltage")]
+        public double BatteryVoltage { get; set; }
+
+        [JsonProperty("batteryTemperature")]
+        public double BatteryTemperature { get; set; }
+
+        [JsonProperty("resourceGroupNames")]
+        public string[] ResourceGroupNames { get; set; }
+    }
     /// <summary>
     /// 子任务信息
     /// </summary>
@@ -270,7 +326,40 @@ namespace RW.VAC.Domain.API
         /// </summary>
         public List<OrderTaskResult> Data { get; set; }
     }
+    public class SendOrderTasksResponse1
+    {
+        /// <summary>
+        /// 返回码：0 成功，-1 失败
+        /// </summary>
+        public string Code { get; set; }
 
+        /// <summary>
+        /// 返回成功或者失败的信息
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// 接口返回数据
+        /// </summary>
+        public AddLoadResponseData Data { get; set; }
+    }
+    public class AddLoadResponseData
+    {
+        /// <summary>
+        /// 载具点位
+        /// </summary>
+        public string LocationCode { get; set; }
+
+        /// <summary>
+        /// 载具编码
+        /// </summary>
+        public string LoadCode { get; set; }
+
+        /// <summary>
+        /// 是否可用
+        /// </summary>
+        public bool Disabled { get; set; } = false;
+    }
     /// <summary>
     /// 订单任务结果
     /// </summary>
@@ -364,5 +453,67 @@ namespace RW.VAC.Domain.API
         Finished
     }
 
+    #endregion
+
+    #region 载具信息模型
+    /// <summary>
+    /// 载具信息模型
+    /// </summary>
+    public class LoadInfo
+    {
+        [JsonProperty( "loadType" )]
+        public string LoadType { get; set; }
+
+        [JsonProperty( "loadTypeName" )]
+        public string LoadTypeName { get; set; }
+
+        [JsonProperty( "loadCode" )]
+        public string LoadCode { get; set; }
+
+        [JsonProperty( "length" )]
+        public int Length { get; set; }
+
+        [JsonProperty( "width" )]
+        public int Width { get; set; }
+
+        [JsonProperty( "height" )]
+        public int Height { get; set; }
+
+        [JsonProperty( "storageCode" )]
+        public string StorageCode { get; set; }
+
+        [JsonProperty( "locationCode" )]
+        public string LocationCode { get; set; }
+
+        [JsonProperty( "angle" )]
+        public int Angle { get; set; }
+
+        [JsonProperty( "disabled" )]
+        public bool Disabled { get; set; }
+
+        [JsonProperty( "resourceGroups" )]
+        public string [ ] ResourceGroups { get; set; }
+
+        [JsonProperty( "createTime" )]
+        public string CreateTime { get; set; }
+
+        [JsonProperty( "updateTime" )]
+        public string UpdateTime { get; set; }
+    }
+
+    /// <summary>
+    /// 查询所有载具响应模型
+    /// </summary>
+    public class GetLoadsResponse
+    {
+        [JsonProperty( "code" )]
+        public string Code { get; set; }
+
+        [JsonProperty( "message" )]
+        public string Message { get; set; }
+
+        [JsonProperty( "data" )]
+        public LoadInfo [ ] Data { get; set; }
+    }
     #endregion
 }

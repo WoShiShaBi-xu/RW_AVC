@@ -43,6 +43,10 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterType<ProductPalletBindingService>().As<IProductPalletBindingService>();
     containerBuilder.RegisterType<LocationService>().As<ILocationService>();
     containerBuilder.RegisterType<PalletService>().As<IPalletService>();
+    containerBuilder.RegisterType<WMSClient>().As<IWMSClient>();
+    containerBuilder.RegisterType<UaClient>().As<IUaClient>();
+    containerBuilder.RegisterType<TagStorage>().AsSelf();
+    containerBuilder.RegisterType<AgvService>().As<IAgvService>();
 });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

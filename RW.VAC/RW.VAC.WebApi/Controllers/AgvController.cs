@@ -16,17 +16,20 @@ namespace RW.VAC.WebApi.Controllers
         private readonly IProductPalletBindingService _productPalletBindingService;
         private readonly ILocationService _locationService;
         private readonly IPalletService _palletService;
+        private readonly IAgvService _agvService;
 
         public AgvController(
             IProductService productService ,
             IProductPalletBindingService productPalletBindingService ,
             ILocationService locationService ,
-            IPalletService palletService )
+            IPalletService palletService ,
+            IAgvService agvService)
         {
             _productService = productService;
             _productPalletBindingService = productPalletBindingService;
             _locationService = locationService;
             _palletService = palletService;
+            _agvService = agvService;
         }
 
         [HttpPost( "load" )]
@@ -104,6 +107,102 @@ namespace RW.VAC.WebApi.Controllers
             {
                 return BadRequest( new { Success = false , Message = ex.Message } );
             }
+        }
+        [HttpPost("return-home")]
+        public async Task<IActionResult> SendReturnHomeCommand(string number)
+        {
+            try
+            {
+                if (number == "1")
+                {
+                    //1号上料口
+                    var test = await _agvService.SendLoadCommandAsync("cst_n2uEAcCr", "zaijvhao", "mubiaodian", 61, 220);
+
+                    // 等待AGV状态变为Idle
+                    var isIdle = await WaitForVehicleIdleAsync("1567", "latent", TimeSpan.FromMinutes(5));
+
+                    if (isIdle)
+                    {
+                        // 状态已变为Idle，执行删除载具操作
+                        var del = await _agvService.DeleteLoadAsync(61, "LOAD_TYPE_LatentJackingLoadType");
+                    }
+                    else
+                    {
+                        return BadRequest(new { Success = false, Message = "等待AGV状态变为Idle超时" });
+                    }
+                }
+
+                if (number == "7")
+                {
+                    //1号上料口
+                    var test = await _agvService.SendLoadCommandAsync( "cst_n2uEAcCr" , "zaijvhao" , "mubiaodian" , 79 , 233 );
+
+                    // 等待AGV状态变为Idle
+                    var isIdle = await WaitForVehicleIdleAsync( "1567" , "latent" , TimeSpan.FromMinutes( 5 ) );
+
+                    if (isIdle)
+                    {
+                        // 状态已变为Idle，执行删除载具操作
+                        var del = await _agvService.DeleteLoadAsync( 79 , "LOAD_TYPE_LatentJackingLoadType" );
+                    }
+                    else
+                    {
+                        return BadRequest( new { Success = false , Message = "等待AGV状态变为Idle超时" } );
+                    }
+                }
+
+                return Ok(new
+                {
+                    Success = true,
+                    Message = "AGV回家指令处理成功",
+                    Data = new
+                    {
+                        CreateTime = DateTime.Now
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Success = false, Message = ex.Message });
+            }
+        }
+
+        /// <summary>
+        /// 等待车辆状态变为Idle
+        /// </summary>
+        /// <param name="vehicleCode">车辆代码</param>
+        /// <param name="vehicleType">车辆类型</param>
+        /// <param name="timeout">超时时间</param>
+        /// <returns>是否成功等到Idle状态</returns>
+        private async Task<bool> WaitForVehicleIdleAsync(string vehicleCode, string vehicleType, TimeSpan timeout)
+        {
+            var startTime = DateTime.Now;
+            var checkInterval = TimeSpan.FromSeconds(2); // 每2秒检查一次
+
+
+            while (DateTime.Now - startTime < timeout)
+            {
+                try
+                {
+                    var getState = await _agvService.GetVehicleResponse();
+
+
+                    if (getState.Data?.VehicleStatus == "Idle")
+                    {
+                        return true;
+                    }
+
+                    // 等待指定时间后再次检查
+                    await Task.Delay(checkInterval);
+                }
+                catch (Exception ex)
+                {
+                    // 发生异常时也等待一下再继续
+                    await Task.Delay(checkInterval);
+                }
+            }
+
+            return false;
         }
         /// <summary>
         /// 根据工位ID确定产品类型

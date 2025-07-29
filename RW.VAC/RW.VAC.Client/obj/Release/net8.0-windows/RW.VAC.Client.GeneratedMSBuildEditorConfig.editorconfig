@@ -9,142 +9,139 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RW.VAC.Client
 build_property.RootNamespace = RW.VAC.Client
-build_property.ProjectDir = D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client\
+build_property.ProjectDir = D:\RW.VAC\RW.VAC.Client\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
-build_property.CsWinRTUseWindowsUIXamlProjections = false
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\GJCX25001制动控制装置智能装配线\GJCX25001制动控制装置智能装配线-main-web\GJCX25001制动控制装置智能装配线-main\GJCX25001-制动控制装置智能装配线\RW.VAC\RW.VAC.Client
+build_property.MSBuildProjectDirectory = D:\RW.VAC\RW.VAC.Client
 build_property._RazorSourceGeneratorDebug = 
-build_property.EffectiveAnalysisLevelStyle = 8.0
-build_property.EnableCodeStyleSeverity = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/ControlPanel.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/ControlPanel.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udHJvbFBhbmVsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/AssignDockingPalletModal.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Location/AssignDockingPalletModal.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cQXNzaWduRG9ja2luZ1BhbGxldE1vZGFsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/AssignPalletModal.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Location/AssignPalletModal.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cQXNzaWduUGFsbGV0TW9kYWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/DockingPositionDetail.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Location/DockingPositionDetail.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cRG9ja2luZ1Bvc2l0aW9uRGV0YWlsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/DockingPositionEdit.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Location/DockingPositionEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cRG9ja2luZ1Bvc2l0aW9uRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/LocationDetail.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Location/LocationDetail.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cTG9jYXRpb25EZXRhaWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/LocationEdit.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Location/LocationEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cTG9jYXRpb25FZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Product/Edit.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Product/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Product/List.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Product/List.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Record/List.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Record/List.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjb3JkXExpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/ItemEdit.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/ItemEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xPcGNcSXRlbUVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Parameter/Edit.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Setting/Parameter/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xQYXJhbWV0ZXJcRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Parameter/List.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Setting/Parameter/List.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xQYXJhbWV0ZXJcTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Setting/User/Edit.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Setting/User/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xVc2VyXEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Setting/User/List.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Setting/User/List.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xVc2VyXExpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/_Imports.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Routers.razor]
+[D:/RW.VAC/RW.VAC.Client/Routers.razor]
 build_metadata.AdditionalFiles.TargetPath = Um91dGVycy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/DescriptionsStatu.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/DescriptionsStatu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcRXF1aVN0YXR1c1xEZXNjcmlwdGlvbnNTdGF0dS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/EquipmentStatus.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/EquipmentStatus.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcRXF1aVN0YXR1c1xFcXVpcG1lbnRTdGF0dXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/SwitchStatus.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/Components/EquiStatus/SwitchStatus.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcRXF1aVN0YXR1c1xTd2l0Y2hTdGF0dXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/NavBread.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/NavBread.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdkJyZWFkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/NavMenu.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/NullLayout.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/NullLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE51bGxMYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/RedirectToLogin.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/RedirectToLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlZGlyZWN0VG9Mb2dpbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/_Imports.razor]
+[D:/RW.VAC/RW.VAC.Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Location/List.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Location/List.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25cTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-6f13hd9rmc
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Record/Detail.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Record/Detail.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjb3JkXERldGFpbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-n5yczm28g6
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/GroupEdit.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/GroupEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xPcGNcR3JvdXBFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-5t2kqjdcel
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/List.razor]
+[D:/RW.VAC/RW.VAC.Client/Pages/Setting/Opc/List.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ1xPcGNcTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-7pkwv8feqi
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/Components/Footer/EquipmentStatistics.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/Components/Footer/EquipmentStatistics.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcRm9vdGVyXEVxdWlwbWVudFN0YXRpc3RpY3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-1touyhjubc
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/Components/StatusIndicator.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/Components/StatusIndicator.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcU3RhdHVzSW5kaWNhdG9yLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-l25papzoe1
 
-[D:/GJCX25001制动控制装置智能装配线/GJCX25001制动控制装置智能装配线-main-web/GJCX25001制动控制装置智能装配线-main/GJCX25001-制动控制装置智能装配线/RW.VAC/RW.VAC.Client/Shared/MainLayout.razor]
+[D:/RW.VAC/RW.VAC.Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-3hp0cg34u0
